@@ -3,6 +3,11 @@
     color: rgb(185, 31, 31);
 }
 
+.botao-search:hover {
+    color: white;
+    background-color: rgb(167, 29, 29);
+}
+
 .vermelho {
     background-color: rgb(204, 27, 27);
 }
