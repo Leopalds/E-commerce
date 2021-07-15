@@ -15,8 +15,9 @@
     {{--JQuery--}}
     <script src="js/jquery-3-6-0-min.js"></script>
 
-    {{--Font Awesome--}}
-    <script src="https://kit.fontawesome.com/b763dd609a.js" crossorigin="anonymous"></script>
+     {{-- Font Awesome --}}
+     <script src="https://kit.fontawesome.com/1194f437a6.js" crossorigin="anonymous"></script>
+     @yield('css')
 
     {{--Nosso CSS--}}
     <link rel="stylesheet" href="css/cabecalho/botao-search.css">
@@ -90,5 +91,4 @@
           linkAtivo();
       })
   </script>
-</body>
-</html>
+   
