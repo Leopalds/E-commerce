@@ -47,7 +47,7 @@
               <a class="nav-link" href="/contato">Contato</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/quem-somos">Quem somos</a>
+              <a class="nav-link" href="/quemsomos">Quem somos</a>
             </li>
           </ul>
           <form class="d-flex">
