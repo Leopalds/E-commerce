@@ -1,9 +1,10 @@
 @extends('layout.main')
 
 @section('conteudo')
-    <div>
-        <ul class="d-flex list-unstyled justify-content-center">
-            <li class="me-5 dropdown">
+    <div class="border-bottom">
+        <ul class="d-flex flex-column list-unstyled align-items-center">
+            <a class="fw-bold fst-italic text-dark text-decoration-none mt-4 mb-2">Ordenar por:</a>
+            <li class=" dropdown">
                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Preço
                 </a>
@@ -12,15 +13,23 @@
                     <li><a class="dropdown-item" href="#">Mais caro</a></li>
                 </ul>
             </li>
-            <li class="me-5">
+            <li class="">
                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Marca
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Database com todas as marcas</a></li>
+                    {{-- Lista de marcas retiradas do database --}}
+                    <li class="dropdown-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Marcas
+                            </label>
+                        </div>
+                    </li>
                 </ul>
             </li>
-            <li class="me-5">
+            <li class="">
                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Embalagem
                 </a>
@@ -30,7 +39,7 @@
             </li>
         </ul>
     </div>
-    <hr>
+    
     <div class="m-5 d-flex flex-wrap">
         <div class="card" style="width: 18rem;">
             <img src="https://casaspedro.vteximg.com.br/arquivos/ids/167490-1000-1000/cerveja-heineken-longneck-330ml.png?v=637571388310070000" class="card-img-top" alt="...">
