@@ -34,13 +34,21 @@
                     Embalagem
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Tipo de embalagem</a></li>     
+                    {{-- Lista de marcas retiradas do database --}}
+                    <li class="dropdown-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Embalagem
+                            </label>
+                        </div>
+                    </li>    
                 </ul>
             </li>
         </ul>
     </div>
     
-    <div class="m-5 d-flex flex-wrap">
+    <div class="m-5 d-flex flex-wrap justify-content-center">
         <div class="card" style="width: 18rem;">
             <img src="https://casaspedro.vteximg.com.br/arquivos/ids/167490-1000-1000/cerveja-heineken-longneck-330ml.png?v=637571388310070000" class="card-img-top" alt="...">
             <div class="card-body">
