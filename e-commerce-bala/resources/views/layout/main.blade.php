@@ -50,11 +50,26 @@
             <li class="nav-item">
               <a class="nav-link" href="/quemsomos">Quem somos</a>
             </li>
+            <li class="nav-item">
+              <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                <button class="btn botao-search" type="submit">Buscar</button>
+              </form>
+            </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn botao-search" type="submit">Buscar</button>
-          </form>
+          @guest
+
+            <a href="#">Login</a>
+            
+          @endguest
+          @auth
+          
+            <a href="#">
+              <i class="fas fa-shopping-cart"></i>
+              <small>Nome do usuario</small>
+            </a>
+            
+          @endauth
       </div>
     </div>
   </nav>

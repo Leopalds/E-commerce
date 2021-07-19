@@ -54,7 +54,7 @@
             <a href="#" class="text-decoration-none  text-dark ">
                 <img src="https://casaspedro.vteximg.com.br/arquivos/ids/167490-1000-1000/cerveja-heineken-longneck-330ml.png?v=637571388310070000" class="card-img-top" alt="descricao">
                 <div class="card-body">
-                    <h5 class="card-title mb-3">Nome da cerveja</h5>
+                    <h5 class="card-title mb-3 produtos_titulo">Nome da cerveja</h5>
                     <p class="card-text mb-5">R$ Preço,00</p>
                     <a href="#" class="btn produto_botao-add-carrinho">Adicionar ao carrinho</a>
                 </div>
