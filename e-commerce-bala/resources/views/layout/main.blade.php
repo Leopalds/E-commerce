@@ -32,7 +32,7 @@
 <body class="">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand fs-2 fw-light" href="/"><span class="fw-bold nav-brand_h">H</span>ulmer's</a>
+      <a class="navbar-brand fs-2 fw-light nav_brand" href="/"><span class="fw-bold nav_brand-h">H</span>ulmer's</a>
       <button class="navbar-toggler vermelho" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -57,14 +57,15 @@
               </form>
             </li>
           </ul>
+          <hr class="text-light">
           @guest
 
-            <a href="#">Login</a>
+            <a href="#" class="text-light text-decoration-none">Login</a>
             
           @endguest
           @auth
-          
-            <a href="#">
+
+            <a href="#" class="text-light text-decoration-none">
               <i class="fas fa-shopping-cart"></i>
               <small>Nome do usuario</small>
             </a>

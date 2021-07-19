@@ -1,3 +1,7 @@
-.nav-brand_h {
+.nav_brand {
+    letter-spacing: 5px;
+}
+
+.nav_brand-h {
     color: rgb(194, 29, 29) !important;
 }
