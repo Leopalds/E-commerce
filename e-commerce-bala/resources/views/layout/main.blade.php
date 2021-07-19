@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/cabecalho/botao-search.css">
     <link rel="stylesheet" href="css/cabecalho/brand.css">
     <link rel="stylesheet" href="css/rodape/redes-sociais.css">
+    <link rel="stylesheet" href="css/produtos/botao-add-carrinho.css">
 
     {{--Nosso Script--}}
     <script src="js/menu/link-ativo.js"></script>

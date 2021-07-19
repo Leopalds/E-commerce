@@ -34,7 +34,7 @@
                     Embalagem
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                    {{-- Lista de marcas retiradas do database --}}
+                    {{-- Lista de embalagens retiradas do database --}}
                     <li class="dropdown-item">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -48,14 +48,17 @@
         </ul>
     </div>
     
+    {{--Foreach com os produtos--}}
     <div class="m-5 d-flex flex-wrap justify-content-center">
         <div class="card" style="width: 18rem;">
-            <img src="https://casaspedro.vteximg.com.br/arquivos/ids/167490-1000-1000/cerveja-heineken-longneck-330ml.png?v=637571388310070000" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Heineken</h5>
-                <p class="card-text">Cerveja de macho.</p>
-                <a href="#" class="btn vermelho text-light">Visualizar</a>
-            </div>
+            <a href="#" class="text-decoration-none  text-dark ">
+                <img src="https://casaspedro.vteximg.com.br/arquivos/ids/167490-1000-1000/cerveja-heineken-longneck-330ml.png?v=637571388310070000" class="card-img-top" alt="descricao">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Nome da cerveja</h5>
+                    <p class="card-text mb-5">R$ Preço,00</p>
+                    <a href="#" class="btn produto_botao-add-carrinho">Adicionar ao carrinho</a>
+                </div>
+            </a>
         </div>
 
     </div>
