@@ -1,7 +1,10 @@
 @extends('layout.main')
 @section('css')
+
+    <link rel="stylesheet" href="/css/quem-somos/quem-somos_banner.css">
     <link rel="stylesheet" href="/css/quem-somos/quem-somos_banner--um.css">
     <link rel="stylesheet" href="/css/quem-somos/quem-somos_banner--dois.css">
+
 @endsection
 
 @section('conteudo')

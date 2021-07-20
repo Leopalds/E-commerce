@@ -19,16 +19,10 @@
      <script src="https://kit.fontawesome.com/1194f437a6.js" crossorigin="anonymous"></script>
      @yield('css')
 
-    {{--Nosso CSS--}}
-    <link rel="stylesheet" href="css/cabecalho/cabecalho_botao.css">
-    <link rel="stylesheet" href="css/cabecalho/cabecalho_brand.css">
-    <link rel="stylesheet" href="css/cabecalho/cabecalho_brand--h.css">
-    <link rel="stylesheet" href="css/rodape/rodape_redes.css">
-    <link rel="stylesheet" href="css/produtos/produtos_botao.css">
-    <link rel="stylesheet" href="css/produtos/produtos_nome.css">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/home/home_banner.css">
-    <link rel="stylesheet" href="css/home/home_banner--img.css">
+      <link rel="stylesheet" href="css/cabecalho/cabecalho_botao.css">
+      <link rel="stylesheet" href="css/cabecalho/cabecalho_brand.css">
+      <link rel="stylesheet" href="css/cabecalho/cabecalho_brand--h.css">
+      <link rel="stylesheet" href="css/rodape/rodape_redes.css">
 
     {{--Nosso Script--}}
     <script src="js/menu/link-ativo.js"></script>

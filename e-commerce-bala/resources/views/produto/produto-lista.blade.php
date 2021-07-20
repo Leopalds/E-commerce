@@ -1,5 +1,12 @@
 @extends('layout.main')
 
+@section('css')
+
+    <link rel="stylesheet" href="css/produtos/produtos_botao.css">
+    <link rel="stylesheet" href="css/produtos/produtos_nome.css">
+    
+@endsection
+
 @section('conteudo')
     <div class="border-bottom">
         <ul class="d-flex flex-column list-unstyled align-items-center">

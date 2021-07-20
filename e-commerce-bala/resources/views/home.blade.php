@@ -1,6 +1,9 @@
 @extends('layout.main')
 @section('css')
+
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/home/home_banner.css">
+    <link rel="stylesheet" href="css/home/home_banner--img.css">
     
 @endsection
 
