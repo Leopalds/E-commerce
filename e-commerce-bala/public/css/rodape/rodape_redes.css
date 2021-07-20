@@ -1,0 +1,9 @@
+.rodape_redes {
+    color: rgb(199, 55, 55);
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.rodape_redes:hover {
+    transform: scale(1.1);
+}

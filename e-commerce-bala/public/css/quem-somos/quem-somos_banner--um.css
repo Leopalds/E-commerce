@@ -1,0 +1,7 @@
+.quem-somos_banner--um{
+    height: 400px;
+    background: url('../../img/beer-friends.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 0 40%;
+}

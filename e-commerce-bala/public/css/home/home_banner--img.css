@@ -1,0 +1,12 @@
+.home_banner--img{
+    object-fit: cover;
+    object-position: 0 70%;
+    height: 100%;
+    width: 100%;
+}
+
+@media screen and (max-width:767px) {
+    .home_banner--img{
+        object-position: center;
+    }
+}

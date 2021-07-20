@@ -1,0 +1,13 @@
+.quem-somos_banner--dois {
+    height: 400px;
+    background: url('../../img/cervejaria.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 0 40%;
+}
+
+@media screen and (max-width:679px) {
+    .quem-somos_banner--dois {
+        background-position: -80px -50px;
+    }
+}

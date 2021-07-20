@@ -1,18 +1,19 @@
 @extends('layout.main')
 @section('css')
-    <link rel="stylesheet" href="/css/quemsomos.css">
+    <link rel="stylesheet" href="/css/quem-somos/quem-somos_banner--um.css">
+    <link rel="stylesheet" href="/css/quem-somos/quem-somos_banner--dois.css">
 @endsection
 
 @section('conteudo')
     
-    <div class="img-fluid banner01"></div>
+    <div class="img-fluid quem-somos_banner--um"></div>
     <div class="container mt-3 mb-4">
         <h1 class="text-center mb-3">Quem somos?</h1>
             <p>Olá! somos a Hulmer's, uma empresa do ramo da boa cerveja. A hulmer's vem desde 2010 trazendo as cervejas da melhor qualidade para você não se preocupar com nada, apenas em bebê-la.</p>
 
             <p>A Hulmer's leva no conforto de sua casa, festa ou até Iate a suas bebidas bem geladas e de qualidade.</p>
     </div>
-    <div class="img-fluid banner02"></div>
+    <div class="img-fluid quem-somos_banner--dois"></div>
     <div class="container mt-3">
         <h1 class="text-center mb-3">Onde nos Localizamos?</h1>
         <p>Nosso espaço aconchegante irá trazer uma ótima experiência para você e seus amigos. Venha nos conhecer!</p>

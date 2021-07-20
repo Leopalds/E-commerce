@@ -20,10 +20,15 @@
      @yield('css')
 
     {{--Nosso CSS--}}
-    <link rel="stylesheet" href="css/cabecalho/botao-search.css">
-    <link rel="stylesheet" href="css/cabecalho/brand.css">
-    <link rel="stylesheet" href="css/rodape/redes-sociais.css">
-    <link rel="stylesheet" href="css/produtos/botao-add-carrinho.css">
+    <link rel="stylesheet" href="css/cabecalho/cabecalho_botao.css">
+    <link rel="stylesheet" href="css/cabecalho/cabecalho_brand.css">
+    <link rel="stylesheet" href="css/cabecalho/cabecalho_brand--h.css">
+    <link rel="stylesheet" href="css/rodape/rodape_redes.css">
+    <link rel="stylesheet" href="css/produtos/produtos_botao.css">
+    <link rel="stylesheet" href="css/produtos/produtos_nome.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/home/home_banner.css">
+    <link rel="stylesheet" href="css/home/home_banner--img.css">
 
     {{--Nosso Script--}}
     <script src="js/menu/link-ativo.js"></script>
@@ -32,7 +37,7 @@
 <body class="">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand fs-2 fw-light nav_brand" href="/"><span class="fw-bold nav_brand-h">H</span>ulmer's</a>
+      <a class="navbar-brand fs-2 fw-light cabecalho_brand" href="/"><span class="fw-bold cabecalho_brand--h">H</span>ulmer's</a>
       <button class="navbar-toggler vermelho" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -53,7 +58,7 @@
             <li class="nav-item">
               <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn botao-search" type="submit">Buscar</button>
+                <button class="btn cabecalho_botao" type="submit">Buscar</button>
               </form>
             </li>
           </ul>
@@ -83,22 +88,22 @@
     <ul class="d-flex justify-content-center">
       <li>
         <a href="#">
-          <i class="fab fa-instagram-square me-5 fs-2 rede-social_item instagram"></i>
+          <i class="fab fa-instagram-square me-5 fs-2 rodape_redes"></i>
         </a>
       </li>
       <li>
         <a href="#">
-          <i class="fab fa-facebook-square me-5 fs-2 rede-social_item facebook"></i>
+          <i class="fab fa-facebook-square me-5 fs-2 rodape_redes"></i>
         </a>
       </li>
       <li>
         <a href="#">
-          <i class="fab fa-twitter-square me-5 fs-2 rede-social_item twitter"></i>
+          <i class="fab fa-twitter-square me-5 fs-2 rodape_redes"></i>
         </a>
       </li>
       <li>
         <a href="#">
-          <i class="fab fa-whatsapp-square fs-2 rede-social_item whatsapp"></i>
+          <i class="fab fa-whatsapp-square me-4 fs-2 rodape_redes"></i>
         </a>
       </li>
     </ul>
