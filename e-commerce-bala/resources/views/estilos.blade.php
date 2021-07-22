@@ -1,9 +1,0 @@
-<link rel="stylesheet" href="css/cabecalho/cabecalho_botao.css">
-<link rel="stylesheet" href="css/cabecalho/cabecalho_brand.css">
-<link rel="stylesheet" href="css/cabecalho/cabecalho_brand--h.css">
-<link rel="stylesheet" href="css/rodape/rodape_redes.css">
-<link rel="stylesheet" href="css/produtos/produtos_botao.css">
-<link rel="stylesheet" href="css/produtos/produtos_nome.css">
-<link rel="stylesheet" href="css/home.css">
-<link rel="stylesheet" href="css/home/home_banner.css">
-<link rel="stylesheet" href="css/home/home_banner--img.css">

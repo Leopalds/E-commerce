@@ -2,8 +2,8 @@
 
 @section('css')
 
-    <link rel="stylesheet" href="css/produtos/produtos_botao.css">
-    <link rel="stylesheet" href="css/produtos/produtos_nome.css">
+    <link rel="stylesheet" href="css/botao-carrinho/botao-carrinho.css">
+    <link rel="stylesheet" href="css/produtos/produtos__nome.css">
     
 @endsection
 
@@ -58,15 +58,16 @@
     {{--Foreach com os produtos--}}
     <div class="m-5 d-flex flex-wrap justify-content-center">
         <div class="card" style="width: 18rem;">
-            <a href="#" class="text-decoration-none  text-dark ">
+            <a href="/produtos/id" class="text-decoration-none text-dark ">
                 <img src="https://casaspedro.vteximg.com.br/arquivos/ids/167490-1000-1000/cerveja-heineken-longneck-330ml.png?v=637571388310070000" class="card-img-top" alt="descricao">
                 <div class="card-body">
-                    <h5 class="card-title mb-3 produtos_nome">Nome da cerveja</h5>
+                    <h5 class="card-title mb-3 produtos__nome">Nome da cerveja</h5>
                     <p class="card-text mb-5">R$ Preço,00</p>
-                    <a href="#" class="btn produtos_botao">Adicionar ao carrinho</a>
+                    <a href="#" class="btn botao-carrinho">Adicionar ao carrinho</a>
                 </div>
             </a>
         </div>
+        
 
     </div>
 

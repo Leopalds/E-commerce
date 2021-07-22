@@ -13,25 +13,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     {{--JQuery--}}
-    <script src="js/jquery-3-6-0-min.js"></script>
+    <script src="{{ asset('js/jquery-3-6-0-min.js') }}"></script>
 
      {{-- Font Awesome --}}
-     <script src="https://kit.fontawesome.com/1194f437a6.js" crossorigin="anonymous"></script>
-     @yield('css')
+    <script src="https://kit.fontawesome.com/1194f437a6.js" crossorigin="anonymous"></script>
 
-      <link rel="stylesheet" href="css/cabecalho/cabecalho_botao.css">
-      <link rel="stylesheet" href="css/cabecalho/cabecalho_brand.css">
-      <link rel="stylesheet" href="css/cabecalho/cabecalho_brand--h.css">
-      <link rel="stylesheet" href="css/rodape/rodape_redes.css">
+     {{-- Nosso CSS --}}
+    @yield('css')
+
+    <link rel="stylesheet" href="{{ asset('css/botao-busca/botao-busca.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cabecalho/cabecalho__brand.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cabecalho/cabecalho__brand--h.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/rodape/rodape__redes-link.css') }}">
 
     {{--Nosso Script--}}
-    <script src="js/menu/link-ativo.js"></script>
+    <script src="{{ asset('js/menu/link-ativo.js') }}"></script>
 
 </head>
-<body class="">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<body>
+  <nav class="cabecalho navbar navbar-expand-lg navbar-dark bg-dark pb-3">
     <div class="container">
-      <a class="navbar-brand fs-2 fw-light cabecalho_brand" href="/"><span class="fw-bold cabecalho_brand--h">H</span>ulmer's</a>
+      <a class="navbar-brand fs-2 fw-light cabecalho__brand" href="/"><span class="fw-bold cabecalho__brand--h">H</span>ulmer's</a>
       <button class="navbar-toggler vermelho" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -49,14 +51,12 @@
             <li class="nav-item">
               <a class="nav-link" href="/quemsomos">Quem somos</a>
             </li>
-            <li class="nav-item">
-              <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn cabecalho_botao" type="submit">Buscar</button>
-              </form>
-            </li>
           </ul>
           <hr class="text-light">
+          <form class="d-flex mb-3">
+            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+            <button class="btn botao-busca" type="submit">Buscar</button>
+          </form>
           @guest
 
             <a href="#" class="text-light text-decoration-none">Login</a>
@@ -82,29 +82,25 @@
     <ul class="d-flex justify-content-center">
       <li>
         <a href="#">
-          <i class="fab fa-instagram-square me-5 fs-2 rodape_redes"></i>
+          <i class="fab fa-instagram-square me-5 fs-2 rodape__redes-link"></i>
         </a>
       </li>
       <li>
         <a href="#">
-          <i class="fab fa-facebook-square me-5 fs-2 rodape_redes"></i>
+          <i class="fab fa-facebook-square me-5 fs-2 rodape__redes-link"></i>
         </a>
       </li>
       <li>
         <a href="#">
-          <i class="fab fa-twitter-square me-5 fs-2 rodape_redes"></i>
+          <i class="fab fa-twitter-square me-5 fs-2 rodape__redes-link"></i>
         </a>
       </li>
       <li>
         <a href="#">
-          <i class="fab fa-whatsapp-square me-4 fs-2 rodape_redes"></i>
+          <i class="fab fa-whatsapp-square me-4 fs-2 rodape__redes-link"></i>
         </a>
       </li>
     </ul>
   </footer>
-  <script>
-      $(function () {
-        linkAtivo()
-      })
-  </script>
+
    

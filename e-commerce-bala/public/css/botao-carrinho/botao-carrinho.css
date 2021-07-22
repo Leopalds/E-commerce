@@ -1,11 +1,11 @@
-.produtos_botao {
+.botao-carrinho {
+    background-color: none;
     border: 1px solid rgb(204, 27, 27);
     border-radius: 10px;
-    background-color: none;
     color: rgb(204, 27, 27);
 }
 
-.produtos_botao:hover {
+.botao-carrinho:hover {
     background-color: rgb(204, 27, 27);
     color: white;
 }

@@ -1,11 +1,5 @@
 @extends('layout.main')
 
-@section('css')
-
-   
-
-@endsection
-
 @section('conteudo')
 
     <div>
