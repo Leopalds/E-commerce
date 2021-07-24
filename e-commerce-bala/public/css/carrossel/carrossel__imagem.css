@@ -1,0 +1,10 @@
+.carrossel__imagem {
+    height: 200px;
+    width: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+    .carrossel__imagem {
+        height: 400px;
+    }
+}

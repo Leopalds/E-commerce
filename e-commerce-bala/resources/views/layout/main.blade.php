@@ -25,15 +25,15 @@
     <link rel="stylesheet" href="{{ asset('css/cabecalho/cabecalho__brand.css') }}">
     <link rel="stylesheet" href="{{ asset('css/cabecalho/cabecalho__brand--h.css') }}">
     <link rel="stylesheet" href="{{ asset('css/rodape/rodape__redes-link.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/carrinho/carrinho.css') }}">
 
-    {{--Nosso Script--}}
-    <script src="{{ asset('js/menu/link-ativo.js') }}"></script>
+   
 
 </head>
 <body>
   <nav class="cabecalho navbar navbar-expand-lg navbar-dark bg-dark pb-3">
     <div class="container">
-      <a class="navbar-brand fs-2 fw-light cabecalho__brand" href="/"><span class="fw-bold cabecalho__brand--h">H</span>ulmer's</a>
+      <h1><a class="navbar-brand fs-2 fw-light cabecalho__brand" href="/"><span class="fw-bold cabecalho__brand--h">H</span>ulmer's</a></h1>
       <button class="navbar-toggler vermelho" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -57,24 +57,25 @@
             <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
             <button class="btn botao-busca" type="submit">Buscar</button>
           </form>
-          @guest
-
-            <a href="#" class="text-light text-decoration-none">Login</a>
+          <div class="d-flex flex-column">
+            @guest
+              <a href="#" class="text-light text-decoration-none">Login</a>
             
-          @endguest
-          @auth
-
-            <a href="#" class="text-light text-decoration-none">
-              <i class="fas fa-shopping-cart"></i>
-              <small>Nome do usuario</small>
-            </a>
+            @endguest
+            @auth
+              <a href="#" class="text-light text-decoration-none">
+                <i class="fas fa-shopping-cart"></i>
+                <small>Nome do usuario</small>
+              </a>
             
-          @endauth
+              @endauth
+              <a href="/carrinho" class="mt-3 fs-4 carrinho"><i class="fas fa-shopping-cart"></i></a>
+          </div>
       </div>
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container-fluid">
       @yield('conteudo')
   </div>
 
@@ -101,6 +102,16 @@
         </a>
       </li>
     </ul>
-  </footer>
+  </footer> 
+ 
+  @yield('js')
 
+  <script src="{{ asset('js/menu/link-ativo.js') }}"></script>
+  <script type="text/javascript">
+    $(function () {
+      linkAtivo();
+    })  
+  </script> 
+  <script type="text/javascript" src="{{ asset('js/slick/slick.min.js') }}"></script>
+</body>
    
