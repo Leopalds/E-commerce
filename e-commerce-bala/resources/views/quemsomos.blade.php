@@ -1,6 +1,6 @@
-@extends('layout.main')
+@extends('layouts.main')
 @section('css')
-    <link rel="stylesheet" href="/css/quemsomos.css">
+    <link rel="stylesheet" href="{{ asset('/css/quemsomos.css') }}">
 @endsection
 
 @section('conteudo')
@@ -22,7 +22,7 @@
     
     <div class="container mt-3">
 
-        <p class="text-center">Entre em contato conosco na página de <a href="{{route('contato')}}">contato</a> ou pelo nosso whatsapp (24) 999844243 <i class="fab fa-whatsapp"></i></p>
+        <p class="text-center">Entre em contato conosco na página de <a href="{{ route('contato') }}">contato</a> ou pelo nosso whatsapp (24) 999844243 <i class="fab fa-whatsapp"></i></p>
     </div>
 
 @endsection
