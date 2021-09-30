@@ -9,3 +9,5 @@ Route::view('/produtos', 'pages.produto.produto-lista')->name('produtos');
 Route::view('/produtos/id', 'pages.produto.produto-individual')->name('produtos-individual');
 Route::view('/contato', 'pages.contato')->name('contato');
 Route::view('/quemsomos', 'pages.quemsomos')->name('quemsomos');
+
+Route::view('/admin', 'admin.dashboard');
