@@ -1,0 +1,10 @@
+@use '../abstracts/mixins';
+
+.ordenamento {
+
+    &__lista {
+        @include mixins.for-desktop {
+            flex-direction: row !important;
+        }
+    }
+}

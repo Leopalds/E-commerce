@@ -21,17 +21,18 @@
      {{-- Nosso CSS --}}
     @yield('css')
 
-    <link rel="stylesheet" href="{{ asset('css/botao-busca/botao-busca.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/busca/busca__botao.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/busca/busca.css') }}">
     <link rel="stylesheet" href="{{ asset('css/cabecalho/cabecalho__brand.css') }}">
     <link rel="stylesheet" href="{{ asset('css/cabecalho/cabecalho__brand--h.css') }}">
     <link rel="stylesheet" href="{{ asset('css/rodape/rodape__redes-link.css') }}">
     <link rel="stylesheet" href="{{ asset('css/carrinho/carrinho.css') }}">
-
-   
+    <link rel="stylesheet" href="{{ asset('css/cabecalho/cabecalho__lado-direito.css') }}">
 
 </head>
 <body>
-  <nav class="cabecalho navbar navbar-expand-lg navbar-dark bg-dark pb-3">
+  <nav class="cabecalho navbar navbar-expand-xl navbar-dark bg-dark pb-3">
     <div class="container">
       <h1><a class="navbar-brand fs-2 fw-light cabecalho__brand" href="/"><span class="fw-bold cabecalho__brand--h">H</span>ulmer's</a></h1>
       <button class="navbar-toggler vermelho" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,23 +54,27 @@
             </li>
           </ul>
           <hr class="text-light">
-          <form class="d-flex mb-3">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn botao-busca" type="submit">Buscar</button>
-          </form>
-          <div class="d-flex flex-column">
-            @guest
-              <a href="#" class="text-light text-decoration-none">Login</a>
-            
-            @endguest
-            @auth
-              <a href="#" class="text-light text-decoration-none">
-                <i class="fas fa-shopping-cart"></i>
-                <small>Nome do usuario</small>
-              </a>
+          <div class="cabecalho__lado-direito">
+            <form class="d-flex mb-3 busca">
+              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+              <button class="btn busca__botao" type="submit">Buscar</button>
+            </form>
+            <div class="d-flex align-items-center">
+              @guest
+
+                <a href="#" class="text-light text-decoration-none me-4">Login</a>
+      
+              @endguest
+              @auth
+
+                <a href="#" class="text-light text-decoration-none me-4">
+                  <i class="fas fa-shopping-cart"></i>
+                  <small>Nome do usuario</small>
+                </a>
             
               @endauth
-              <a href="/carrinho" class="mt-3 fs-4 carrinho"><i class="fas fa-shopping-cart"></i></a>
+                <a href="/carrinho" class="fs-4 carrinho"><i class="fas fa-shopping-cart"></i></a>
+            </div>
           </div>
       </div>
     </div>

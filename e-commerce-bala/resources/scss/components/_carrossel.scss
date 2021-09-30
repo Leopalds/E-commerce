@@ -1,0 +1,9 @@
+@use '../abstracts/mixins';
+
+.carrossel {
+
+    &__img {
+        height: 400px !important;
+        object-fit: cover;
+    }  
+}

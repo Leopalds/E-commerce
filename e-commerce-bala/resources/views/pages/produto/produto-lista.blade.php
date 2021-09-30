@@ -8,10 +8,10 @@
 @endsection
 
 @section('conteudo')
-    <div class="border-bottom">
-        <ul class="d-flex flex-column list-unstyled align-items-center">
-            <a class="fw-bold fst-italic text-dark text-decoration-none mt-4 mb-2">Ordenar por:</a>
-            <li class=" dropdown">
+    <div class="border-bottom ordenamento d-flex flex-column align-items-center">
+        <a class="fw-bold fst-italic text-dark text-decoration-none mt-4 mb-2 ordenamento__titulo">Ordenar por:</a>
+        <ul class="d-flex flex-column list-unstyled ordenamento__lista align-items-center">
+            <li class="dropdown ">
                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Preço
                 </a>

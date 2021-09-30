@@ -1,0 +1,31 @@
+.carrossel__img {
+  height: 400px !important;
+  object-fit: cover;
+}
+
+@media screen and (min-width: 1021px) {
+  .ordenamento__lista {
+    flex-direction: row !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .produto {
+    flex-direction: column;
+    margin: 0 !important;
+  }
+}
+.produto__img {
+  width: 100% !important;
+}
+@media screen and (min-width: 1021px) {
+  .produto__img {
+    width: 50% !important;
+  }
+}
+
+.produtos__nome:hover {
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=style.css.map */

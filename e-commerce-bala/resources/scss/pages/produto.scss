@@ -1,0 +1,16 @@
+@use '../abstracts/mixins';
+
+.produto {
+    
+    @include mixins.for-phone {      
+        flex-direction: column;
+        margin: 0 !important;
+    }
+
+    &__img {
+        width: 100% !important;
+        @include mixins.for-desktop {     
+            width: 50% !important;
+        }
+    }
+}

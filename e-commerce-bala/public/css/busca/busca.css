@@ -1,0 +1,6 @@
+@media screen and (min-width: 1024px) {
+    .busca {
+        margin-bottom: 0 !important;
+        margin-right: 1rem;
+    }
+}

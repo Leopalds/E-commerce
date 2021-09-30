@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home')->name('home');
 
-Route::view('/produtos', 'produto.produto-lista')->name('produtos');
-Route::view('/produtos/id', 'produto.produto-individual')->name('produtos-individual');
-Route::view('/contato', 'contato')->name('contato');
-Route::view('/quemsomos', 'quemsomos')->name('quemsomos');
+Route::view('/produtos', 'pages.produto.produto-lista')->name('produtos');
+Route::view('/produtos/id', 'pages.produto.produto-individual')->name('produtos-individual');
+Route::view('/contato', 'pages.contato')->name('contato');
+Route::view('/quemsomos', 'pages.quemsomos')->name('quemsomos');
