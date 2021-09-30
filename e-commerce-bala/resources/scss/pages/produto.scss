@@ -2,8 +2,8 @@
 
 .produto {
     
-    @include mixins.for-phone {      
-        flex-direction: column;
+    @include mixins.for-desktop {      
+        flex-direction: row !important;
         margin: 0 !important;
     }
 

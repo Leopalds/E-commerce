@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('libs/click-tap-image/css/image-zoom.css') }}">
 @endsection
 @section('conteudo')
-    <div class="d-flex produto">
+    <div class="d-flex produto flex-column">
         <div class="col-6 me-5 produto__img">
             <div id="carouselExampleIndicators" class="carousel slide carrossel" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -44,9 +44,9 @@
             <div class="d-flex align-items-center quantidade mb-5">
                 <label for="qtd" class="form-label me-3 quantidade__rotulo">Qtd</label>
                 <input type="number" id="qtd" name="quantidade" class="form-control quantidade__campo">
-                <div class="ms-5">
-                    <a href="#" class="btn botao-carrinho">Adicionar ao carrinho</a>
-                </div>
+                <button class="ms-5 botao botao--carrinho btn">
+                    Adicionar ao carrinho
+                </button>
             </div>
         </div>
     </div>

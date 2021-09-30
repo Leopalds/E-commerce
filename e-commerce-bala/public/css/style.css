@@ -10,8 +10,33 @@
 }
 
 @media screen and (max-width: 767px) {
-  .produto {
+  .quantidade {
+    align-items: flex-start !important;
     flex-direction: column;
+  }
+}
+.quantidade__campo {
+  width: 50px;
+}
+
+.botao--carrinho {
+  border: 1px solid #cc1b1b;
+  border-radius: 10px;
+  color: #cc1b1b;
+}
+@media screen and (max-width: 767px) {
+  .botao--carrinho {
+    margin: 1rem 0 !important;
+  }
+}
+.botao--carrinho:hover {
+  background-color: #cc1b1b;
+  color: white;
+}
+
+@media screen and (min-width: 1021px) {
+  .produto {
+    flex-direction: row !important;
     margin: 0 !important;
   }
 }

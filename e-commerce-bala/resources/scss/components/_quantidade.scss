@@ -1,0 +1,13 @@
+@use '../abstracts/mixins';
+
+.quantidade {
+
+    @include mixins.for-phone {
+        align-items: flex-start !important;
+        flex-direction: column;
+    }
+
+    &__campo {
+        width: 50px;
+    }
+}
