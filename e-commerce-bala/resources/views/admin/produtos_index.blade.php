@@ -24,19 +24,53 @@
             </thead>
             <tbody>
             @foreach ($produtos as $produto)
-                <tr>
-                    <th scope="row">1</th>
-                    <td>{{ $produto->id }}</td>
+                <tr data-linha="{{ $produto->id }}">
+                    <th scope="row">{{ $produto->id }}</th>
+                    <td></td>
                     <td>{{ $produto->nome }}</td>
                     <td>{{ $produto->preco }}</td>
                     <td>{{ $produto->created_at }}</td>
                     <td>{{ $produto->updated_at }}</td>
-                    <td><a href="{{ route('admin.produtos.show', ['id' => $produto->id]) }}" class="text-secondary"><i class="far fa-eye btn--exibir" id="{{ $produto->id }}"></i></a></td>
-                    <td><a href="{{ route('admin.produtos.destroy', ['id' => $produto]) }}" class="text-danger"><i class="fas fa-trash btn--excluir" id="{{ $produto->id }}"></i></a></td>
-                    <td><a href="{{ route('admin.produtos.edit', ['id' => $produto->id]) }} " class="text-primary"><i class="fas fa-edit btn--editar" id="{{ $produto->id }}"></i></a></td>
+                    <td><a href="{{ route('admin.produtos.show', ['id' => $produto->id]) }}" class="text-secondary"><i class="far fa-eye btn--exibir"></i></a></td>
+                    <td>
+                        <form name="formExcluirProduto" action="" method="DELETE" id="{{ $produto->id }}">
+                            @csrf
+                            <button type="submit" class="bg-transparent border-0">
+                                <i class="fas fa-trash text-danger"></i>
+                            </button>
+                        </form>
+                    </td>
+                    <td><a href="{{ route('admin.produtos.edit', ['id' => $produto->id]) }} " class="text-primary"><i class="fas fa-edit btn--editar"></i></a></td>
                 </tr>   
             @endforeach
             </tbody>
         </table>
     </div>
+@endsection
+@section('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $('form[name="formExcluirProduto"]').on("submit", function (event) {
+            event.preventDefault();  
+            var produtoId = $(this).attr("id");
+            $.ajax({
+                type: "DELETE",
+                url: "/admin/produtos/" + produtoId,
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function (response) {
+                    if (response.success === true) {
+                        Swal.fire({
+                            title: 'Produto excluido!',
+                            icon: 'success',
+                            confirmButtonText: 'Fechar',
+                        });
+                        
+                        const linha = $('[data-linha="' + produtoId + '"]');
+                        linha.remove();
+                    }
+                }
+            });
+        })
+    </script>
 @endsection

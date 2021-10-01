@@ -30,7 +30,7 @@ class ProdutoController extends Controller
         $descricao = $request->descricao;
         $preco = $request->preco;
 
-        $produto = Produto::create([
+        Produto::create([
             'nome' => $nome,
             'descricao' => $descricao,
             'preco' => $preco
@@ -82,6 +82,10 @@ class ProdutoController extends Controller
     {
         Produto::destroy($id);
 
-        return redirect()->back();
+        $response = [
+            'success' => true
+        ];
+
+        return $response;
     }
 }

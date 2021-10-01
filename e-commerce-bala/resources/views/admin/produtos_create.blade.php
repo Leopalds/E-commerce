@@ -8,7 +8,7 @@
 
 @section('content')
     <div>
-        <form action="{{ route('admin.produtos.store') }}" class="d-flex flex-column" method="POST" name="formCriarProduto">
+        <form action="" class="d-flex flex-column" method="POST" name="formCriarProduto">
             @csrf
             <fieldset>
                 <div class="container-fluid">
@@ -56,6 +56,7 @@
 @endsection
 
 @section('js')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $('form[name="formCriarProduto"]').on("submit", function(event) {
             event.preventDefault();
@@ -66,7 +67,11 @@
                 dataType: "json",
                 success: function (response) {
                     if (response.success === true) {
-                        console.log("Projeto criado");
+                        Swal.fire({
+                            title: 'Produto criado!',
+                            icon: 'success',
+                            confirmButtonText: 'Fechar',
+                        })
                     } 
                 },
                

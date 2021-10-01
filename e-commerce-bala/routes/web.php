@@ -20,7 +20,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/create', [ProdutoController::class, 'create'])->name('admin.produtos.create');
         Route::get('/{id}', [ProdutoController::class, 'show'])->name('admin.produtos.show');
         Route::get('/{id}/edit', [ProdutoController::class, 'edit'])->name('admin.produtos.edit');
-        Route::get('/{id}/destroy', [ProdutoController::class, 'destroy'])->name('admin.produtos.destroy');
+        Route::delete('/{id}', [ProdutoController::class, 'destroy'])->name('admin.produtos.destroy');
     
         Route::post('/{id}', [ProdutoController::class, 'update'])->name('admin.produtos.update');
         Route::post('', [ProdutoController::class, 'store'])->name('admin.produtos.store');
