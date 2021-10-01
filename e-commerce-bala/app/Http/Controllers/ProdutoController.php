@@ -2,84 +2,86 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProdutoRequest;
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 class ProdutoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $produtos = Produto::all();
+
+        return response()->view('admin.produtos_index', compact('produtos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return response()->view('admin.produtos_create');
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $nome = $request->nome;
+        $descricao = $request->descricao;
+        $preco = $request->preco;
+
+        $produto = Produto::create([
+            'nome' => $nome,
+            'descricao' => $descricao,
+            'preco' => $preco
+        ]);
+
+        $response = [
+            'success' => true
+        ];
+
+        return response()->json($response);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Produto  $produto
-     * @return \Illuminate\Http\Response
-     */
     public function show(Produto $produto)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Produto  $produto
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Produto $produto)
+    public function edit(int $id)
     {
-        //
+        $produto = Produto::find($id);
+
+        return response()->view('admin.produtos_edit', compact('produto'));
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Produto  $produto
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Produto $produto)
+    public function update(Request $request, int $id)
     {
-        //
+        $produto = Produto::find($id);
+
+        $produto->nome = $request->nome;
+        $produto->descricao = $request->descricao;
+        $produto->preco = $request->preco;
+
+        $produto->save();
+
+        $response = [
+            'success' => true, 
+            'dados' => [
+                'nome' => $produto->nome,
+                'descricao' => $produto->descricao,
+                'preco' => $produto->preco
+            ],
+        ];
+
+        return response()->json($response);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Produto  $produto
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Produto $produto)
+    public function destroy(int $id)
     {
-        //
+        Produto::destroy($id);
+
+        return redirect()->back();
     }
 }
