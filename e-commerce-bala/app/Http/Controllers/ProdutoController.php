@@ -44,11 +44,14 @@ class ProdutoController extends Controller
 
         $dadosValidados = $validador['dados'];
 
-        Produto::create($dadosValidados);
+        $produto = Produto::create($dadosValidados);
+
+        if (!is_null($request->categoria)) {
+            $produto->categorias()->sync($request->categoria);
+        }
 
         $response = [
             'success' => true,
-            'dados' => $request->categoria
         ];
 
         return response()->json($response);
@@ -64,8 +67,9 @@ class ProdutoController extends Controller
     public function edit(int $id)
     {
         $produto = Produto::find($id);
+        $categorias = Categoria::all();
 
-        return response()->view('admin.produtos.produtos_edit', compact('produto'));
+        return response()->view('admin.produtos.produtos_edit', compact('produto', 'categorias'));
 
     }
 
@@ -88,6 +92,12 @@ class ProdutoController extends Controller
 
         $produto->save();
 
+        if (!is_null($request->categoria)) {
+            $produto->categorias()->sync($request->categoria);
+        } else {
+            $produto->categorias()->detach();
+        }
+
         $response = [
             'success' => true, 
             'dados' => [
@@ -100,9 +110,13 @@ class ProdutoController extends Controller
         return response()->json($response);
     }
 
+
     public function destroy(int $id)
     {
-        Produto::destroy($id);
+        $produto = Produto::find($id);
+        $produto->categorias()->detach();
+
+        $produto->delete();
 
         $response = [
             'success' => true

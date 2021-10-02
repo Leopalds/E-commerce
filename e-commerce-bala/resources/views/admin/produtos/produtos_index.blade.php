@@ -10,7 +10,7 @@
     <div class="my-4">
         <a class="btn btn-primary" href="{{ route('admin.produtos.create') }}">Adicionar +</a>
     </div>
-    <div class="container">
+    <div class="container table-responsive">
         <table class="table ">
             <thead>
                 <tr>
@@ -18,6 +18,7 @@
                     <th scope="col">Imagem</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Preço</th>
+                    <th scope="col">Categorias</th>
                     <th scope="col">Adicionado em</th>
                     <th scope="col">Atualizado em</th>
                 </tr>
@@ -29,6 +30,11 @@
                     <td></td>
                     <td>{{ $produto->nome }}</td>
                     <td>{{ $produto->preco }}</td>
+                    <td style="width: 200px">
+                        @foreach ($produto->categorias as $categoria)
+                        <span class="badge bg-primary">{{ $categoria->nome }}</span>
+                        @endforeach
+                    </td>
                     <td>{{ $produto->created_at }}</td>
                     <td>{{ $produto->updated_at }}</td>
                     <td><a class="text-dark" href="{{ route('admin.produtos.show', ['id' => $produto->id]) }}"><i class="fas fa-eye"></i></a></td>

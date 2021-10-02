@@ -19,11 +19,12 @@
                     <h2>{{ $produto->nome }}</h2>
                     <p>{{ $produto->descricao }}</p>
                     <p>{{ $produto->preco }}</p>
-                    <ul>
+                    <div>
+                        <h5>Categorias: </h5>
                         @foreach ($produto->categorias as $categoria)
-                        <li>{{ $categoria }}</li>    
+                        <span class="badge bg-primary">{{ $categoria->nome }}</span>
                         @endforeach
-                    </ul>
+                    </div>
                 </div>
             </div>
         </div>

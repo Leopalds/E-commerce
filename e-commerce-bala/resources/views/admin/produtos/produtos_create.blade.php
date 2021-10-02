@@ -37,8 +37,7 @@
                             </div>
                             <div class="input-group mb-4">
                                 <label for="categoria-produto" class="input-group-text">Categorias</label>
-                                <select name="categoria" id="categoria-produto" class="form-control form-select">
-                                    <option selected>Selecione uma categoria...</option>
+                                <select name="categoria[]" id="categoria-produto" class="form-control form-select" multiple>
                                     @foreach ($categorias as $categoria)
                                     <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
                                     @endforeach
