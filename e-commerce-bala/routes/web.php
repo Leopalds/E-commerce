@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProdutoController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\CategoriaController;
 
 Route::redirect('/home', '/admin', 301);
 
@@ -15,15 +18,36 @@ Route::view('/quemsomos', 'pages.quemsomos')->name('quemsomos');
 Route::prefix('/admin')->group(function () {
     
     Route::view('', 'admin.dashboard');
-    Route::prefix('/produtos')->group(function () {
-        Route::get('', [ProdutoController::class, 'index'])->name('admin.produtos.index');
-        Route::get('/create', [ProdutoController::class, 'create'])->name('admin.produtos.create');
-        Route::get('/{id}', [ProdutoController::class, 'show'])->name('admin.produtos.show');
-        Route::get('/{id}/edit', [ProdutoController::class, 'edit'])->name('admin.produtos.edit');
-        Route::delete('/{id}', [ProdutoController::class, 'destroy'])->name('admin.produtos.destroy');
-    
-        Route::put('/{id}', [ProdutoController::class, 'update'])->name('admin.produtos.update');
-        Route::post('', [ProdutoController::class, 'store'])->name('admin.produtos.store');
-    });
+
+    Route::resource('produtos', ProdutoController::class)
+        ->names([
+        'index' => 'admin.produtos.index',
+        'show' => 'admin.produtos.show',
+        'create' => 'admin.produtos.create',
+        'store' => 'admin.produtos.store',
+        'edit' => 'admin.produtos.edit',
+        'update' => 'admin.produtos.update',
+        'destroy' => 'admin.produtos.destroy'
+        ]
+    )->parameters([
+        'produtos' => 'id'
+    ]);
+
+    Route::resource('categorias', CategoriaController::class)
+        ->except([
+            'show'
+        ]
+    )->names([
+        'index' => 'admin.categorias.index',
+        'create' => 'admin.categorias.create',
+        'store' => 'admin.categorias.store',
+        'edit' => 'admin.categorias.edit',
+        'update' => 'admin.categorias.update',
+        'destroy' => 'admin.categorias.destroy'
+        ]
+    )->parameters([
+        'categorias' => 'id'
+        ]
+    );
 });
 

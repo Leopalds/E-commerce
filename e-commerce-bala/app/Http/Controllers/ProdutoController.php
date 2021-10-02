@@ -50,9 +50,11 @@ class ProdutoController extends Controller
         return response()->json($response);
     }
 
-    public function show(Produto $produto)
+    public function show(int $id)
     {
-        //
+        $produto = Produto::find($id);
+
+        return response()->view('admin.produtos.produtos_show', compact('produto'));
     }
 
     public function edit(int $id)

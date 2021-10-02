@@ -3,44 +3,39 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Produtos</h1>
+    <h1>Categorias</h1>
 @endsection
 
 @section('content')
     <div class="my-4">
-        <a class="btn btn-primary" href="{{ route('admin.produtos.create') }}">Adicionar +</a>
+        <a class="btn btn-primary" href="{{ route('admin.categorias.create') }}">Adicionar +</a>
     </div>
     <div class="container">
         <table class="table ">
             <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Imagem</th>
                     <th scope="col">Nome</th>
-                    <th scope="col">Preço</th>
                     <th scope="col">Adicionado em</th>
                     <th scope="col">Atualizado em</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach ($produtos as $produto)
-                <tr data-linha="{{ $produto->id }}">
-                    <th scope="row">{{ $produto->id }}</th>
-                    <td></td>
-                    <td>{{ $produto->nome }}</td>
-                    <td>{{ $produto->preco }}</td>
-                    <td>{{ $produto->created_at }}</td>
-                    <td>{{ $produto->updated_at }}</td>
-                    <td><a class="text-dark" href="{{ route('admin.produtos.show', ['id' => $produto->id]) }}"><i class="fas fa-eye"></i></a></td>
+            @foreach ($categorias as $categoria)
+                <tr data-linha="{{ $categoria->id }}">
+                    <th scope="row">{{ $categoria->id }}</th>
+                    <td>{{ $categoria->nome }}</td>
+                    <td>{{ $categoria->created_at }}</td>
+                    <td>{{ $categoria->updated_at }}</td>
                     <td>
-                        <form name="formExcluirProduto" action="" method="DELETE" id="{{ $produto->id }}">
+                        <form name="formExcluirCategoria" action="" method="DELETE" id="{{ $categoria->id }}">
                             @csrf
                             <button type="submit" class="bg-transparent border-0">
                                 <i class="fas fa-trash text-danger"></i>
                             </button>
                         </form>
                     </td>
-                    <td><a href="{{ route('admin.produtos.edit', ['id' => $produto->id]) }} " class="text-primary"><i class="fas fa-edit btn--editar"></i></a></td>
+                    <td><a href="{{ route('admin.categorias.edit', ['id' => $categoria->id]) }} " class="text-primary"><i class="fas fa-edit btn--editar"></i></a></td>
                 </tr>   
             @endforeach
             </tbody>
@@ -50,23 +45,23 @@
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $('form[name="formExcluirProduto"]').on("submit", function (event) {
+        $('form[name="formExcluirCategoria"]').on("submit", function (event) {
             event.preventDefault();  
-            var produtoId = $(this).attr("id");
+            var categoriaId = $(this).attr("id");
             $.ajax({
                 type: "DELETE",
-                url: "/admin/produtos/" + produtoId,
+                url: "/admin/categorias/" + categoriaId,
                 data: $(this).serialize(),
                 dataType: "json",
                 success: function (response) {
                     if (response.success === true) {
                         Swal.fire({
-                            title: 'Produto excluido!',
+                            title: 'Categoria excluido!',
                             icon: 'success',
                             confirmButtonText: 'Fechar',
                         });
                         
-                        const linha = $('[data-linha="' + produtoId + '"]');
+                        const linha = $('[data-linha="' + categoriaId + '"]');
                         linha.remove();
                     }
                 }

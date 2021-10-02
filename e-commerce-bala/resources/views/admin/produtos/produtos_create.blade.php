@@ -8,7 +8,7 @@
 
 @section('content')
     <div>
-        <form action="" class="d-flex flex-column" method="POST" name="formCriarProduto">
+        <form class="d-flex flex-column" method="POST" name="formCriarProduto">
             @csrf
             <fieldset>
                 <div class="container-fluid">

@@ -15,7 +15,14 @@ class CreateCategoriasTable extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
             $table->timestamps();
+
+            $table->foreignId('produto_id')
+                ->nullable()
+                ->constrained('produtos')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

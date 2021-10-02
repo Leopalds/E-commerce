@@ -14,7 +14,11 @@ class AdicionandoCategoriaId extends Migration
     public function up()
     {
         Schema::table('produtos', function (Blueprint $table) {
-            //
+            $table->foreignId('categoria_id')
+                ->nullable()
+                ->constrained('categorias')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

@@ -4,82 +4,92 @@ namespace App\Http\Controllers;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use App\Services\CategoriaService;
 
 class CategoriaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $service;
+
+    public function __construct(CategoriaService $categoriaService)
+    {
+        $this->service = $categoriaService;
+    }
+
     public function index()
     {
-        //
+        $categorias = Categoria::all();
+
+        return response()->view('admin.categorias.categorias_index', compact('categorias'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return response()->view('admin.categorias.categorias_create');
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validador = $this->service->validar($request);
+
+        if (!$validador['success']) {
+            $erros = $validador;
+            return response()->json($erros);
+        }
+
+        $dadosValidados = $validador['dados'];
+
+        Categoria::create($dadosValidados);
+
+        $response = [
+            'success' => true
+        ];
+
+        return response()->json($response);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Categoria  $categoria
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Categoria $categoria)
+    public function edit(int $id)
     {
-        //
+        $categoria = Categoria::find($id);
+
+        return response()->view('admin.categorias.categorias_edit', compact('categoria'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Categoria  $categoria
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Categoria $categoria)
+    public function update(Request $request, int $id)
     {
-        //
+        $validador = $this->service->validar($request);
+
+        if (!$validador['success']) {
+            $erros = $validador;
+            return response()->json($erros);
+        }
+
+        $dadosValidados = $validador['dados'];
+
+        $produto = Categoria::find($id);
+
+        $produto->nome = $dadosValidados['nome'];
+
+        $produto->save();
+
+        $response = [
+            'success' => true, 
+            'dados' => [
+                'nome' => $produto->nome,
+            ],
+        ];
+
+        return response()->json($response);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Categoria  $categoria
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Categoria $categoria)
+    public function destroy(int $id)
     {
-        //
-    }
+        Categoria::destroy($id);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Categoria  $categoria
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Categoria $categoria)
-    {
-        //
+        $response = [
+            'success' => true
+        ];
+
+        return $response;
     }
 }
