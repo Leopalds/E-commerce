@@ -19,6 +19,11 @@
                     <h2>{{ $produto->nome }}</h2>
                     <p>{{ $produto->descricao }}</p>
                     <p>{{ $produto->preco }}</p>
+                    <ul>
+                        @foreach ($produto->categorias as $categoria)
+                        <li>{{ $categoria }}</li>    
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

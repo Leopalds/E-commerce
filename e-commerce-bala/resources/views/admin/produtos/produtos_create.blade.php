@@ -39,6 +39,9 @@
                                 <label for="categoria-produto" class="input-group-text">Categorias</label>
                                 <select name="categoria" id="categoria-produto" class="form-control form-select">
                                     <option selected>Selecione uma categoria...</option>
+                                    @foreach ($categorias as $categoria)
+                                    <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -76,6 +79,7 @@
                             icon: 'success',
                             confirmButtonText: 'Fechar',
                         })
+                        console.log(response.dados);
                         return;
                     } 
 

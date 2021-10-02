@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProdutoRequest;
+use App\Models\Categoria;
 use App\Models\Produto;
 use App\Services\ProdutoService;
 use Illuminate\Http\Request;
@@ -27,7 +28,9 @@ class ProdutoController extends Controller
 
     public function create()
     {
-        return response()->view('admin.produtos.produtos_create');
+        $categorias = Categoria::all();
+
+        return response()->view('admin.produtos.produtos_create', compact('categorias'));
     }
 
     public function store(Request $request)
@@ -44,7 +47,8 @@ class ProdutoController extends Controller
         Produto::create($dadosValidados);
 
         $response = [
-            'success' => true
+            'success' => true,
+            'dados' => $request->categoria
         ];
 
         return response()->json($response);

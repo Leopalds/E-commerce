@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\CategoriaController;
 
-Route::redirect('/home', '/admin', 301);
+Route::redirect('/home', '/', 301);
 
 Route::view('/', 'pages.home')->name('home');
 
