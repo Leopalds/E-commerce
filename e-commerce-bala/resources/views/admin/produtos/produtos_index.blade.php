@@ -31,7 +31,6 @@
                     <td>{{ $produto->preco }}</td>
                     <td>{{ $produto->created_at }}</td>
                     <td>{{ $produto->updated_at }}</td>
-                    <td><a href="{{ route('admin.produtos.show', ['id' => $produto->id]) }}" class="text-secondary"><i class="far fa-eye btn--exibir"></i></a></td>
                     <td>
                         <form name="formExcluirProduto" action="" method="DELETE" id="{{ $produto->id }}">
                             @csrf

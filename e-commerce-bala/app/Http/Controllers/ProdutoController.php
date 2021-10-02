@@ -4,37 +4,44 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProdutoRequest;
 use App\Models\Produto;
+use App\Services\ProdutoService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
 class ProdutoController extends Controller
 {
+    private $service;
+
+    public function __construct(ProdutoService $produtoService)
+    {
+        $this->service = $produtoService;
+    }
 
     public function index()
     {
         $produtos = Produto::all();
 
-        return response()->view('admin.produtos_index', compact('produtos'));
+        return response()->view('admin.produtos.produtos_index', compact('produtos'));
     }
 
     public function create()
     {
-        return response()->view('admin.produtos_create');
-
+        return response()->view('admin.produtos.produtos_create');
     }
 
     public function store(Request $request)
     {
-        $nome = $request->nome;
-        $descricao = $request->descricao;
-        $preco = $request->preco;
+        $validador = $this->service->validar($request);
 
-        Produto::create([
-            'nome' => $nome,
-            'descricao' => $descricao,
-            'preco' => $preco
-        ]);
+        if (!$validador['success']) {
+            $erros = $validador;
+            return response()->json($erros);
+        }
+
+        $dadosValidados = $validador['dados'];
+
+        Produto::create($dadosValidados);
 
         $response = [
             'success' => true
@@ -52,17 +59,26 @@ class ProdutoController extends Controller
     {
         $produto = Produto::find($id);
 
-        return response()->view('admin.produtos_edit', compact('produto'));
+        return response()->view('admin.produtos.produtos_edit', compact('produto'));
 
     }
 
     public function update(Request $request, int $id)
     {
+        $validador = $this->service->validar($request);
+
+        if (!$validador['success']) {
+            $erros = $validador;
+            return response()->json($erros);
+        }
+
+        $dadosValidados = $validador['dados'];
+
         $produto = Produto::find($id);
 
-        $produto->nome = $request->nome;
-        $produto->descricao = $request->descricao;
-        $produto->preco = $request->preco;
+        $produto->nome = $dadosValidados['nome'];
+        $produto->descricao = $dadosValidados['descricao'];
+        $produto->preco = $dadosValidados['preco'];
 
         $produto->save();
 

@@ -22,7 +22,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/{id}/edit', [ProdutoController::class, 'edit'])->name('admin.produtos.edit');
         Route::delete('/{id}', [ProdutoController::class, 'destroy'])->name('admin.produtos.destroy');
     
-        Route::post('/{id}', [ProdutoController::class, 'update'])->name('admin.produtos.update');
+        Route::put('/{id}', [ProdutoController::class, 'update'])->name('admin.produtos.update');
         Route::post('', [ProdutoController::class, 'store'])->name('admin.produtos.store');
     });
 });

@@ -8,28 +8,32 @@
 
 @section('content')
     <div>
-        <form action="{{ route('admin.produtos.update', ['id' => $produto->id]) }}" class="d-flex flex-column" method="POST" name="formAtualizarProduto" id="{{ $produto->id }}">
+        <form action="" class="d-flex flex-column" method="POST" name="formCriarProduto">
             @csrf
             <fieldset>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-6 d-flex flex-column">
-                            <div class="mb-3">
+                            <div class="mb-3 d-flex flex-column">
+                                <small class="erro erro__nome text-danger"></small>
                                 <label for="nome-produto" class="form-label">Nome</label>
-                                <input type="text" name="nome" class="form-control" id="nome-produto" value="{{ $produto->nome }}">
+                                <input type="text" name="nome" class="form-control" id="nome-produto">
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 d-flex flex-column">
+                                <small class="erro erro__descricao text-danger"></small>
                                 <label for="descricao-produto" class="form-label">Descricao</label>
                                 <textarea 
-                                type="text" 
-                                name="descricao" 
-                                class="form-control" 
-                                id="descricao-produto"
-                                style="resize: none">{{ $produto->descricao }}</textarea>
+                                    type="text" 
+                                    name="descricao" 
+                                    class="form-control" 
+                                    id="descricao-produto"
+                                    style="resize: none">
+                                </textarea>
                             </div>
-                            <div class="mb-4">
+                            <div class="mb-4 d-flex flex-column">
+                                <small class="erro erro__preco text-danger"></small>
                                 <label for="preco-produto" class="form-label">Preço</label>
-                                <input type="number" name="preco" id="preco-produto" class="form-control" value="{{ $produto->preco }}">
+                                <input type="number" name="preco" id="preco-produto" class="form-control">
                             </div>
                             <div class="input-group mb-4">
                                 <label for="categoria-produto" class="input-group-text">Categorias</label>
@@ -57,28 +61,33 @@
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $('form[name="formAtualizarProduto"]').on("submit", function(event) {
+        $('form[name="formCriarProduto"]').on("submit", function(event) {
+            var rota = '{{ route("admin.produtos.store") }}'
             event.preventDefault();
-            var produtoId = $(this).attr("id");
             $.ajax({
                 type: "POST",
-                url: "/admin/produtos/" + produtoId,
+                url: rota,
                 data: $(this).serialize(),
                 dataType: "json",
                 success: function (response) {
                     if (response.success === true) {
-                        $('#nome-produto').val(response.dados.nome);
-                        $('#descricao-produto').val(response.dados.descricao);
-                        $('#preco-produto').val(response.dados.preco);
-
                         Swal.fire({
-                            title: 'Dados atualiazdos!',
+                            title: 'Produto criado!',
                             icon: 'success',
                             confirmButtonText: 'Fechar',
                         })
+                        return;
                     } 
+
+                    $.each(response.erros, function(chave, valor) {
+                        $('small.' + 'erro__' + chave).text(valor);
+
+                        setTimeout(() => {
+                            $('small.' + 'erro__' + chave).text('');
+                        }, 5000);
+                    })
+                    return;
                 },
-               
             });
         })
         
