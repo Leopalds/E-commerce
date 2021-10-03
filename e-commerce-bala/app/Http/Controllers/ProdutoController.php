@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProdutoRequest;
-use App\Models\Categoria;
+use App\Models\Imagem;
 use App\Models\Produto;
-use App\Services\ProdutoService;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Services\ProdutoService;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ProdutoRequest;
 use Illuminate\Support\Facades\Validator;
 
 class ProdutoController extends Controller
@@ -44,17 +46,58 @@ class ProdutoController extends Controller
 
         $dadosValidados = $validador['dados'];
 
+        DB::beginTransaction();
         $produto = Produto::create($dadosValidados);
+        
+        if ($request->hasFile('imagem')) {
+            $images = $this->salvarImagens($request->file('imagem'), $produto);
+
+            if ($images['success'] == false) {
+                return $response = [
+                    'success' => false,
+                    'erro_msg' => $images['erro']
+                ];
+            }
+        }
 
         if (!is_null($request->categoria)) {
             $produto->categorias()->sync($request->categoria);
         }
+        DB::commit();
 
         $response = [
             'success' => true,
         ];
 
         return response()->json($response);
+    }
+
+    public function salvarImagens(array $imagens, Produto $produto)
+    {
+        if (count($imagens) > 3) {
+            return [
+                'success' => false,
+                'erro' => 'Um produto pode ter no máximo 3 imagens!'
+            ];
+        }
+
+        foreach($imagens as $imagem) {
+            $nome = $imagem->getClientOriginalName();
+            $extensao = $imagem->extension();
+            $tamanho = $imagem->getSize();
+
+            $produto->imagens()->create([
+                'nome' => $nome,
+                'tamanho' => $tamanho,
+                'extensao' => $extensao
+            ]);
+
+            $imagem->store('img/produto', 'public');
+        }
+
+        return [
+            'success' => true
+        ];
     }
 
     public function show(int $id)
@@ -115,7 +158,7 @@ class ProdutoController extends Controller
     {
         $produto = Produto::find($id);
         $produto->categorias()->detach();
-
+        $produto->imagens()->delete();
         $produto->delete();
 
         $response = [

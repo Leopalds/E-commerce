@@ -8,7 +8,7 @@
 
 @section('content')
     <div>
-        <form class="d-flex flex-column" method="POST" name="formCriarProduto">
+        <form enctype="multipart/form-data" action="{{ route('admin.produtos.store') }}" class="d-flex flex-column" method="POST" name="formCriarProduto">
             @csrf
             <fieldset>
                 <div class="container-fluid">
@@ -46,8 +46,12 @@
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex flex-column">
+                                <small class=""></small>
                                 <label for="img-produto">Imagem</label>
-                                <input type="file" id="img-produto">
+                                <div class="mb-2">
+                                    <img width="490px" src="{{ asset('img/bebidas.jpg') }}">
+                                </div>
+                                <input type="file" id="img-produto" name="imagem[]" multiple>
                             </div>
                         </div>
                     </div>
@@ -63,36 +67,36 @@
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $('form[name="formCriarProduto"]').on("submit", function(event) {
-            var rota = '{{ route("admin.produtos.store") }}'
-            event.preventDefault();
-            $.ajax({
-                type: "POST",
-                url: rota,
-                data: $(this).serialize(),
-                dataType: "json",
-                success: function (response) {
-                    if (response.success === true) {
-                        Swal.fire({
-                            title: 'Produto criado!',
-                            icon: 'success',
-                            confirmButtonText: 'Fechar',
-                        })
-                        console.log(response.dados);
-                        return;
-                    } 
-
-                    $.each(response.erros, function(chave, valor) {
-                        $('small.' + 'erro__' + chave).text(valor);
-
-                        setTimeout(() => {
-                            $('small.' + 'erro__' + chave).text('');
-                        }, 5000);
-                    })
-                    return;
-                },
-            });
-        })
+        //$('form[name="formCriarProduto"]').on("submit", function(event) {
+        //    var rota = '{{ route("admin.produtos.store") }}'
+        //    event.preventDefault();
+        //    $.ajax({
+        //        type: "POST",
+        //        url: rota,
+        //        data: $(this).serialize(),
+        //        dataType: "json",
+        //        success: function (response) {
+        //            if (response.success === true) {
+        //                Swal.fire({
+        //                    title: 'Produto criado!',
+        //                    icon: 'success',
+        //                    confirmButtonText: 'Fechar',
+        //                })
+        //                return;
+        //            } 
+        //            console.log(response.erro_msg);
+//
+        //            $.each(response.erros, function(chave, valor) {
+        //                $('small.' + 'erro__' + chave).text(valor);
+//
+        //                setTimeout(() => {
+        //                    $('small.' + 'erro__' + chave).text('');
+        //                }, 5000);
+        //            })
+        //            return;
+        //        },
+        //    });
+        //})
         
     </script>
 @endsection
