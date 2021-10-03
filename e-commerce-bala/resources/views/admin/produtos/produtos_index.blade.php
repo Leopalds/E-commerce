@@ -14,7 +14,6 @@
         <table class="table ">
             <thead>
                 <tr>
-                    <th scope="col">Id</th>
                     <th scope="col">Imagem</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Preço</th>
@@ -26,7 +25,6 @@
             <tbody>
             @foreach ($produtos as $produto)
                 <tr data-linha="{{ $produto->id }}">
-                    <th scope="row">{{ $produto->id }}</th>
                     <td></td>
                     <td>{{ $produto->nome }}</td>
                     <td>{{ $produto->preco }}</td>

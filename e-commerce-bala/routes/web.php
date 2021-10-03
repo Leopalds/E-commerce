@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\ProdutoController;
@@ -51,3 +52,10 @@ Route::prefix('/admin')->group(function () {
     );
 });
 
+
+Auth::routes(
+    ['register' => false],
+);
+Route::redirect('/register', '/login', 301);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

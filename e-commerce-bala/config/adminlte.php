@@ -235,6 +235,8 @@ return [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
+       
+        
 
         // Sidebar items:
         [
