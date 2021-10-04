@@ -24,6 +24,7 @@ class ProdutoController extends Controller
     public function index()
     {
         $produtos = Produto::all();
+        
 
         return response()->view('admin.produtos.produtos_index', compact('produtos'));
     }
@@ -52,11 +53,12 @@ class ProdutoController extends Controller
         if ($request->hasFile('imagem')) {
             $images = $this->salvarImagens($request->file('imagem'), $produto);
 
-            if ($images['success'] == false) {
-                return $response = [
+            if ($images['success'] === false) {
+                $response = [
                     'success' => false,
-                    'erro_msg' => $images['erro']
+                    'erro_img' => $images['erro']
                 ];
+                return response()->json($response);
             }
         }
 
@@ -92,7 +94,7 @@ class ProdutoController extends Controller
                 'extensao' => $extensao
             ]);
 
-            $imagem->store('img/produto', 'public');
+            $imagem->storeAs('img/produto', $nome, 'public');
         }
 
         return [
@@ -129,6 +131,18 @@ class ProdutoController extends Controller
 
         $produto = Produto::find($id);
 
+        if ($request->hasFile('imagem')) {
+            $images = $this->atualizarImagens($request->file('imagem'), $produto);
+
+            if ($images['success'] === false) {
+                $response = [
+                    'success' => false,
+                    'erro_img' => $images['erro']
+                ];
+                return response()->json($response);
+            }
+        }
+
         $produto->nome = $dadosValidados['nome'];
         $produto->descricao = $dadosValidados['descricao'];
         $produto->preco = $dadosValidados['preco'];
@@ -153,10 +167,39 @@ class ProdutoController extends Controller
         return response()->json($response);
     }
 
+    public function atualizarImagens(array $imagens, Produto $produto)
+    {
+        if (count($imagens) > 3) {
+            return [
+                'success' => false,
+                'erro' => 'Um produto pode ter no máximo 3 imagens!'
+            ];
+        }
+
+        foreach($imagens as $imagem) {
+            $nome = $imagem->getClientOriginalName();
+            $extensao = $imagem->extension();
+            $tamanho = $imagem->getSize();
+
+            $produto->imagens()->create([
+                'nome' => $nome,
+                'tamanho' => $tamanho,
+                'extensao' => $extensao
+            ]);
+
+            $imagem->storeAs('img/produto', $nome, 'public');
+        }
+
+        return [
+            'success' => true
+        ];
+    }
+
 
     public function destroy(int $id)
     {
         $produto = Produto::find($id);
+
         $produto->categorias()->detach();
         $produto->imagens()->delete();
         $produto->delete();

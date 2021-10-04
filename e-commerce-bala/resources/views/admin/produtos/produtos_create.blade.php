@@ -6,6 +6,13 @@
     <h1>Produtos</h1>
 @endsection
 
+@section('css')
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link
+    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+    rel="stylesheet"/>
+@endsection
+
 @section('content')
     <div>
         <form enctype="multipart/form-data" action="{{ route('admin.produtos.store') }}" class="d-flex flex-column" method="POST" name="formCriarProduto">
@@ -46,12 +53,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex flex-column">
-                                <small class=""></small>
-                                <label for="img-produto">Imagem</label>
-                                <div class="mb-2">
-                                    <img width="490px" src="{{ asset('img/bebidas.jpg') }}">
-                                </div>
-                                <input type="file" id="img-produto" name="imagem[]" multiple>
+                                <small class="erro erro__imagem text-danger"></small>
+                                <label for="img-produto">Foto do produto</label>
+                                <input id="img-produto" data-max-files="3" multiple name="imagem[]" class="filepond--item">
                             </div>
                         </div>
                     </div>
@@ -65,38 +69,55 @@
 @endsection
 
 @section('js')
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+    <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        //$('form[name="formCriarProduto"]').on("submit", function(event) {
-        //    var rota = '{{ route("admin.produtos.store") }}'
-        //    event.preventDefault();
-        //    $.ajax({
-        //        type: "POST",
-        //        url: rota,
-        //        data: $(this).serialize(),
-        //        dataType: "json",
-        //        success: function (response) {
-        //            if (response.success === true) {
-        //                Swal.fire({
-        //                    title: 'Produto criado!',
-        //                    icon: 'success',
-        //                    confirmButtonText: 'Fechar',
-        //                })
-        //                return;
-        //            } 
-        //            console.log(response.erro_msg);
-//
-        //            $.each(response.erros, function(chave, valor) {
-        //                $('small.' + 'erro__' + chave).text(valor);
-//
-        //                setTimeout(() => {
-        //                    $('small.' + 'erro__' + chave).text('');
-        //                }, 5000);
-        //            })
-        //            return;
-        //        },
-        //    });
-        //})
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+        $('#img-produto').filepond({
+            allowMultiple: true,
+            storeAsFile: true,
+            imagePreviewMaxHeight: 100,
+            labelIdle: 'Insira suas imagens aqui...'
+        });
+
+        $('form[name="formCriarProduto"]').on("submit", function(event) {
+            var rota = '{{ route("admin.produtos.store") }}'
+            event.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: rota,
+                data: new FormData(this),
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response.success === true) {
+                        Swal.fire({
+                            title: 'Produto criado!',
+                            icon: 'success',
+                            confirmButtonText: 'Fechar',
+                        })
+                        return;
+                    } 
+
+                    $('small.' + 'erro__imagem').text(response.erro_img);
+                    setTimeout(() => {
+                            $('small.' + 'erro__imagem').text('');
+                        }, 5000);
+
+                    $.each(response.erros, function(chave, valor) {
+                        $('small.' + 'erro__' + chave).text(valor);
+
+                        setTimeout(() => {
+                            $('small.' + 'erro__' + chave).text('');
+                        }, 5000);
+                    })
+                    return;
+                },
+            });
+        })
         
     </script>
 @endsection

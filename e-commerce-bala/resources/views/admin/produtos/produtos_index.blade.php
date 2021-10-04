@@ -27,7 +27,9 @@
             @foreach ($produtos as $produto)
                 <tr data-linha="{{ $produto->id }}">
                     <th scope="row">{{ $produto->id }}</th>
-                    <td></td>
+                    <td>
+                        <img style="width: 70px; height: 70px; object-fit: cover" src="{{ asset('storage/img/produto/' . $produto->unicaImagem->first()->nome) }}" alt="foto do produto">
+                    </td>
                     <td>{{ $produto->nome }}</td>
                     <td>{{ $produto->preco }}</td>
                     <td style="width: 200px">

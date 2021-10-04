@@ -1,9 +1,10 @@
 //components
-@use 'components/carrossel.scss';
+@use 'components/carrossel';
 @use 'components/ordenamento';
 @use 'components/quantidade';
 @use 'components/botao';
+@use 'components/filepond';
 
 //pages
-@use 'pages/produto.scss';
-@use 'pages/produtos.scss';
+@use 'pages/produto';
+@use 'pages/produtos';

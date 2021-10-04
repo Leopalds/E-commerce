@@ -6,12 +6,30 @@
     <h1>Produtos</h1>
 @endsection
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+@endsection
+
 @section('content')      
     <div class="container-fluid mt-5">
         <div class="row">
-            <div class="col-6 me-5 produto__img">
-                <div>
-                    <img src="{{ asset('img/cervejaria.jpg') }}" alt="" width="100%">
+            <div class="col-6 me-5 carrossel">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        @foreach ($produto->imagens as $index => $imagem)
+                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }} carrossel__item">
+                            <img class="d-block w-100 carrossel__img" src="{{ asset('storage/img/produto/' . $imagem->nome) }}" alt="primeira imagem">
+                        </div>
+                        @endforeach                     
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
             <div class="col-md-6">
@@ -30,6 +48,4 @@
         </div>
     </div>
 @endsection
-@section('css')
-    
-@stop
+
