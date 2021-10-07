@@ -55,19 +55,19 @@
         </ul>
     </div>
     
-    {{--Foreach com os produtos--}}
     <div class="m-5 d-flex flex-wrap justify-content-center">
-        <div class="card" style="width: 18rem;">
-            <a href="/produtos/id" class="text-decoration-none text-dark ">
-                <img src="https://casaspedro.vteximg.com.br/arquivos/ids/167490-1000-1000/cerveja-heineken-longneck-330ml.png?v=637571388310070000" class="card-img-top" alt="descricao">
+        @foreach ($produtos as $produto)
+        <div class="card mx-5" style="width: 18rem;">
+            <a href="{{ route('produtos.show' , ['id' => $produto->id]) }}" class="text-decoration-none text-dark ">
+                <img style="widows: 200px; height: 200px; object-fit: cover" src="{{ asset('storage/img/produto/' . $produto->unicaImagem->first()->nome) }}" class="card-img-top" alt="descricao">
                 <div class="card-body">
-                    <h5 class="card-title mb-3 produtos__nome">Nome da cerveja</h5>
-                    <p class="card-text mb-5">R$ Preço,00</p>
+                    <h5 class="card-title mb-3 produtos__nome">{{ $produto->nome }}</h5>
+                    <p class="card-text mb-5">{{ $produto->preco }}</p>
                     <a href="#" class="btn botao-carrinho">Adicionar ao carrinho</a>
                 </div>
             </a>
         </div>
-
+        @endforeach
     </div>
 
 @endsection

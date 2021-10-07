@@ -240,25 +240,35 @@ return [
 
         // Sidebar items:
         [
+            'text' => 'User',
+            'url' => '/admin/settings'
+        ],
+        [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'Painel Principal',
+            'url' => '/admin',
+            'icon' => 'fas fa-tachometer-alt'
         ],
         [
-            'text'        => 'Produtos',
-            'url'         => 'admin/produtos',
-            'icon'        => 'far fa-fw fa-file',
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => 'Categorias',
-            'url'         => 'admin/categorias',
-            'icon'        => 'far fa-fw fa-file',
-            'label_color' => 'success',
+            'text'        => 'Tabelas',
+            'icon'        => 'fas fa-table',
+            'submenu' => [
+                [
+                    'text'        => 'Produtos',
+                    'url'         => 'admin/produtos',
+                    'icon'        => 'far fa-circle',
+                    'label_color' => 'success',
+                ],
+                [
+                    'text'        => 'Categorias',
+                    'url'         => 'admin/categorias',
+                    'icon'        => 'far fa-circle',
+                    'label_color' => 'success',
+                ],
+            ],
         ],
         ['header' => 'account_settings'],
         [

@@ -33,10 +33,10 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if (Auth::user()->isAdmin()) {
-            return response()->view('admin.dashboard');
+            return redirect(route('dashboard'));
         }
 
-        return response()->view('pages.home');
+        return redirect(route('home'));
     }
 
     /**

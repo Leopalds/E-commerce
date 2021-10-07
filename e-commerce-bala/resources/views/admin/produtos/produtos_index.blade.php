@@ -10,7 +10,9 @@
     <div class="my-4">
         <a class="btn btn-primary" href="{{ route('admin.produtos.create') }}">Adicionar +</a>
     </div>
+    
     <div class="container table-responsive">
+        
         <table class="table ">
             <thead>
                 <tr>
@@ -25,7 +27,6 @@
             <tbody>
             @foreach ($produtos as $produto)
                 <tr data-linha="{{ $produto->id }}">
-                    <th scope="row">{{ $produto->id }}</th>
                     <td>
                         <img style="width: 70px; height: 70px; object-fit: cover" src="{{ asset('storage/img/produto/' . $produto->unicaImagem->first()->nome) }}" alt="foto do produto">
                     </td>

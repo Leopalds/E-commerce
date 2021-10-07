@@ -15,7 +15,7 @@
 
 @section('content')
     <div>
-        <form enctype="multipart/form-data" action="{{ route('admin.produtos.store') }}" class="d-flex flex-column" method="POST" name="formCriarProduto">
+        <form  action="{{ route('admin.produtos.store') }}" class="d-flex flex-column" method="POST" name="formCriarProduto">
             @csrf
             <fieldset>
                 <div class="container-fluid">
@@ -104,8 +104,8 @@
 
                     $('small.' + 'erro__imagem').text(response.erro_img);
                     setTimeout(() => {
-                            $('small.' + 'erro__imagem').text('');
-                        }, 5000);
+                        $('small.' + 'erro__imagem').text('');
+                    }, 5000);
 
                     $.each(response.erros, function(chave, valor) {
                         $('small.' + 'erro__' + chave).text(valor);

@@ -6,9 +6,17 @@
     <h1>Produtos</h1>
 @endsection
 
+@section('css')
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link
+    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+    rel="stylesheet"/>
+@endsection
+
 @section('content')
     <div>
-        <form action="{{ route('admin.produtos.update', ['id' => $produto->id]) }}" class="d-flex flex-column" method="POST" name="formAtualizarProduto" id="{{ $produto->id }}">
+        <form enctype="multipart/form-data" action="{{ route('admin.produtos.update', ['id' => $produto->id]) }}" class="d-flex flex-column" method="PUT" name="formAtualizarProduto" id="{{ $produto->id }}">
+            
             @csrf
             <fieldset>
                 <div class="container-fluid">
@@ -52,6 +60,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex flex-column">
+                                <small class="erro erro__imagem text-danger"></small>
                                 <label for="img-produto">Imagem</label>
                                 <input type="file" id="img-produto">
                             </div>
@@ -64,44 +73,65 @@
             </fieldset>
         </form>
     </div>
+
 @endsection
 
 @section('js')
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+    <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $('form[name="formAtualizarProduto"]').on("submit", function(event) {
-            event.preventDefault();
-            var produtoId = $(this).attr("id");
-            $.ajax({
-                type: "PUT",
-                url: "/admin/produtos/" + produtoId,
-                data: $(this).serialize(),
-                dataType: "json",
-                success: function (response) {
-                    if (response.success === true) {
-                        $('#nome-produto').val(response.dados.nome);
-                        $('#descricao-produto').val(response.dados.descricao);
-                        $('#preco-produto').val(response.dados.preco);
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+        $('#img-produto').filepond({
+            allowMultiple: true,
+            storeAsFile: true,
+            imagePreviewMaxHeight: 100,
+            labelIdle: 'Insira suas imagens aqui...'
+        });
 
-                        Swal.fire({
-                            title: 'Dados atualiazdos!',
-                            icon: 'success',
-                            confirmButtonText: 'Fechar',
-                        })
-                    } 
-
-                    $.each(response.erros, function(chave, valor) {
-                        $('small.' + 'erro__' + chave).text(valor);
-
-                        setTimeout(() => {
-                            $('small.' + 'erro__' + chave).text('');
-                        }, 5000);
-                    })
-                    return;
-                },
-               
-            });
-        })
+        //$('form[name="formAtualizarProduto"]').on("submit", function(event) {
+        //    event.preventDefault();
+        //    var rota = '{{ route("admin.produtos.update", ["id" => $produto->id] )}}'           
+        //    $.ajax({
+        //        type: "PUT",
+        //        url: rota,
+        //        data: new FormData(this),
+        //        dataType: "json",
+        //        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        //        contentType: false,
+        //        processData: false,
+        //        success: function (response) {
+        //            if (response.success === true) {
+        //                $('#nome-produto').val(response.dados.nome);
+        //                $('#descricao-produto').val(response.dados.descricao);
+        //                $('#preco-produto').val(response.dados.preco);
+//
+        //                Swal.fire({
+        //                    title: 'Dados atualiazdos!',
+        //                    icon: 'success',
+        //                    confirmButtonText: 'Fechar',
+        //                })
+        //                return;
+        //            } 
+//
+        //            $('small.' + 'erro__imagem').text(response.erro_img);
+        //            setTimeout(() => {
+        //                $('small.' + 'erro__imagem').text('');
+        //            }, 5000);
+//
+        //            $.each(response.erros, function(chave, valor) {
+        //                $('small.' + 'erro__' + chave).text(valor);
+//
+        //                setTimeout(() => {
+        //                    $('small.' + 'erro__' + chave).text('');
+        //                }, 5000);
+        //            })
+        //            return;
+        //        },
+        //       
+        //    });
+        //})
         
     </script>
 @endsection
