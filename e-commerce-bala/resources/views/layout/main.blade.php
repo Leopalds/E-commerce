@@ -18,6 +18,8 @@
      {{-- Font Awesome --}}
     <script src="https://kit.fontawesome.com/1194f437a6.js" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
      {{-- Nosso CSS --}}
     @yield('css')
 

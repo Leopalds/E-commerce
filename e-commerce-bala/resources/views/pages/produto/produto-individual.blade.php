@@ -1,31 +1,27 @@
 @extends('layout.main')
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/carrossel/carrossel.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/carrossel/carrossel__imagem.css') }}">
+    
     <link rel="stylesheet" href="{{ asset('css/quantidade/quantidade__campo.css') }}">
     <link rel="stylesheet" href="{{ asset('css/botao-carrinho/botao-carrinho.css') }}">
     <link rel="stylesheet" href="{{ asset('css/produto/produto.css') }}">
     <link rel="stylesheet" href="{{ asset('libs/click-tap-image/css/image-zoom.css') }}">
+    
 @endsection
 @section('conteudo')
     <div class="d-flex produto flex-column">
         <div class="col-6 me-5 produto__img">
-            <div id="carouselExampleIndicators" class="carousel slide carrossel" data-bs-ride="carousel">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner carrossel__lista my-2">
-                    <div class="carousel-item active carrossel__item">
-                        <img src="{{ asset('img/bebidas.jpg') }}" class="d-block w-100 carrossel__img" alt="...">
+                    @foreach ($produto->imagens as $index => $imagem)
+                    <div class="carousel-item {{ $index == 0 ? 'active' : '' }} carrossel__item">
+                        <img class="d-block w-100 carrossel__img" src="{{ asset('storage/img/produto/' . $imagem->nome) }}" alt="primeira imagem">
                     </div>
-                    <div class="carousel-item carrossel__item">
-                        <img src="{{ asset('img/beer-friends.jpg') }}" class="d-block w-100 carrossel__img" alt="...">
-                    </div>
-                    <div class="carousel-item carrossel__item">
-                        <img src="{{ asset('img/prateleiras.jpg') }}" class="d-block w-100 carrossel__img" alt="...">
-                    </div>
+                    @endforeach  
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
