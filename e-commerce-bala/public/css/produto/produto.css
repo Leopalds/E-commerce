@@ -1,0 +1,6 @@
+@media screen and (max-width: 1024px) {
+    .produto {
+        flex-direction: column;
+        margin: 0 !important;
+    }
+}

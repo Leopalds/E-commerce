@@ -6,9 +6,16 @@
     <h1>Produtos</h1>
 @endsection
 
+@section('css')
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link
+    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+    rel="stylesheet"/>
+@endsection
+
 @section('content')
     <div>
-        <form class="d-flex flex-column" method="POST" name="formCriarProduto">
+        <form enctype="multipart/form-data" action="{{ route('admin.produtos.store') }}" class="d-flex flex-column" method="POST" name="formCriarProduto">
             @csrf
             <fieldset>
                 <div class="container-fluid">
@@ -46,8 +53,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="d-flex flex-column">
-                                <label for="img-produto">Imagem</label>
-                                <input type="file" id="img-produto">
+                                <small class="erro erro__imagem text-danger"></small>
+                                <label for="img-produto">Foto do produto</label>
+                                <input id="img-produto" data-max-files="3" multiple name="imagem[]" class="filepond--item">
                             </div>
                         </div>
                     </div>
@@ -61,16 +69,29 @@
 @endsection
 
 @section('js')
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+    <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+        $('#img-produto').filepond({
+            allowMultiple: true,
+            storeAsFile: true,
+            imagePreviewMaxHeight: 100,
+            labelIdle: 'Insira suas imagens aqui...'
+        });
+
         $('form[name="formCriarProduto"]').on("submit", function(event) {
             var rota = '{{ route("admin.produtos.store") }}'
             event.preventDefault();
             $.ajax({
                 type: "POST",
                 url: rota,
-                data: $(this).serialize(),
+                data: new FormData(this),
                 dataType: "json",
+                contentType: false,
+                processData: false,
                 success: function (response) {
                     if (response.success === true) {
                         Swal.fire({
@@ -78,9 +99,13 @@
                             icon: 'success',
                             confirmButtonText: 'Fechar',
                         })
-                        console.log(response.dados);
                         return;
                     } 
+
+                    $('small.' + 'erro__imagem').text(response.erro_img);
+                    setTimeout(() => {
+                            $('small.' + 'erro__imagem').text('');
+                        }, 5000);
 
                     $.each(response.erros, function(chave, valor) {
                         $('small.' + 'erro__' + chave).text(valor);
