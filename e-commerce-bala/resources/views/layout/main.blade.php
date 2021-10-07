@@ -70,8 +70,7 @@
               @auth
 
                 <a href="#" class="text-light text-decoration-none me-4">
-                  <i class="fas fa-shopping-cart"></i>
-                  <small>Nome do usuario</small>
+                  <small>{{ Auth::user()->name }}</small>
                 </a>
             
               @endauth
