@@ -5,18 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categoria extends Model
+class Role extends Model
 {
     use HasFactory;
 
-    protected $table = 'categorias';
-
     protected $fillable = [
-        'nome'
+        'tipo',
     ];
 
-    public function produtos()
+    public function users()
     {
-        $this->belongsToMany(Produto::class, 'produto_categoria');
+        $this->belongsToMany(User::class, 'user_role');
     }
 }
