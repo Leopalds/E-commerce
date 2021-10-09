@@ -2,10 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProdutoController;
+use App\Http\Controllers\Admin\CategoriaController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::prefix('/admin')->middleware(['auth'])->group(function () {
     
     Route::view('', 'admin.dashboard')->name('dashboard');
+
+    Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
 
     Route::resource('produtos', ProdutoController::class)
         ->names([

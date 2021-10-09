@@ -33,7 +33,7 @@
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        $('form[name="formCriarCategoria"]').on("submit", function(event) {
+        $('form[name="formAtualizarCategoria"]').on("submit", function(event) {
             var rota = '{{ route("admin.categorias.update", ["id" => "$categoria->id"]) }}'
             event.preventDefault();
             $.ajax({

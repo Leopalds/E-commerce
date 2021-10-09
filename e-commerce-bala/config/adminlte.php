@@ -268,6 +268,12 @@ return [
                     'icon'        => 'far fa-circle',
                     'label_color' => 'success',
                 ],
+                [
+                    'text'        => 'Usuários',
+                    'url'         => 'admin/usuarios',
+                    'icon'        => 'far fa-circle',
+                    'label_color' => 'success',
+                ],
             ],
         ],
         ['header' => 'account_settings'],

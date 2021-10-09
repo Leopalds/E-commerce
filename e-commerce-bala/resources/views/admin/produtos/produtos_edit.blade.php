@@ -15,7 +15,7 @@
 
 @section('content')
     <div>
-        <form enctype="multipart/form-data" action="{{ route('admin.produtos.update', ['id' => $produto->id]) }}" class="d-flex flex-column" method="PUT" name="formAtualizarProduto" id="{{ $produto->id }}">
+        <form enctype="multipart/form-data"  class="d-flex flex-column" method="PUT" name="formAtualizarProduto" id="{{ $produto->id }}">
             
             @csrf
             <fieldset>
@@ -90,48 +90,48 @@
             labelIdle: 'Insira suas imagens aqui...'
         });
 
-        //$('form[name="formAtualizarProduto"]').on("submit", function(event) {
-        //    event.preventDefault();
-        //    var rota = '{{ route("admin.produtos.update", ["id" => $produto->id] )}}'           
-        //    $.ajax({
-        //        type: "PUT",
-        //        url: rota,
-        //        data: new FormData(this),
-        //        dataType: "json",
-        //        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        //        contentType: false,
-        //        processData: false,
-        //        success: function (response) {
-        //            if (response.success === true) {
-        //                $('#nome-produto').val(response.dados.nome);
-        //                $('#descricao-produto').val(response.dados.descricao);
-        //                $('#preco-produto').val(response.dados.preco);
-//
-        //                Swal.fire({
-        //                    title: 'Dados atualiazdos!',
-        //                    icon: 'success',
-        //                    confirmButtonText: 'Fechar',
-        //                })
-        //                return;
-        //            } 
-//
-        //            $('small.' + 'erro__imagem').text(response.erro_img);
-        //            setTimeout(() => {
-        //                $('small.' + 'erro__imagem').text('');
-        //            }, 5000);
-//
-        //            $.each(response.erros, function(chave, valor) {
-        //                $('small.' + 'erro__' + chave).text(valor);
-//
-        //                setTimeout(() => {
-        //                    $('small.' + 'erro__' + chave).text('');
-        //                }, 5000);
-        //            })
-        //            return;
-        //        },
-        //       
-        //    });
-        //})
+        $('form[name="formAtualizarProduto"]').on("submit", function(event) {
+            event.preventDefault();
+            var rota = '{{ route("admin.produtos.update", ["id" => $produto->id] )}}'           
+            $.ajax({
+                type: "PUT",
+                url: rota,
+                data: new FormData(this),
+                dataType: "json",
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response.success === true) {
+                        $('#nome-produto').val(response.dados.nome);
+                        $('#descricao-produto').val(response.dados.descricao);
+                        $('#preco-produto').val(response.dados.preco);
+
+                        Swal.fire({
+                            title: 'Dados atualiazdos!',
+                            icon: 'success',
+                            confirmButtonText: 'Fechar',
+                        })
+                        return;
+                    } 
+
+                    $('small.' + 'erro__imagem').text(response.erro_img);
+                    setTimeout(() => {
+                        $('small.' + 'erro__imagem').text('');
+                    }, 5000);
+
+                    $.each(response.erros, function(chave, valor) {
+                        $('small.' + 'erro__' + chave).text(valor);
+
+                        setTimeout(() => {
+                            $('small.' + 'erro__' + chave).text('');
+                        }, 5000);
+                    })
+                    return;
+                },
+               
+            });
+        })
         
     </script>
 @endsection
