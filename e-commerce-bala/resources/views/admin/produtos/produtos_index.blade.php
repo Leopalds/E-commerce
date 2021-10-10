@@ -28,7 +28,9 @@
             @foreach ($produtos as $produto)
                 <tr data-linha="{{ $produto->id }}">
                     <td>
+                        @if (count($produto->imagens) != 0)
                         <img style="width: 70px; height: 70px; object-fit: cover" src="{{ asset('storage/img/produto/' . $produto->unicaImagem->first()->nome) }}" alt="foto do produto">
+                        @endif
                     </td>
                     <td>{{ $produto->nome }}</td>
                     <td>{{ $produto->preco }}</td>

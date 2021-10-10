@@ -27,7 +27,7 @@
                     </button>
                 </form>
             </td>
-            <td><a href="{{ route('admin.categorias.edit', ['id' => $user->id]) }} " class="text-primary"><i class="fas fa-edit btn--editar"></i></a></td>
+            <td><a href="{{ route('admin.users.edit', ['id' => $user->id]) }} " class="text-primary"><i class="fas fa-edit btn--editar"></i></a></td>
         </tr>   
     @endforeach
     </tbody>

@@ -8,8 +8,9 @@
 
 @section('content')
     <div>
-        <form class="d-flex flex-column" method="PUT" name="formCriarCategoria">
+        <form class="d-flex flex-column" action="{{ route("admin.categorias.update", ["id" => $categoria->id]) }}" method="POST" name="formAtualizarCategoria">
             @csrf
+            @method('put')
             <fieldset>
                 <div class="container-fluid">
                     <div class="row">
@@ -34,7 +35,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $('form[name="formAtualizarCategoria"]').on("submit", function(event) {
-            var rota = '{{ route("admin.categorias.update", ["id" => "$categoria->id"]) }}'
+            var rota = '{{ route("admin.categorias.update", ["id" => $categoria->id]) }}'
             event.preventDefault();
             $.ajax({
                 type: "PUT",

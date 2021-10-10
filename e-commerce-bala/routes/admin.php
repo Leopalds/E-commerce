@@ -9,8 +9,26 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     
     Route::view('', 'admin.dashboard')->name('dashboard');
 
-    Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
+    Route::get('/usuarios', [UserController::class, 'index'])->name('admin.users.index');
+    Route::get('/usuarios/create', [UserController::class, 'create'])->name('admin.users.create');
+    Route::post('/usuarios', [UserController::class, 'store'])->name('admin.users.store');
+    Route::get('/usuarios/{id}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+    Route::put('/usuarios/{id}', [UserController::class, 'update'])->name('admin.users.update');
 
+    /*
+    Route::resource('users', UserController::class)
+        ->names([
+            'index' => 'admin.users.index',
+            'show' => 'admin.users.show',
+            'create' => 'admin.users.create',
+            'store' => 'admin.users.store',
+            'edit' => 'admin.users.edit',
+            'update' => 'admin.users.update',
+            'destroy' => 'admin.users.destroy'
+        ])->parameters([
+            'users' => 'id'
+        ]);
+    */
     Route::resource('produtos', ProdutoController::class)
         ->names([
         'index' => 'admin.produtos.index',

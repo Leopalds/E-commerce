@@ -11,9 +11,9 @@ class UserService
     public function validar(Request $request)
     {
         $validador =  Validator::make($request->all(), [
-            'name' => 'required',
-            'descricao' => 'required',
-            'preco' => 'required',
+            'name' => 'required|string',
+            'email' => 'required',
+            'password' => 'required|sometimes',
         ], [
             'required' => 'Esse campo é obrigatório.',
         ]);

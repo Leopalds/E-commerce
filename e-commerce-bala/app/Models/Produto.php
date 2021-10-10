@@ -29,6 +29,7 @@ class Produto extends Model
 
     public function unicaImagem()
     {
-        return $this->imagens()->limit(1);
+        $imagem = $this->imagens()->limit(1);
+        return $imagem;
     }
 }

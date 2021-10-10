@@ -25,8 +25,6 @@ class ProdutoController extends Controller
     public function index()
     {
         $produtos = Produto::all();
-        
-
         return response()->view('admin.produtos.produtos_index', compact('produtos'));
     }
 
@@ -61,7 +59,7 @@ class ProdutoController extends Controller
                 ];
                 return response()->json($response);
             }
-        }
+        } 
 
         if (!is_null($request->categoria)) {
             $produto->categorias()->sync($request->categoria);
@@ -120,6 +118,7 @@ class ProdutoController extends Controller
 
     public function update(Request $request, int $id)
     {
+        
         $validador = $this->service->validar($request);
 
         if (!$validador['success']) {
@@ -131,17 +130,18 @@ class ProdutoController extends Controller
 
         $produto = Produto::find($id);
 
-        //if ($request->hasFile('imagem')) {
-        //    $images = $this->atualizarImagens($request->file('imagem'), $produto);
-//
-        //    if ($images['success'] === false) {
-        //        $response = [
-        //            'success' => false,
-        //            'erro_img' => $images['erro']
-        //        ];
-        //        return response()->json($response);
-        //    }
-        //}
+
+        if ($request->hasFile('imagem')) {
+            $images = $this->atualizarImagens($request->file('imagem'), $produto);
+
+            if ($images['success'] === false) {
+                $response = [
+                    'success' => false,
+                    'erro_img' => $images['erro']
+                ];
+                return response()->json($response);
+            }
+        }
 
         $produto->nome = $dadosValidados['nome'];
         $produto->descricao = $dadosValidados['descricao'];
@@ -169,7 +169,7 @@ class ProdutoController extends Controller
 
     public function atualizarImagens(array $imagens, Produto $produto)
     {
-        if (count($imagens) > 3 || count($produto->imagens) > 3) {
+        if (count($imagens) > 3 || count($produto->imagens) >= 3) {
             return [
                 'success' => false,
                 'erro' => 'Um produto pode ter no máximo 3 imagens!'

@@ -52,13 +52,14 @@ class CategoriaController extends Controller
     public function edit(int $id)
     {
         $categoria = Categoria::find($id);
-
         return response()->view('admin.categorias.categorias_edit', compact('categoria'));
     }
 
     public function update(Request $request, int $id)
     {
+        
         $validador = $this->service->validar($request);
+
 
         if (!$validador['success']) {
             $erros = $validador;
@@ -85,7 +86,11 @@ class CategoriaController extends Controller
 
     public function destroy(int $id)
     {
-        Categoria::destroy($id);
+        $categoria = Categoria::find($id);
+        if (count($categoria->produtos) > 0) {
+            $categoria->produtos()->detach();
+        }
+        $categoria->delete();
 
         $response = [
             'success' => true

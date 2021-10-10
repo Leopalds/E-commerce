@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Produtos</h1>
+    <h1>Usuarios</h1>
 @endsection
 
 @section('css')
@@ -15,7 +15,7 @@
 
 @section('content')
     <div>
-        <form enctype="multipart/form-data" action="{{ route('admin.produtos.update', ['id' => $produto->id]) }}" class="d-flex flex-column" method="POST" name="formAtualizarProduto" id="{{ $produto->id }}">
+        <form action="{{ route('admin.users.update', ['id' => $user->id]) }}" class="d-flex flex-column" method="POST" name="formAtualizarUsuario">
             @csrf
             @method('put')
             <fieldset>
@@ -24,47 +24,42 @@
                         <div class="col-6 d-flex flex-column">
                             <div class="mb-3 d-flex flex-column">
                                 <small class="erro erro__nome text-danger"></small>
-                                <label for="nome-produto" class="form-label">Nome</label>
-                                <input type="text" name="nome" class="form-control" id="nome-produto" value="{{ $produto->nome }}">
+                                <label for="nome-usuario" class="form-label">Nome</label>
+                                <input value="{{ $user->name }}" type="text" name="name" class="form-control" id="nome-usuario">
                             </div>
                             <div class="mb-3 d-flex flex-column">
                                 <small class="erro erro__descricao text-danger"></small>
-                                <label for="descricao-produto" class="form-label">Descricao</label>
-                                <textarea 
-                                type="text" 
-                                name="descricao" 
-                                class="form-control" 
-                                id="descricao-produto"
-                                style="resize: none">{{ $produto->descricao }}</textarea>
+                                <label for="email-usuario" class="form-label">E-mail</label>
+                                <input value="{{ $user->email }}" readonly name="email" type="text" class="form-control">
                             </div>
+                            <!--
                             <div class="mb-4 d-flex flex-column">
                                 <small class="erro erro__preco text-danger"></small>
-                                <label for="preco-produto" class="form-label">Preço</label>
-                                <input type="number" name="preco" id="preco-produto" class="form-control" value="{{ $produto->preco }}">
+                                <label for="senha-usuario" class="form-label">Senha</label>
+                                <input type="text" name="password" id="preco-usuario" class="form-control">
                             </div>
+                            -->
                             <div class="input-group mb-4">
-                                <label for="categoria-produto" class="input-group-text">Categorias</label>
-                                <select name="categoria[]" id="categoria-produto" class="form-control form-select" multiple>
-                                    @foreach ($categorias as $categoria)
-                                    <option value="{{ $categoria->id }}"
-                                        @foreach ($produto->categorias as $categoriaProduto)
-                                            @if ($categoriaProduto->id == $categoria->id)
-                                            {{'selected'}}
-                                            @endif
-                                        @endforeach>
-                                        {{ $categoria->nome }}
-                                    </option>
+                                <label for="categoria-usuario" class="input-group-text">Cargos</label>
+                                <select name="cargo[]" id="cargo-usuario" class="form-control form-select" multiple>
+                                    @foreach ($cargos as $cargo)
+                                    <option value="{{ $cargo->id }}"
+                                        @foreach ($user->roles as $item)
+                                            
+                                        @endforeach>{{ $cargo->nome }}</option>    
                                     @endforeach
                                 </select>
                             </div>
                         </div>
+                        <!--
                         <div class="col-md-6">
                             <div class="d-flex flex-column">
                                 <small class="erro erro__imagem text-danger"></small>
-                                <label for="img-produto">Imagem</label>
-                                <input type="file" name="imagem[]" multiple id="img-produto-atualizar">
+                                <label for="img-usuario">Foto do usuario</label>
+                                <input id="img-usuario" data-max-files="3" multiple name="imagem[]" class="filepond--item">
                             </div>
                         </div>
+                        -->
                     </div>
                     <div>
                         <button class="btn btn-primary mt-3" type="submit">Salvar</button>
@@ -73,7 +68,6 @@
             </fieldset>
         </form>
     </div>
-
 @endsection
 
 @section('js')
@@ -84,20 +78,21 @@
     <script src="{{ asset('js/ajax/enviarDados.js') }}"></script>
     <script>
         FilePond.registerPlugin(FilePondPluginImagePreview);
-        $('#img-produto-atualizar').filepond({
+        $('#img-usuario').filepond({
             allowMultiple: true,
             storeAsFile: true,
             imagePreviewMaxHeight: 100,
             labelIdle: 'Insira suas imagens aqui...'
         });
 
-        $('form[name="formAtualizarProduto"]').on("submit", function(event) {
-            var rota = '{{ route("admin.produtos.update", ["id" => $produto->id] )}}'
-            var dados = new FormData(this);
+        $('form[name="formAtualizarUsuario"]').on("submit", function(event) {
             event.preventDefault();
-                    
-            enviarDados(rota, dados, 'POST', 'Produto atualizado!')
-        })
 
+            var rota = '{{ route("admin.users.update", ["id" => $user->id]) }}'
+            var dados = new FormData(this);
+
+            enviarDados(rota, dados, 'POST', 'Usuário atualizado!');
+        })
+        
     </script>
 @endsection

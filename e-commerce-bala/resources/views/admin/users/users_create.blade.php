@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Produtos</h1>
+    <h1>Usuarios</h1>
 @endsection
 
 @section('css')
@@ -15,49 +15,45 @@
 
 @section('content')
     <div>
-        <form  action="{{ route('admin.produtos.store') }}" class="d-flex flex-column" method="POST" name="formCriarProduto">
+        <form action="{{ route('admin.users.store') }}" class="d-flex flex-column" method="POST" name="formCriarusuario">
             @csrf
             <fieldset>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-6 d-flex flex-column">
                             <div class="mb-3 d-flex flex-column">
-                                <small class="erro erro__nome text-danger"></small>
-                                <label for="nome-produto" class="form-label">Nome</label>
-                                <input type="text" name="nome" class="form-control" id="nome-produto">
+                                <small class="erro erro__name text-danger"></small>
+                                <label for="nome-usuario" class="form-label">Nome</label>
+                                <input type="text" name="name" class="form-control" id="nome-usuario">
                             </div>
                             <div class="mb-3 d-flex flex-column">
-                                <small class="erro erro__descricao text-danger"></small>
-                                <label for="descricao-produto" class="form-label">Descricao</label>
-                                <textarea 
-                                    type="text" 
-                                    name="descricao" 
-                                    class="form-control" 
-                                    id="descricao-produto"
-                                    style="resize: none">
-                                </textarea>
+                                <small class="erro erro__email text-danger"></small>
+                                <label for="email-usuario" class="form-label">E-mail</label>
+                                <input name="email" type="text" class="form-control">
                             </div>
                             <div class="mb-4 d-flex flex-column">
-                                <small class="erro erro__preco text-danger"></small>
-                                <label for="preco-produto" class="form-label">Preço</label>
-                                <input type="number" name="preco" id="preco-produto" class="form-control">
+                                <small class="erro erro__password text-danger"></small>
+                                <label for="senha-usuario" class="form-label">Senha</label>
+                                <input type="text" name="password" id="preco-usuario" class="form-control">
                             </div>
                             <div class="input-group mb-4">
-                                <label for="categoria-produto" class="input-group-text">Categorias</label>
-                                <select name="categoria[]" id="categoria-produto" class="form-control form-select" multiple>
-                                    @foreach ($categorias as $categoria)
-                                    <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+                                <label for="categoria-usuario" class="input-group-text">Cargos</label>
+                                <select name="cargo[]" id="cargo-usuario" class="form-control form-select" multiple>
+                                    @foreach ($cargos as $cargo)
+                                    <option value="{{ $cargo->id }}">{{ $cargo->nome }}</option>    
                                     @endforeach
                                 </select>
                             </div>
                         </div>
+                        <!--
                         <div class="col-md-6">
                             <div class="d-flex flex-column">
                                 <small class="erro erro__imagem text-danger"></small>
-                                <label for="img-produto">Foto do produto</label>
-                                <input id="img-produto" data-max-files="3" multiple name="imagem[]" class="filepond--item">
+                                <label for="img-usuario">Foto do usuario</label>
+                                <input id="img-usuario" data-max-files="3" multiple name="imagem[]" class="filepond--item">
                             </div>
                         </div>
+                        -->
                     </div>
                     <div>
                         <button class="btn btn-primary mt-3" type="submit">Salvar</button>
@@ -73,22 +69,23 @@
     <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
     <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('js/ajax/enviarDados.js') }}"></script>
+    <script src="{{ asset('js/ajax/store.js') }}"></script>
     <script>
         FilePond.registerPlugin(FilePondPluginImagePreview);
-        $('#img-produto').filepond({
+        $('#img-usuario').filepond({
             allowMultiple: true,
             storeAsFile: true,
             imagePreviewMaxHeight: 100,
             labelIdle: 'Insira suas imagens aqui...'
         });
 
-        $('form[name="formCriarProduto"]').on("submit", function(event) {
-            var rota = '{{ route("admin.produtos.store") }}'
-            var dados = new FormData(this) 
+        $('form[name="formCriarusuario"]').on("submit", function(event) {
             event.preventDefault();
-            
-            enviarDados(rota, dados, 'POST', 'Produto');
+
+            var rota = '{{ route("admin.users.store") }}'
+            var dados = new FormData(this);
+
+            store(rota, dados, 'Usuario');
         })
         
     </script>

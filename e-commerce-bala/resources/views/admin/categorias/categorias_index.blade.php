@@ -26,8 +26,9 @@
                     <td>{{ $categoria->created_at }}</td>
                     <td>{{ $categoria->updated_at }}</td>
                     <td>
-                        <form name="formExcluirCategoria" action="" method="DELETE" id="{{ $categoria->id }}">
+                        <form name="formExcluirCategoria" action="{{ route('admin.categorias.destroy', ['id' => $categoria->id]) }}" method="POST" id="{{ $categoria->id }}">
                             @csrf
+                            @method('delete')
                             <button type="submit" class="bg-transparent border-0">
                                 <i class="fas fa-trash text-danger"></i>
                             </button>
@@ -44,11 +45,12 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $('form[name="formExcluirCategoria"]').on("submit", function (event) {
+            
             event.preventDefault();  
             var categoriaId = $(this).attr("id");
             $.ajax({
                 type: "DELETE",
-                url: "/admin/categorias/" + categoriaId,
+                url: '/admin/categorias/' + categoriaId,
                 data: $(this).serialize(),
                 dataType: "json",
                 success: function (response) {
