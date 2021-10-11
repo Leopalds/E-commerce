@@ -8,14 +8,16 @@ use Illuminate\Support\Facades\Validator;
 class UserService 
 {
 
-    public function validar(Request $request)
+    public function validar($dados)
     {
-        $validador =  Validator::make($request->all(), [
+        $validador =  Validator::make($dados, [
             'name' => 'required|string',
-            'email' => 'required',
+            'email' => 'required|unique:users,email|email|sometimes',
             'password' => 'required|sometimes',
         ], [
             'required' => 'Esse campo é obrigatório.',
+            'email' => 'E-mail inválido.',
+            'unique' => ':attribute já existe'
         ]);
 
         if ($validador->fails()) {

@@ -17,8 +17,13 @@ class Imagem extends Model
         'extensao'
     ];
 
-    public function produto()
+    public function produtos()
     {
-        return $this->belongsTo(Produto::class);
+        return $this->belongsToMany(Produto::class, 'imagem_produto');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_imagem');
     }
 }

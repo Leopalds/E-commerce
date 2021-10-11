@@ -1,7 +1,7 @@
-function enviarDados(rota, dados, metodo, msg) 
+function enviarDados(rota, dados, msg) 
 {
     $.ajax({
-        type: metodo,
+        type: 'POST',
         url: rota,
         data: dados,
         dataType: "json",
@@ -36,3 +36,7 @@ function displayErrors(response)
         }, 5000);
     })
 }
+
+
+
+

@@ -15,7 +15,7 @@
 
 @section('content')
     <div>
-        <form  action="{{ route('admin.produtos.store') }}" class="d-flex flex-column" method="POST" name="formCriarProduto">
+        <form  action="{{ route('admin.produtos.store') }}" class="d-flex flex-column" method="POST" name="formCriarProduto" enctype="multipart/form-data">
             @csrf
             <fieldset>
                 <div class="container-fluid">
@@ -56,6 +56,7 @@
                                 <small class="erro erro__imagem text-danger"></small>
                                 <label for="img-produto">Foto do produto</label>
                                 <input id="img-produto" data-max-files="3" multiple name="imagem[]" class="filepond--item">
+                                <small class="text-warning">Um produto pode ter no máximo 3 imagens!</small>
                             </div>
                         </div>
                     </div>
@@ -88,7 +89,7 @@
             var dados = new FormData(this) 
             event.preventDefault();
             
-            enviarDados(rota, dados, 'POST', 'Produto');
+            enviarDados(rota, dados, 'Produto cadastrado!');
         })
         
     </script>

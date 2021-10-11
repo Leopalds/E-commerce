@@ -11,15 +11,18 @@ use App\Services\ProdutoService;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProdutoRequest;
+use App\Services\ImagemService;
 use Illuminate\Support\Facades\Validator;
 
 class ProdutoController extends Controller
 {
     private $service;
+    private $imagemService;
 
-    public function __construct(ProdutoService $produtoService)
+    public function __construct(ProdutoService $produtoService, ImagemService $imageService)
     {
         $this->service = $produtoService;
+        $this->imagemService = $imageService;
     }
 
     public function index()
@@ -48,9 +51,8 @@ class ProdutoController extends Controller
 
         DB::beginTransaction();
         $produto = Produto::create($dadosValidados);
-        
         if ($request->hasFile('imagem')) {
-            $images = $this->salvarImagens($request->file('imagem'), $produto);
+            $images = $this->imagemService->salvar($request->file('imagem'), $produto);
 
             if ($images['success'] === false) {
                 $response = [
@@ -71,34 +73,6 @@ class ProdutoController extends Controller
         ];
 
         return response()->json($response);
-    }
-
-    public function salvarImagens(array $imagens, Produto $produto)
-    {
-        if (count($imagens) > 3) {
-            return [
-                'success' => false,
-                'erro' => 'Um produto pode ter no máximo 3 imagens!'
-            ];
-        }
-
-        foreach($imagens as $imagem) {
-            $nome = $imagem->getClientOriginalName();
-            $extensao = $imagem->extension();
-            $tamanho = $imagem->getSize();
-
-            $produto->imagens()->create([
-                'nome' => $nome,
-                'tamanho' => $tamanho,
-                'extensao' => $extensao
-            ]);
-
-            $imagem->storeAs('img/produto', $nome, 'public');
-        }
-
-        return [
-            'success' => true
-        ];
     }
 
     public function show(int $id)
@@ -132,7 +106,7 @@ class ProdutoController extends Controller
 
 
         if ($request->hasFile('imagem')) {
-            $images = $this->atualizarImagens($request->file('imagem'), $produto);
+            $images = $this->imagemService->salvar($request->file('imagem'), $produto);
 
             if ($images['success'] === false) {
                 $response = [
@@ -167,41 +141,12 @@ class ProdutoController extends Controller
         return response()->json($response);
     }
 
-    public function atualizarImagens(array $imagens, Produto $produto)
-    {
-        if (count($imagens) > 3 || count($produto->imagens) >= 3) {
-            return [
-                'success' => false,
-                'erro' => 'Um produto pode ter no máximo 3 imagens!'
-            ];
-        }
-
-        foreach($imagens as $imagem) {
-            $nome = $imagem->getClientOriginalName();
-            $extensao = $imagem->extension();
-            $tamanho = $imagem->getSize();
-
-            $produto->imagens()->create([
-                'nome' => $nome,
-                'tamanho' => $tamanho,
-                'extensao' => $extensao
-            ]);
-
-            $imagem->storeAs('img/produto', $nome, 'public');
-        }
-
-        return [
-            'success' => true
-        ];
-    }
-
-
     public function destroy(int $id)
     {
         $produto = Produto::find($id);
 
         $produto->categorias()->detach();
-        $produto->imagens()->delete();
+        $produto->imagens()->detach();
         $produto->delete();
 
         $response = [

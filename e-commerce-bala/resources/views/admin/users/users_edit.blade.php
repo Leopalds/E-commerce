@@ -23,12 +23,12 @@
                     <div class="row">
                         <div class="col-6 d-flex flex-column">
                             <div class="mb-3 d-flex flex-column">
-                                <small class="erro erro__nome text-danger"></small>
+                                <small class="erro erro__name text-danger"></small>
                                 <label for="nome-usuario" class="form-label">Nome</label>
                                 <input value="{{ $user->name }}" type="text" name="name" class="form-control" id="nome-usuario">
                             </div>
                             <div class="mb-3 d-flex flex-column">
-                                <small class="erro erro__descricao text-danger"></small>
+                                <small class="erro erro__email text-danger"></small>
                                 <label for="email-usuario" class="form-label">E-mail</label>
                                 <input value="{{ $user->email }}" readonly name="email" type="text" class="form-control">
                             </div>
@@ -44,8 +44,10 @@
                                 <select name="cargo[]" id="cargo-usuario" class="form-control form-select" multiple>
                                     @foreach ($cargos as $cargo)
                                     <option value="{{ $cargo->id }}"
-                                        @foreach ($user->roles as $item)
-                                            
+                                        @foreach ($user->roles as $role)
+                                            @if ($role->id == $cargo->id)
+                                                {{ 'selected' }}
+                                            @endif
                                         @endforeach>{{ $cargo->nome }}</option>    
                                     @endforeach
                                 </select>
@@ -58,8 +60,8 @@
                                 <label for="img-usuario">Foto do usuario</label>
                                 <input id="img-usuario" data-max-files="3" multiple name="imagem[]" class="filepond--item">
                             </div>
-                        </div>
-                        -->
+                        </div>      
+                    -->
                     </div>
                     <div>
                         <button class="btn btn-primary mt-3" type="submit">Salvar</button>
@@ -91,7 +93,7 @@
             var rota = '{{ route("admin.users.update", ["id" => $user->id]) }}'
             var dados = new FormData(this);
 
-            enviarDados(rota, dados, 'POST', 'Usuário atualizado!');
+            enviarDados(rota, dados, 'Usuário atualizado!');
         })
         
     </script>

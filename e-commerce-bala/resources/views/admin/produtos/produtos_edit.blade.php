@@ -62,7 +62,8 @@
                             <div class="d-flex flex-column">
                                 <small class="erro erro__imagem text-danger"></small>
                                 <label for="img-produto">Imagem</label>
-                                <input type="file" name="imagem[]" multiple id="img-produto-atualizar">
+                                <input type="file" name="imagem[]" multiple id="img-produto-atualizar" data-max-files="3">
+                                <small class="text-warning">Um produto pode ter no máximo 3 imagens!</small>
                             </div>
                         </div>
                     </div>
@@ -96,7 +97,7 @@
             var dados = new FormData(this);
             event.preventDefault();
                     
-            enviarDados(rota, dados, 'POST', 'Produto atualizado!')
+            enviarDados(rota, dados, 'Produto atualizado!')
         })
 
     </script>

@@ -15,7 +15,7 @@
 
 @section('content')
     <div>
-        <form action="{{ route('admin.users.store') }}" class="d-flex flex-column" method="POST" name="formCriarusuario">
+        <form action="{{ route('admin.users.store') }}" class="d-flex flex-column" method="POST" name="formCriarusuario" enctype="multipart/form-data">
             @csrf
             <fieldset>
                 <div class="container-fluid">
@@ -45,7 +45,6 @@
                                 </select>
                             </div>
                         </div>
-                        <!--
                         <div class="col-md-6">
                             <div class="d-flex flex-column">
                                 <small class="erro erro__imagem text-danger"></small>
@@ -53,7 +52,6 @@
                                 <input id="img-usuario" data-max-files="3" multiple name="imagem[]" class="filepond--item">
                             </div>
                         </div>
-                        -->
                     </div>
                     <div>
                         <button class="btn btn-primary mt-3" type="submit">Salvar</button>
@@ -69,7 +67,7 @@
     <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
     <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('js/ajax/store.js') }}"></script>
+    <script src="{{ asset('js/ajax/enviarDados.js') }}"></script>
     <script>
         FilePond.registerPlugin(FilePondPluginImagePreview);
         $('#img-usuario').filepond({
@@ -85,7 +83,7 @@
             var rota = '{{ route("admin.users.store") }}'
             var dados = new FormData(this);
 
-            store(rota, dados, 'Usuario');
+            enviarDados(rota, dados, 'Usuario cadastrado!');
         })
         
     </script>

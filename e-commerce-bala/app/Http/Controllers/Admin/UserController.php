@@ -8,15 +8,18 @@ use Illuminate\Http\Request;
 use App\Services\UserService;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Services\ImagemService;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     private $service;
+    private $imagemService;
 
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, ImagemService $imagemService)
     {
         $this->service = $userService;
+        $this->imagemService = $imagemService;
     }
 
     public function index()
@@ -41,7 +44,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $validador = $this->service->validar($request);
+        $validador = $this->service->validar($request->all());
 
         if (!$validador['success']) {
             $erros = $validador;
@@ -49,17 +52,32 @@ class UserController extends Controller
         }
 
         $dadosValidados = $validador['dados'];
-
         DB::beginTransaction();
-
+        
         $senhaHash = Hash::make($dadosValidados['password']);
         $dadosValidados['password'] = $senhaHash;
-        $user = User::create($dadosValidados);
-   
+        $user = User::create([
+            'name' => $dadosValidados['name'],
+            'email' => $dadosValidados['email'],
+            'password' => $dadosValidados['password']
+        ]);
+        
         $user->roles()->attach(2);
-
+        
         if (!is_null($request->cargo)) {
             $user->roles()->attach($request->cargo);
+        }
+        
+        if ($request->hasFile('imagem')) {
+            $images = $this->imagemService->salvar($request->file('imagem'), $user);
+
+            if ($images['success'] === false) {
+                $response = [
+                    'success' => false,
+                    'erro_img' => $images['erro']
+                ];
+                return response()->json($response);
+            }
         }
 
         DB::commit();
@@ -81,7 +99,7 @@ class UserController extends Controller
 
     public function update(Request $request, int $id)
     {
-        $validador = $this->service->validar($request);
+        $validador = $this->service->validar($request->except('email'));
 
         if (!$validador['success']) {
             $erros = $validador;
@@ -97,7 +115,9 @@ class UserController extends Controller
         $user->name = $dadosValidados['name'];
 
         if (!is_null($request->cargo)) {
-            $user->roles()->attach($request->cargo);
+            $user->roles()->sync($request->cargo);
+        } else {
+            $user->roles()->detach();
         }
 
         $user->save();
@@ -111,8 +131,14 @@ class UserController extends Controller
         return response()->json($response);
     }
 
-    public function destroy()
+    public function destroy(int $id)
     {
-        
+        $user = User::find($id);
+        $user->roles()->detach();
+        $user->delete();
+
+        return [
+            'success' => true
+        ];
     }
 }

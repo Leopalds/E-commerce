@@ -63,6 +63,7 @@
         $('form[name="formExcluirProduto"]').on("submit", function (event) {
             event.preventDefault();  
             var produtoId = $(this).attr("id");
+            
             $.ajax({
                 type: "DELETE",
                 url: "/admin/produtos/" + produtoId,

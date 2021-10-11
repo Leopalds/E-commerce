@@ -24,7 +24,7 @@ class Produto extends Model
 
     public function imagens()
     {
-        return $this->hasMany(Imagem::class);
+        return $this->belongsToMany(Imagem::class, 'imagem_produto');
     }
 
     public function unicaImagem()

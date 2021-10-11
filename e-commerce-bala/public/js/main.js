@@ -1,0 +1,1 @@
+import enviarDados from "./ajax/enviarDados.js";

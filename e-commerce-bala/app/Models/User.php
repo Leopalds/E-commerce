@@ -46,6 +46,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'user_role');
     }
 
+    public function imagens()
+    {
+        return $this->belongsToMany(Imagem::class, 'user_imagem');
+    }
+
     public function isAdmin()
     {
         foreach ($this->roles as $role) {

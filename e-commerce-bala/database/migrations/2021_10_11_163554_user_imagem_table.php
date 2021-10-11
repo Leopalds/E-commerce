@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CriandoTabelaImagens extends Migration
+class UserImagemTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CriandoTabelaImagens extends Migration
      */
     public function up()
     {
-        Schema::create('imagens', function (Blueprint $table) {
-            $table->id('id');
-            $table->string('nome');
-            $table->string('extensao');
-            $table->integer('tamanho');
+        Schema::create('user_imagem', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('imagem_id')->constrained('imagens');
             
             $table->timestamps();
-
-            $table->foreignId('produto_id')->nullable()->constrained('produtos');
         });
     }
 
