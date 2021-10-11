@@ -6,14 +6,17 @@ use Illuminate\View\Component;
 
 class Textarea extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public $atributo;
+    public $entidade;
+    public $label;
+    public $valor = "";
+
+    public function __construct($atributo, $label, $valor = "", $entidade)
     {
-        //
+        $this->atributo = $atributo;
+        $this->label = $label;
+        $this->valor = $valor;
+        $this->entidade = $entidade;
     }
 
     /**

@@ -4,21 +4,16 @@ namespace App\View\Components\Form;
 
 use Illuminate\View\Component;
 
-class Input extends Component
+class File extends Component
 {
     public $atributo;
     public $label;
-    public $tipo;
-    public $valor = "";
     public $entidade;
-    
 
-    public function __construct($atributo, $label, $tipo, $valor = "", $entidade)
+    public function __construct($atributo, $label, $entidade)
     {
         $this->atributo = $atributo;
         $this->label = $label;
-        $this->tipo = $tipo;
-        $this->valor = $valor;
         $this->entidade = $entidade;
     }
 
@@ -29,6 +24,6 @@ class Input extends Component
      */
     public function render()
     {
-        return view('components.form.input');
+        return view('components.form.file');
     }
 }

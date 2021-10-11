@@ -21,21 +21,9 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-6 d-flex flex-column">
-                            <div class="mb-3 d-flex flex-column">
-                                <small class="erro erro__name text-danger"></small>
-                                <label for="nome-usuario" class="form-label">Nome</label>
-                                <input type="text" name="name" class="form-control" id="nome-usuario">
-                            </div>
-                            <div class="mb-3 d-flex flex-column">
-                                <small class="erro erro__email text-danger"></small>
-                                <label for="email-usuario" class="form-label">E-mail</label>
-                                <input name="email" type="text" class="form-control">
-                            </div>
-                            <div class="mb-4 d-flex flex-column">
-                                <small class="erro erro__password text-danger"></small>
-                                <label for="senha-usuario" class="form-label">Senha</label>
-                                <input type="text" name="password" id="preco-usuario" class="form-control">
-                            </div>
+                            <x-form.input atributo="name" label="Nome" tipo="text" entidade="usuario"/>
+                            <x-form.input atributo="email" label="Email" tipo="text" entidade="usuario"/>
+                            <x-form.input atributo="password" label="Senha" tipo="text" entidade="usuario"/>
                             <div class="input-group mb-4">
                                 <label for="categoria-usuario" class="input-group-text">Cargos</label>
                                 <select name="cargo[]" id="cargo-usuario" class="form-control form-select" multiple>
@@ -46,11 +34,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="d-flex flex-column">
-                                <small class="erro erro__imagem text-danger"></small>
-                                <label for="img-usuario">Foto do usuario</label>
-                                <input id="img-usuario" data-max-files="3" multiple name="imagem[]" class="filepond--item">
-                            </div>
+                            <x-form.file atributo="imagem" label="Foto do usuário" entidade="usuario"/>
                         </div>
                     </div>
                     <div>
@@ -68,14 +52,9 @@
     <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/ajax/enviarDados.js') }}"></script>
+    <script src="{{ asset('js/filepond/plugin/imagePreview.js') }}"></script>
     <script>
-        FilePond.registerPlugin(FilePondPluginImagePreview);
-        $('#img-usuario').filepond({
-            allowMultiple: true,
-            storeAsFile: true,
-            imagePreviewMaxHeight: 100,
-            labelIdle: 'Insira suas imagens aqui...'
-        });
+        imagePreview('#imagem-usuario');
 
         $('form[name="formCriarusuario"]').on("submit", function(event) {
             event.preventDefault();

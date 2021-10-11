@@ -22,16 +22,24 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-6 d-flex flex-column">
-                            <div class="mb-3 d-flex flex-column">
-                                <small class="erro erro__name text-danger"></small>
-                                <label for="nome-usuario" class="form-label">Nome</label>
-                                <input value="{{ $user->name }}" type="text" name="name" class="form-control" id="nome-usuario">
-                            </div>
-                            <div class="mb-3 d-flex flex-column">
-                                <small class="erro erro__email text-danger"></small>
-                                <label for="email-usuario" class="form-label">E-mail</label>
-                                <input value="{{ $user->email }}" readonly name="email" type="text" class="form-control">
-                            </div>
+                            <x-form.input 
+                                tipo="text" 
+                                entidade="usuario" 
+                                :valor="$user->name" 
+                                atributo="usuario" 
+                                label="Nome"/>
+
+                            <x-form.input 
+                                atributo="email" 
+                                label="Email" 
+                                tipo="text" 
+                                entidade="usuario" 
+                                :valor="$user->email">
+                                <x-slot name="readonly">
+                                    readonly 
+                                </x-slot>
+                            </x-form.input>
+
                             <!--
                             <div class="mb-4 d-flex flex-column">
                                 <small class="erro erro__preco text-danger"></small>
@@ -78,14 +86,9 @@
     <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/ajax/enviarDados.js') }}"></script>
+    <script src="{{ asset('js/filepond/plugin/imagePreview.js') }}"></script>
     <script>
-        FilePond.registerPlugin(FilePondPluginImagePreview);
-        $('#img-usuario').filepond({
-            allowMultiple: true,
-            storeAsFile: true,
-            imagePreviewMaxHeight: 100,
-            labelIdle: 'Insira suas imagens aqui...'
-        });
+        imagePreview('#imagem-usuario');
 
         $('form[name="formAtualizarUsuario"]').on("submit", function(event) {
             event.preventDefault();

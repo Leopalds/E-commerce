@@ -135,6 +135,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->roles()->detach();
+        $user->imagens()->detach();
         $user->delete();
 
         return [

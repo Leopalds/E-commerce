@@ -15,11 +15,12 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-6 d-flex flex-column">
-                            <div class="mb-3 d-flex flex-column">
-                                <small class="erro erro__nome text-danger"></small>
-                                <label for="nome-categoria" class="form-label">Nome</label>
-                                <input type="text" name="nome" class="form-control" id="nome-categoria" value="{{ $categoria->nome }}">
-                            </div>
+                            <x-form.input 
+                                tipo="text" 
+                                label="Nome" 
+                                atributo="nome" 
+                                :valor="$categoria->nome" 
+                                entidade="categoria"/> 
                         </div>
                     </div>
                     <div>

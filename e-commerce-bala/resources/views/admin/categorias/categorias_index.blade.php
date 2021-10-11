@@ -43,6 +43,7 @@
 @endsection
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('') }}"></script>
     <script>
         $('form[name="formExcluirCategoria"]').on("submit", function (event) {
             

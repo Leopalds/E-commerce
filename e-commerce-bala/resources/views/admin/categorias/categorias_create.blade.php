@@ -14,11 +14,11 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-6 d-flex flex-column">
-                            <div class="mb-3 d-flex flex-column">
-                                <small class="erro erro__nome text-danger"></small>
-                                <label for="nome-categoria" class="form-label">Nome</label>
-                                <input type="text" name="nome" class="form-control" id="nome-categoria">
-                            </div>
+                            <x-form.input 
+                                tipo="text" 
+                                atributo="nome" 
+                                label="Nome" 
+                                entidade="categoria"/>
                         </div>
                     </div>
                     <div>
@@ -32,35 +32,14 @@
 
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/ajax/enviarDados.js') }}"></script>
     <script>
         $('form[name="formCriarCategoria"]').on("submit", function(event) {
-            var rota = '{{ route("admin.categorias.store") }}'
+            var rota = '{{ route("admin.categorias.store") }}';
+            var dados = new FormData(this);
             event.preventDefault();
-            $.ajax({
-                type: "POST",
-                url: rota,
-                data: $(this).serialize(),
-                dataType: "json",
-                success: function (response) {
-                    if (response.success === true) {
-                        Swal.fire({
-                            title: 'Categoria criado!',
-                            icon: 'success',
-                            confirmButtonText: 'Fechar',
-                        })
-                        return;
-                    } 
-
-                    $.each(response.erros, function(chave, valor) {
-                        $('small.' + 'erro__' + chave).text(valor);
-
-                        setTimeout(() => {
-                            $('small.' + 'erro__' + chave).text('');
-                        }, 5000);
-                    })
-                    return;
-                },
-            });
+            
+            enviarDados(rota, dados, 'Categoria criada!');
         })
         
     </script>

@@ -21,27 +21,9 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-6 d-flex flex-column">
-                            <div class="mb-3 d-flex flex-column">
-                                <small class="erro erro__nome text-danger"></small>
-                                <label for="nome-produto" class="form-label">Nome</label>
-                                <input type="text" name="nome" class="form-control" id="nome-produto">
-                            </div>
-                            <div class="mb-3 d-flex flex-column">
-                                <small class="erro erro__descricao text-danger"></small>
-                                <label for="descricao-produto" class="form-label">Descricao</label>
-                                <textarea 
-                                    type="text" 
-                                    name="descricao" 
-                                    class="form-control" 
-                                    id="descricao-produto"
-                                    style="resize: none">
-                                </textarea>
-                            </div>
-                            <div class="mb-4 d-flex flex-column">
-                                <small class="erro erro__preco text-danger"></small>
-                                <label for="preco-produto" class="form-label">Preço</label>
-                                <input type="number" name="preco" id="preco-produto" class="form-control">
-                            </div>
+                            <x-form.input atributo="nome" label="Nome" tipo="text" entidade="produto"/>
+                            <x-form.textarea atributo="descricao" label="Descricao" entidade="produto"/>
+                            <x-form.input atributo="preco" label="Preco" tipo="number" entidade="produto"/>
                             <div class="input-group mb-4">
                                 <label for="categoria-produto" class="input-group-text">Categorias</label>
                                 <select name="categoria[]" id="categoria-produto" class="form-control form-select" multiple>
@@ -52,12 +34,8 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="d-flex flex-column">
-                                <small class="erro erro__imagem text-danger"></small>
-                                <label for="img-produto">Foto do produto</label>
-                                <input id="img-produto" data-max-files="3" multiple name="imagem[]" class="filepond--item">
-                                <small class="text-warning">Um produto pode ter no máximo 3 imagens!</small>
-                            </div>
+                            <x-form.file atributo="imagem" label="Foto do produto" entidade="produto"/>
+                            <small class="text-warning">Um produto pode ter no máximo 3 imagens!</small>
                         </div>
                     </div>
                     <div>
@@ -75,14 +53,9 @@
     <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/ajax/enviarDados.js') }}"></script>
+    <script src="{{ asset('js/filepond/plugin/imagePreview.js') }}"></script>
     <script>
-        FilePond.registerPlugin(FilePondPluginImagePreview);
-        $('#img-produto').filepond({
-            allowMultiple: true,
-            storeAsFile: true,
-            imagePreviewMaxHeight: 100,
-            labelIdle: 'Insira suas imagens aqui...'
-        });
+        imagePreview('#imagem-produto');
 
         $('form[name="formCriarProduto"]').on("submit", function(event) {
             var rota = '{{ route("admin.produtos.store") }}'
