@@ -11,8 +11,8 @@
         <a class="btn btn-primary" href="{{ route('admin.users.create') }}">Adicionar +</a>
     </div>
     <div class="container">
-        <x-tabela-usuarios titulo="Administradores" :users="$admins"/>
-        <x-tabela-usuarios titulo="Clientes" :users="$users"/>
+        <x-tabela-usuarios titulo="Administradores" nome-tabela="users" :users="$admins"/>
+        <x-tabela-usuarios titulo="Clientes" nome-tabela="users" :users="$users"/>
     </div>
 @endsection
 @section('js')
