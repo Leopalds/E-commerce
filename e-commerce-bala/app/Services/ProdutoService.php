@@ -11,9 +11,9 @@ class ProdutoService
     public function validar(Request $request)
     {
         $validador =  Validator::make($request->all(), [
-            'nome' => 'required',
+            'nome' => 'required|string',
             'descricao' => 'required',
-            'preco' => 'required',
+            'preco' => 'required|min:0',
         ], [
             'required' => 'Esse campo é obrigatório.',
         ]);

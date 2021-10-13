@@ -43,8 +43,9 @@
                     <td>{{ $produto->updated_at }}</td>
                     <td><a class="text-dark" href="{{ route('admin.produtos.show', ['id' => $produto->id]) }}"><i class="fas fa-eye"></i></a></td>
                     <td>
-                        <form name="formExcluirProduto" action="" method="DELETE" id="{{ $produto->id }}">
+                        <form name="formExcluirProduto" method="POST" id="{{ $produto->id }}">
                             @csrf
+                            @method('delete')
                             <button type="submit" class="bg-transparent border-0">
                                 <i class="fas fa-trash text-danger"></i>
                             </button>
@@ -59,29 +60,23 @@
 @endsection
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('js/ajax/excluirRecurso.js') }}"></script>
     <script>
         $('form[name="formExcluirProduto"]').on("submit", function (event) {
-            event.preventDefault();  
+            event.preventDefault(); 
+
             var produtoId = $(this).attr("id");
-            
-            $.ajax({
-                type: "DELETE",
-                url: "/admin/produtos/" + produtoId,
-                data: $(this).serialize(),
-                dataType: "json",
-                success: function (response) {
-                    if (response.success === true) {
-                        Swal.fire({
-                            title: 'Produto excluido!',
-                            icon: 'success',
-                            confirmButtonText: 'Fechar',
-                        });
-                        
-                        const linha = $('[data-linha="' + produtoId + '"]');
-                        linha.remove();
-                    }
-                }
-            });
+            var dados = $(this).serialize();
+            var linha = $('[data-linha="' + produtoId + '"]');
+            var rota = '/admin/produtos/' + produtoId;
+
+            excluirRecurso(
+                rota, 
+                dados,
+                'Tem certeza que deseja excluir esse produto?',
+                'Produto excluido!', 
+                linha
+            ); 
         })
     </script>
 @endsection

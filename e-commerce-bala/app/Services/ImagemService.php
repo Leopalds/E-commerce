@@ -21,7 +21,7 @@ class ImagemService
             if (Imagem::where('nome', $nome)->exists()) {
                 $dbImagem = Imagem::where('nome', $nome)->first();
                 $entidade->imagens()->attach($dbImagem->id);
-                break;
+                continue;
             }
 
             $extensao = $imagem->extension();

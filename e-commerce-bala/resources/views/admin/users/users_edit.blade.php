@@ -26,7 +26,7 @@
                                 tipo="text" 
                                 entidade="usuario" 
                                 :valor="$user->name" 
-                                atributo="usuario" 
+                                atributo="name" 
                                 label="Nome"/>
 
                             <x-form.input 
@@ -91,10 +91,10 @@
         imagePreview('#imagem-usuario');
 
         $('form[name="formAtualizarUsuario"]').on("submit", function(event) {
-            event.preventDefault();
-
             var rota = '{{ route("admin.users.update", ["id" => $user->id]) }}'
             var dados = new FormData(this);
+            
+            event.preventDefault();
 
             enviarDados(rota, dados, 'Usuário atualizado!');
         })

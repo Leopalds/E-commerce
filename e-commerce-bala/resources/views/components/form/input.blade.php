@@ -6,5 +6,6 @@
         name="{{ $atributo }}" 
         class="form-control" id="{{ $atributo }}-{{ $entidade }}" 
         value="{{ $valor }}"
-        {{ empty($readonly) ? '' : $readonly }}>    
+        {{ empty($readonly) ? '' : $readonly }}
+        min="0">    
 </div>

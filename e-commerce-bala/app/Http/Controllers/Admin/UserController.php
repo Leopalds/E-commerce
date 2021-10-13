@@ -138,8 +138,9 @@ class UserController extends Controller
         $user->imagens()->detach();
         $user->delete();
 
-        return [
-            'success' => true
-        ];
+        return response()->json([
+                'success' => true
+            ]
+        );
     }
 }

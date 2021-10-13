@@ -43,30 +43,23 @@
 @endsection
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('') }}"></script>
+    <script src="{{ asset('js/ajax/excluirRecurso.js') }}"></script>
     <script>
         $('form[name="formExcluirCategoria"]').on("submit", function (event) {
-            
-            event.preventDefault();  
+            event.preventDefault();
+
             var categoriaId = $(this).attr("id");
-            $.ajax({
-                type: "DELETE",
-                url: '/admin/categorias/' + categoriaId,
-                data: $(this).serialize(),
-                dataType: "json",
-                success: function (response) {
-                    if (response.success === true) {
-                        Swal.fire({
-                            title: 'Categoria excluido!',
-                            icon: 'success',
-                            confirmButtonText: 'Fechar',
-                        });
-                        
-                        const linha = $('[data-linha="' + categoriaId + '"]');
-                        linha.remove();
-                    }
-                }
-            });
+            var dados = $(this).serialize();
+            var linha = $('[data-linha="' + categoriaId + '"]');
+            var rota = '/admin/categorias/' + categoriaId;
+            
+            excluirRecurso(
+                rota, 
+                dados, 
+                'Tem certeza que deseja excluir essa categori?',
+                'Categoria excluida!', 
+                linha
+            ); 
         })
     </script>
 @endsection

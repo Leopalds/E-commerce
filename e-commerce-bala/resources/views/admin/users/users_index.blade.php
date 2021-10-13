@@ -27,7 +27,13 @@
             var rota = '/admin/usuarios/' + userId;
             var dados = $(this).serialize();
 
-            excluirRecurso(rota, dados, 'Produto excluido!', linha);
+            excluirRecurso(
+                rota, 
+                dados,
+                'Tem certeza que deseja excluir esse usuário?' 
+                'Usuário excluido!', 
+                linha
+                );
             
         })
     </script>

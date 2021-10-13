@@ -15,7 +15,7 @@
 
 @section('content')
     <div>
-        <form enctype="multipart/form-data" action="{{ route('admin.produtos.update', ['id' => $produto->id]) }}" class="d-flex flex-column" method="POST" name="formAtualizarProduto" id="{{ $produto->id }}">
+        <form action="{{ route('admin.produtos.update', ['id' => $produto->id]) }}" class="d-flex flex-column" method="POST" name="formAtualizarProduto" id="{{ $produto->id }}">
             @csrf
             @method('put')
             <fieldset>
@@ -58,13 +58,20 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 d-flex flex-column">
                             <x-form.file 
                                 atributo="imagem" 
                                 label="Foto do produto" 
                                 entidade="produto"/>
                                 
                             <small class="text-warning">Um produto pode ter no máximo 3 imagens!</small>
+                            <div class="d-flex">
+                                @foreach ($produto->imagens as $imagem)
+                                    <div class="mt-4 mx-3">
+                                        <img  width="100px" height="100px" style="object-fit: cover" src="{{ asset('storage/img/produto/' . $imagem->nome) }}">
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                     <div>
