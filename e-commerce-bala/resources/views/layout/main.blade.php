@@ -74,18 +74,21 @@
                 </a>
             
               @endauth
-                <a href="/carrinho" class="fs-4 carrinho"><i class="fas fa-shopping-cart"></i></a>
+                <a href="/carrinho" class="fs-4 carrinho text-decoration-none">
+                  <i class="fas fa-shopping-cart"></i>
+                  <small>({{ Cart::content()->count() }})</small>
+                </a>
             </div>
           </div>
       </div>
     </div>
   </nav>
 
-  <div class="container-fluid">
+  <div class="container-fluid d-flex flex-column align-items-center">
       @yield('conteudo')
   </div>
 
-  <footer class="bg-dark p-3">
+  <footer class="bg-dark p-3 footer">
     <ul class="d-flex justify-content-center">
       <li>
         <a href="#">

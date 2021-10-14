@@ -2,16 +2,15 @@
 
 namespace App\View\Components\Carrinho;
 
-use App\Models\Produto;
 use Illuminate\View\Component;
 
-class Tabela extends Component
+class FormAdicionar extends Component
 {
-    public $carrinho;
+    public $produto;
 
-    public function __construct($carrinho)
+    public function __construct($produto)
     {
-        $this->carrinho = $carrinho;
+        $this->produto = $produto;
     }
 
     /**
@@ -21,6 +20,6 @@ class Tabela extends Component
      */
     public function render()
     {
-        return view('components.carrinho.tabela', );
+        return view('components.carrinho.form-adicionar');
     }
 }

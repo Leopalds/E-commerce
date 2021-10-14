@@ -8,3 +8,9 @@
 //pages
 @use 'pages/produto';
 @use 'pages/produtos';
+
+//layouts
+@use 'layouts/footer';
+
+//base
+@use 'base/body.scss';

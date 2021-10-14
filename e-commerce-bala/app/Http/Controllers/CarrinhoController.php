@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Validator;
 
 class CarrinhoController extends Controller
 {
@@ -30,9 +31,9 @@ class CarrinhoController extends Controller
         return redirect(route('carrinho.index'));
     }
 
-    public function destroy(int $id)
+    public function destroy(string $rowId)
     {
-        Cart::remove($id);
+        Cart::remove($rowId);
 
         return response()->json([
             'success' => true

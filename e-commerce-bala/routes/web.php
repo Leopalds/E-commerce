@@ -9,7 +9,7 @@ use App\Http\Controllers\User\ProdutoController;
 Route::redirect('/home', '/', 301);
 Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho.index');
 Route::post('/carrinho', [CarrinhoController::class, 'store'])->name('carrinho.store');
-Route::delete('/carrinho/{id}', [CarrinhoController::class, 'destroy'])->name('carrinho.destroy');
+Route::delete('/carrinho/{rowId}', [CarrinhoController::class, 'destroy'])->name('carrinho.destroy');
 
 Route::view('/', 'pages.home')->name('home');
 

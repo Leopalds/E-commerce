@@ -1,8 +1,5 @@
 <div class="w-50 table-responsive">
-    <div class="d-flex align-items-center justify-content-end">
-        <small>({{ \Gloudemans\Shoppingcart\Facades\Cart::content()->count() }})</small>
-        <i class="fas fa-shopping-cart"></i>
-    </div>
+    <x-carrinho.contador/>
     <table class="table">
         <thead>
             <tr>
@@ -15,13 +12,15 @@
         </thead>
         <tbody>
             @foreach ($carrinho as $carrinho)
-            <tr data-linha="{{ $carrinho->id }}">
-                <th scope="row"></th>
-                <td>{{ $carrinho->name }}</td>
+            <tr data-linha="{{ $carrinho->rowId }}">
+                <th scope="row">
+                    <img width="70px" height="70px" src=" {{ asset('/storage/img/produto/' . App\Models\Produto::find($carrinho->id)->imagens->take(1)->first()->nome) }}" alt="imagem do produto...">
+                </th>
+                <td><a href="#">{{ $carrinho->name }}</a></td>
                 <td>{{ $carrinho->price }}</td>
                 <td>{{ $carrinho->qty }}</td>
                 <td>
-                    <form name="formExcluirItemCarrinho" action="{{ route('carrinho.destroy', ['id' => $carrinho->id]) }}" method="POST" id="{{ $carrinho->id }}">
+                    <form name="formExcluirItemCarrinho" action="{{ route('carrinho.destroy', ['rowId' => $carrinho->rowId]) }}" method="POST" id="{{ $carrinho->rowId }}">
                         @csrf
                         @method('delete')
                         <button type="submit" class="bg-transparent border-0">

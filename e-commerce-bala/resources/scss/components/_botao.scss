@@ -2,6 +2,14 @@
 
 .botao {
 
+    &--checkout {
+        background-color: rgb(204, 27, 27);
+
+        &:hover {
+            background-color: rgb(228, 16, 16);
+        }
+    }
+
     &--carrinho {
         border: 1px solid rgb(204, 27, 27);
         border-radius: 10px;

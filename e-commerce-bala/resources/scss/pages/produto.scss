@@ -1,10 +1,11 @@
 @use '../abstracts/mixins';
 
 .produto {
+    width: 80%;
     
     @include mixins.for-desktop {      
         flex-direction: row !important;
-        margin: 0 !important;
+        
     }
 
     &__img {
