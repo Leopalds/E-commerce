@@ -1,8 +1,8 @@
 @extends('layout.main')
 @section('conteudo')
-<div class="d-flex flex-column align-items-center mt-5">
+<div class="d-flex flex-column align-items-center mt-5 w-50">
     <x-carrinho.tabela :carrinho="$carrinho"/>
-    <button class="w-50 btn text-light botao botao--checkout">Checkout</button>
+    <button class="w-100 btn text-light botao botao--checkout">Checkout</button>
 </div>
 @endsection
 @section('js')

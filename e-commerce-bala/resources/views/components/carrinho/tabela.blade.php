@@ -1,4 +1,4 @@
-<div class="w-50 table-responsive">
+<div class="w-100 table-responsive">
     <x-carrinho.contador/>
     <table class="table">
         <thead>
