@@ -1,0 +1,39 @@
+@use '../abstracts/mixins';
+
+.cabecalho {
+
+    &__busca {
+        @include mixins.for-desktop {
+            width: 50% !important;
+        }
+
+        @include mixins.for-tablet {
+            margin-bottom: 1rem !important;
+        }
+    }
+
+    &__itens {
+        @include mixins.for-phone {
+            align-items: flex-start !important;
+        }
+    }
+
+    &__brand {
+        letter-spacing: 5px;
+
+        &--h {
+            color: rgb(194, 29, 29) !important;
+        }
+    }
+
+    &__lado-direito {
+        @include mixins.for-tablet {
+            flex-direction: column !important;
+        }
+
+        @include mixins.for-phone {
+            align-items: flex-start !important;
+        }
+    }
+
+}

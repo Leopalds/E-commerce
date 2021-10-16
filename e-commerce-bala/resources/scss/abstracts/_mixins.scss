@@ -5,13 +5,13 @@
 }
 
 @mixin for-tablet {
-    @media screen and (min-width: 768px) and (max-width: 1020px) {
+    @media screen and (min-width: 768px) and (max-width: 1220px) {
         @content
     };
 }
 
 @mixin for-desktop {
-    @media screen and (min-width:1021px) {
+    @media screen and (min-width:1221px) {
         @content
     };
 }

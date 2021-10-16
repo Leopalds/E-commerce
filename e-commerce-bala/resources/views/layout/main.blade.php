@@ -40,37 +40,10 @@
       @yield('conteudo')
   </div>
 
-  <footer class="bg-dark p-3 footer">
-    <ul class="d-flex justify-content-center">
-      <li>
-        <a href="#">
-          <i class="fab fa-instagram-square me-5 fs-2 rodape__redes-link"></i>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fab fa-facebook-square me-5 fs-2 rodape__redes-link"></i>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fab fa-twitter-square me-5 fs-2 rodape__redes-link"></i>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="fab fa-whatsapp-square me-4 fs-2 rodape__redes-link"></i>
-        </a>
-      </li>
-    </ul>
-  </footer> 
+  <x-footer.footer/>
  
   @yield('js')
 
-  <script src="{{ asset('js/menu/link-ativo.js') }}"></script>
-  <script type="text/javascript">
-     
-  </script> 
   <script type="text/javascript" src="{{ asset('js/slick/slick.min.js') }}"></script>
 </body>
    
