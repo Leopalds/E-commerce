@@ -3,10 +3,9 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col"></th>
-                <th scope="col">Produto</th>
-                <th scope="col">Preço</th>
+                <th scope="col" colspan="2">Produto</th>
                 <th scope="col">Quantidade</th>
+                <th scope="col">Preço unitário</th>
                 <th></th>
             </tr>
         </thead>
@@ -14,11 +13,27 @@
             @foreach ($carrinho as $carrinho)
             <tr data-linha="{{ $carrinho->rowId }}">
                 <th scope="row">
+                    @if (count(App\Models\Produto::find($carrinho->id)->imagens) != 0 )
                     <img width="70px" height="70px" src=" {{ asset('/storage/img/produto/' . App\Models\Produto::find($carrinho->id)->imagens->take(1)->first()->nome) }}" alt="imagem do produto...">
+                    @endif
                 </th>
-                <td><a href="#">{{ $carrinho->name }}</a></td>
-                <td>{{ $carrinho->price }}</td>
-                <td>{{ $carrinho->qty }}</td>
+                <td><a href="{{ route('produtos.show', ['id' => $carrinho->id]) }}">{{ $carrinho->name }}</a></td>
+                <td>
+                    <form action="{{ route('carrinho.update', ['rowId' => $carrinho->rowId]) }}" name="formAtualizarQtdCarrinho">
+                        @csrf
+                        @method('PUT')
+                        <input data-carrinho-qtd-hidden type="hidden" value="{{ $carrinho->rowId }}">
+                        <input
+                            type="number"
+                            min="1"
+                            name="quantidade"
+                            id="quantidade-carrinho"
+                            class="form-control cart__quantidade"
+                            value="{{ $carrinho->qty }}"
+                            data-carrinho="qtd">
+                    </form>
+                </td>
+                <td data-preco="{{ $carrinho->rowId }}">{{ number_format($carrinho->price, 2, '.', ',') }}</td>
                 <td>
                     <form name="formExcluirItemCarrinho" action="{{ route('carrinho.destroy', ['rowId' => $carrinho->rowId]) }}" method="POST" id="{{ $carrinho->rowId }}">
                         @csrf
@@ -31,5 +46,11 @@
             </tr>
             @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total: </td>
+                <td data-valor-total colspan="2">{{ $valorTotal }}</td>
+            </tr>
+        </tfoot>
     </table>
 </div>

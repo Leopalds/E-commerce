@@ -11,6 +11,15 @@ Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho.in
 Route::post('/carrinho', [CarrinhoController::class, 'store'])->name('carrinho.store');
 Route::delete('/carrinho/{rowId}', [CarrinhoController::class, 'destroy'])->name('carrinho.destroy');
 
+Route::resource('carrinho', CarrinhoController::class)
+    ->except([
+        'edit',
+        'create',
+        'show'
+    ])->parameters([
+        'carrinho' => 'rowId'
+    ]);
+
 Route::view('/', 'pages.home')->name('home');
 
 Route::view('/contato', 'pages.contato')->name('contato');

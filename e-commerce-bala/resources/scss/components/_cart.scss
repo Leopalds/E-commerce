@@ -1,0 +1,13 @@
+@use '../abstracts/mixins';
+
+.cart {
+    @include mixins.for-phone {
+        width: 100% !important;
+    }
+
+ 
+    
+    &__quantidade {
+        width: 5rem;
+    }
+}

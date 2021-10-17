@@ -8,10 +8,12 @@ use Illuminate\View\Component;
 class Tabela extends Component
 {
     public $carrinho;
+    public $valorTotal;
 
-    public function __construct($carrinho)
+    public function __construct($carrinho, $valorTotal)
     {
         $this->carrinho = $carrinho;
+        $this->valorTotal = $valorTotal;
     }
 
     /**

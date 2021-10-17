@@ -12,17 +12,20 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProdutoRequest;
 use App\Services\ImagemService;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Validator;
 
 class ProdutoController extends Controller
 {
     private $service;
     private $imagemService;
+    private $carrinho;
 
-    public function __construct(ProdutoService $produtoService, ImagemService $imageService)
+    public function __construct(ProdutoService $produtoService, ImagemService $imageService, Cart $carrinho)
     {
         $this->service = $produtoService;
         $this->imagemService = $imageService;
+        $this->carrinho = $carrinho;
     }
 
     public function index()
@@ -48,7 +51,6 @@ class ProdutoController extends Controller
         }
 
         $dadosValidados = $validador['dados'];
-
         DB::beginTransaction();
         $produto = Produto::create($dadosValidados);
         if ($request->hasFile('imagem')) {
@@ -144,6 +146,8 @@ class ProdutoController extends Controller
     public function destroy(int $id)
     {
         $produto = Produto::find($id);
+        
+        $this->excluirItemDoCarrinho($id);
 
         $produto->categorias()->detach();
         $produto->imagens()->detach();
@@ -154,5 +158,14 @@ class ProdutoController extends Controller
         ];
 
         return $response;
+    }
+
+    private function excluirItemDoCarrinho($id)
+    {
+        foreach($this->carrinho::content() as $itemCarrinho) {
+            if ($id == $itemCarrinho->id) {
+                Cart::remove($itemCarrinho->rowId);                
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ function excluirRecurso(rota, dados, titulo, msg, linha)
         showLoaderOnConfirm: true,
         preConfirm: function () {
             ajaxDelete(rota, dados, msg, linha); 
+            
         }
     });
 
@@ -30,6 +31,7 @@ function ajaxDelete(rota, dados, msg, linha)
                 });
 
                 linha.remove();
+                return true;
             }
         }
     });

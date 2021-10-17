@@ -13,8 +13,9 @@ class CarrinhoController extends Controller
     {
         $produtos = Produto::all();
         $carrinho = Cart::content();
+        $valorTotal = Cart::priceTotal(2, '.', '');
         
-        return response()->view('pages.carrinho', compact('carrinho', 'produtos'));
+        return response()->view('pages.carrinho', compact('carrinho', 'produtos', 'valorTotal'));
     }
 
     public function store(Request $request)
@@ -29,6 +30,17 @@ class CarrinhoController extends Controller
         );
 
         return redirect(route('carrinho.index'));
+    }
+
+    public function update(Request $request, string $rowId)
+    {
+        $itemAtualizado = Cart::update($rowId, $request->quantidade);
+        $novoTotal = Cart::priceTotal(2, '.', '');
+
+        return [
+            'success' => true, 
+            'dados' => $novoTotal
+        ];
     }
 
     public function destroy(string $rowId)

@@ -48,6 +48,15 @@
   width: 1px;
 }
 
+@media screen and (max-width: 767px) {
+  .cart {
+    width: 100% !important;
+  }
+}
+.cart__quantidade {
+  width: 5rem;
+}
+
 .produto {
   width: 80%;
 }

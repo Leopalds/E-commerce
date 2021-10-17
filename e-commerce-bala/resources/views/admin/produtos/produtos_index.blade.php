@@ -43,7 +43,7 @@
                     <td>{{ $produto->updated_at }}</td>
                     <td><a class="text-dark" href="{{ route('admin.produtos.show', ['id' => $produto->id]) }}"><i class="fas fa-eye"></i></a></td>
                     <td>
-                        <form name="formExcluirProduto" method="POST" id="{{ $produto->id }}">
+                        <form name="formExcluirProduto" action="{{ route('admin.produtos.destroy', ['id' => $produto->id]) }}" method="POST" id="{{ $produto->id }}">
                             @csrf
                             @method('delete')
                             <button type="submit" class="bg-transparent border-0">
