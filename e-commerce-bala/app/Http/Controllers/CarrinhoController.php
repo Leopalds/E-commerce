@@ -39,7 +39,8 @@ class CarrinhoController extends Controller
 
         return [
             'success' => true, 
-            'dados' => $novoTotal
+            'dados' => $novoTotal,
+            'id' => $rowId
         ];
     }
 

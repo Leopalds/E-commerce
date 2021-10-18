@@ -1,4 +1,4 @@
-function excluirRecurso(rota, dados, titulo, msg, linha)
+function excluirRecurso(rota, dados, titulo, msg, linha, valorTotal = "")
 {
     Swal.fire({
         title: titulo,
@@ -7,14 +7,14 @@ function excluirRecurso(rota, dados, titulo, msg, linha)
         denyButtonText: `Nao`,
         showLoaderOnConfirm: true,
         preConfirm: function () {
-            ajaxDelete(rota, dados, msg, linha); 
+            ajaxDelete(rota, dados, msg, linha, valorTotal); 
             
         }
     });
 
 }
 
-function ajaxDelete(rota, dados, msg, linha)
+function ajaxDelete(rota, dados, msg, linha, valorTotal = "")
 {
     $.ajax({
         type: "POST",
@@ -29,6 +29,11 @@ function ajaxDelete(rota, dados, msg, linha)
                     icon: 'success',
                     confirmButtonText: 'Fechar',
                 });
+
+                if (valorTotal !== "") {
+                    console.log("entrei")
+                    $('[data-valor-total]').text(valorTotal.toFixed(2));
+                }
 
                 linha.remove();
                 return true;

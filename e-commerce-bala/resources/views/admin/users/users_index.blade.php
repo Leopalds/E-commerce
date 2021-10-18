@@ -20,21 +20,20 @@
     <script src="{{ asset('js/ajax/excluirRecurso.js') }}"></script>
     <script>
         $('form[name="formExcluirUsuario"]').on("submit", function (event) {
-            event.preventDefault();
+            event.preventDefault(); 
 
-            var userId = $(this).attr("id");
-            var linha = $('[data-linha="' + userId + '"]');
-            var rota = '/admin/usuarios/' + userId;
+            var usuarioId = $(this).attr("id");
             var dados = $(this).serialize();
+            var linha = $('[data-linha="' + usuarioId + '"]');
+            var rota = '/admin/usuarios/' + usuarioId;
 
             excluirRecurso(
                 rota, 
                 dados,
-                'Tem certeza que deseja excluir esse usuário?' 
-                'Usuário excluido!', 
+                'Tem certeza que deseja excluir esse Usuario?',
+                'Usuario excluido!', 
                 linha
-                );
-            
+            ); 
         })
     </script>
 @endsection

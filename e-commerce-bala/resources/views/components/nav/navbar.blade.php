@@ -12,14 +12,14 @@
                 <x-nav.link-navegacao nome-pagina="Quem somos" rota="{{ route('quemsomos') }}"/>
             </ul>
             <hr class="text-light">
-            <form class="d-flex mb-3 busca w-100 cabecalho__busca">
+            <form class="d-flex mb-3 busca w-100 cabecalho__busca me-5">
                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                 <button class="btn busca__botao" type="submit">Buscar</button>
             </form>
             <div class="d-flex align-items-center cabecalho_lado-direito">
                 @guest
                 <div class="me-4">
-                    <i class="fas fa-user text-light me-2"></i>
+                    <i class="fas fa-user text-light me-1"></i>
                     <a href="{{ route('login') }}" class="text-light fw-bold text-decoration-none">Login</a>
                 </div>              
                 @endguest

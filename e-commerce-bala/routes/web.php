@@ -6,19 +6,17 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ProdutoController;
 
-Route::redirect('/home', '/', 301);
-Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho.index');
-Route::post('/carrinho', [CarrinhoController::class, 'store'])->name('carrinho.store');
-Route::delete('/carrinho/{rowId}', [CarrinhoController::class, 'destroy'])->name('carrinho.destroy');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('carrinho', CarrinhoController::class)
+        ->except([
+            'edit',
+            'create',
+            'show'
+        ])->parameters([
+            'carrinho' => 'rowId'
+        ]);
+});
 
-Route::resource('carrinho', CarrinhoController::class)
-    ->except([
-        'edit',
-        'create',
-        'show'
-    ])->parameters([
-        'carrinho' => 'rowId'
-    ]);
 
 Route::view('/', 'pages.home')->name('home');
 

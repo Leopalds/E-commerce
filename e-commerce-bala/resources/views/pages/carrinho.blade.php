@@ -9,19 +9,20 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/ajax/excluirRecurso.js') }}"></script>
     <script>
-        $('form[name="formAtualizarQtdCarrinho"]').on("change", function () {  
-            var rowId = $('[data-carrinho-qtd-hidden]').val(); 
+        $('[data-carrinho="qtd"]').on("change", function (event) { 
+            var target = $(event.target);
+            var form = target.parent();
+            var rowId = form.children('[data-carrinho-qtd-hidden]').val();
             var rota = '/carrinho/' + rowId;
-
+            
             $.ajax({
                 type: "POST",
                 url: rota,
-                data: new FormData(this),
+                data: $(form).serialize(),
                 dataType: "json",
-                processData: false,
-                contentType: false,
+                
                 success: function (response) {
-                    if (response.success === true) {
+                    if (response.success === true) {          
                         $('[data-valor-total]').text(response.dados)
                     }
                 }
@@ -36,28 +37,29 @@
             var dados = $(this).serialize();
             var linha = $('[data-linha="' + itemId + '"]');
 
-            var valorTotal = '{{ $valorTotal }}';
-            console.log(valorTotal)
+            var qtd = linha.find('[data-carrinho="qtd"]').val(); 
+                console.log(qtd);
+
+            var valorTotal = $('[data-valor-total]').text();
             var strValorItem = $('[data-preco="' + itemId + '"]').text();
+
+            valorTotal = Number.parseFloat(valorTotal).toFixed(2);
+            console.log(valorTotal);
+            var nValorItem = Number.parseFloat(strValorItem).toFixed(2);
+            console.log(nValorItem*qtd);
+            valorTotal -= (nValorItem*qtd);
+           
             
             excluirRecurso(
                 rota, 
                 dados, 
                 'Tem certeza que deseja retirar esse item do carrinho?',
                 'Item retirado com sucesso!',
-                linha
+                linha,
+                valorTotal
                 );
                 
-            valorTotal = Number.parseFloat(valorTotal).toFixed(2);
-            console.log(valorTotal)
-
-            var nValorItem = Number.parseFloat(strValorItem).toFixed(2);
-            console.log(nValorItem);
-            valorTotal -= nValorItem;
-            console.log(valorTotal);
            
-            //var total = nValorTotal - nValorItem;
-            $('[data-valor-total]').text(valorTotal.toFixed(2));
             
             
             var contador = '{{ Cart::count() }}';

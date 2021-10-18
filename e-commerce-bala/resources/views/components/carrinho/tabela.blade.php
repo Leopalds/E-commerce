@@ -27,7 +27,6 @@
                             type="number"
                             min="1"
                             name="quantidade"
-                            id="quantidade-carrinho"
                             class="form-control cart__quantidade"
                             value="{{ $carrinho->qty }}"
                             data-carrinho="qtd">
