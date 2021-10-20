@@ -16,42 +16,23 @@
                     Preço
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Mais barato</a></li>
-                    <li><a class="dropdown-item" href="#">Mais caro</a></li>
-                </ul>
-            </li>
-            <li class="">
-                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Marca
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                    {{-- Lista de marcas retiradas do database --}}
-                    <li class="dropdown-item">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                              Marcas
-                            </label>
-                        </div>
+                    <li>
+                        <a 
+                            class="dropdown-item" 
+                            href="{{ route('produtos.index', ['ordenamento' => 'preco', 'tipo' => 'ASC']) }}"
+                            >Mais barato
+                        </a>
+                    </li>
+                    <li>
+                        <a 
+                            class="dropdown-item" 
+                            href="{{ route('produtos.index', ['ordenamento' => 'preco', 'tipo' => 'DESC']) }}"
+                            >Mais caro
+                        </a>
                     </li>
                 </ul>
             </li>
-            <li class="">
-                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Embalagem
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                    {{-- Lista de embalagens retiradas do database --}}
-                    <li class="dropdown-item">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                              Embalagem
-                            </label>
-                        </div>
-                    </li>    
-                </ul>
-            </li>
+            
         </ul>
     </div>
     
@@ -70,5 +51,6 @@
         </div>
         @endforeach
     </div>
+    <div class="pagination">{{ $produtos->links('pagination::bootstrap-4') }}</div>
 
 @endsection

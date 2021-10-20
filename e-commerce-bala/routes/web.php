@@ -23,13 +23,8 @@ Route::view('/', 'pages.home')->name('home');
 Route::view('/contato', 'pages.contato')->name('contato');
 Route::view('/quemsomos', 'pages.quemsomos')->name('quemsomos');
 
-Route::resource('produtos', ProdutoController::class)
-    ->only([
-        'index',
-        'show'
-    ])->parameters([
-        'produtos' => 'id'
-    ]);
+Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
+Route::get('/produtos/{id}', [ProdutoController::class, 'show'])->name('produtos.show');
 
 
 require __DIR__ . '/admin.php';

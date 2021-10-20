@@ -11,17 +11,23 @@ use App\Http\Controllers\Controller;
 
 class ProdutoController extends Controller
 {
-    private $service;
-
-    public function __construct(ProdutoService $produtoService)
+    public function index(Request $request)
     {
-        $this->service = $produtoService;
+        $ordenamento = $request->get('ordenamento');
+        $tipo = $request->get('tipo');
+
+        if($request->has(['ordenamento', 'tipo'])) {
+            $produtos = $this->ordenar($ordenamento, $tipo);
+            return response()->view('pages.produto.produto-lista', compact('produtos'));
+        }
+
+        $produtos = Produto::paginate(4);
+        return response()->view('pages.produto.produto-lista', compact('produtos'));
     }
 
-    public function index()
+    private function ordenar($ordenamento = 'nome', $tipo = 'ASC')
     {
-        $produtos = Produto::all();
-        return response()->view('pages.produto.produto-lista', compact('produtos'));
+        return Produto::orderBy($ordenamento, $tipo)->paginate(4);
     }
 
     public function show(int $id)
