@@ -27,7 +27,7 @@ class ProdutoController extends Controller
 
     private function ordenar($ordenamento = 'nome', $tipo = 'ASC')
     {
-        return Produto::orderBy($ordenamento, $tipo)->paginate(4);
+        return Produto::orderBy($ordenamento, $tipo)->paginate(4)->withQueryString();
     }
 
     public function show(int $id)
