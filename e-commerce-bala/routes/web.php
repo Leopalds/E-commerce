@@ -2,6 +2,7 @@
 <?php
 
 use App\Http\Controllers\CarrinhoController;
+use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ProdutoController;
@@ -17,6 +18,7 @@ Route::middleware(['auth'])->group(function () {
         ]);
 });
 
+Route::post('/mail/enviar', [MailController::class, 'enviar'])->name('mail.enviar');
 
 Route::view('/', 'pages.home')->name('home');
 

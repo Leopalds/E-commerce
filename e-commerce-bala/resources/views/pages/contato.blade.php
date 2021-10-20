@@ -2,11 +2,12 @@
 
 @section('conteudo')
 <div class="container">
-    <form action="contato/email" method="POST" name="form_contato" id="form_contato" class="mt-5 mb-5 d-flex flex-column">
+    <form action="{{ route('mail.enviar') }}" method="POST" name="form_contato" id="form_contato" class="mt-5 mb-5 d-flex flex-column">
+        @csrf
         <div class="row">
             <div class="form-group col-md-6">
-            <label for="nome" class="form-label mt-2">Nome</label>
-            <input type="text" class="form-control" name="name" placeholder="Nome Completo" >
+                <label for="nome" class="form-label mt-2">Nome</label>
+                <input type="text" class="form-control" name="name" placeholder="Nome Completo" >
             </div>
             <div class="form group col-md-6">
             <label for="telefone" class="form-label mt-2">Telefone</label>
