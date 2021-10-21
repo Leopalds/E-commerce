@@ -1,5 +1,5 @@
 <div class="mb-3 d-flex flex-column">
-    <small class="erro erro__{{ $atributo }} text-danger"></small>
+    <small class="erro erro__{{ $atributo }} text-danger "></small>
     <label for="{{ $atributo }}-{{ $entidade }}" class="form-label">{{ $label }}</label>
     <input 
         type="{{ $tipo }}" 

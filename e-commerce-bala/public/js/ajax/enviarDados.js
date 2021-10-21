@@ -1,3 +1,11 @@
+$(document).ajaxStart(function () { 
+    $('#carregamento').attr("hidden", false);
+});
+
+$(document).ajaxComplete(function () {
+    $('#carregamento').attr("hidden", true);
+})
+
 function enviarDados(rota, dados, msg) 
 {
     $.ajax({
