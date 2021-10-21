@@ -27,6 +27,7 @@ Route::view('/quemsomos', 'pages.quemsomos')->name('quemsomos');
 
 Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
 Route::get('/produtos/{id}', [ProdutoController::class, 'show'])->name('produtos.show');
+Route::get('/resultados', [ProdutoController::class, 'buscar'])->name('resultado');
 
 
 require __DIR__ . '/admin.php';

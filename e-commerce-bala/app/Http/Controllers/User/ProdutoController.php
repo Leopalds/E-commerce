@@ -27,12 +27,23 @@ class ProdutoController extends Controller
 
     private function ordenar($ordenamento = 'nome', $tipo = 'ASC')
     {
-        return Produto::orderBy($ordenamento, $tipo)->paginate(4)->withQueryString();
+        return Produto::orderBy($ordenamento, $tipo)
+            ->paginate(4)
+            ->withQueryString();
     }
 
     public function show(int $id)
     {
         $produto = Produto::find($id);
         return response()->view('pages.produto.produto-individual', compact('produto'));
+    }
+
+    public function buscar(Request $request)
+    {
+        $parametro = $request->q;
+        $produtos = Produto::where('nome', 'LIKE', '%' . $parametro . '%')
+            ->paginate(4)
+            ->withQueryString();
+        return response()->view('pages.produto.produto-lista', compact('produtos'));
     }
 }

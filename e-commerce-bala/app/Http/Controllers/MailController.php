@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use App\Mail\Contato;
 use App\Services\ContatoService;
 use Illuminate\Http\Request;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\PHPMailer;
+
 use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
