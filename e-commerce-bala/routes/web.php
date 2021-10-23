@@ -1,10 +1,11 @@
 
 <?php
 
-use App\Http\Controllers\CarrinhoController;
-use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\FiltroController;
+use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\User\ProdutoController;
 
 Route::middleware(['auth'])->group(function () {
@@ -27,7 +28,6 @@ Route::view('/quemsomos', 'pages.quemsomos')->name('quemsomos');
 
 Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
 Route::get('/produtos/{id}', [ProdutoController::class, 'show'])->name('produtos.show');
-Route::get('/resultados', [ProdutoController::class, 'buscar'])->name('resultado');
 
 
 require __DIR__ . '/admin.php';

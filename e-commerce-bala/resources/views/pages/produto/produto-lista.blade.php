@@ -8,6 +8,7 @@
 @endsection
 
 @section('conteudo')
+    
     <div class="border-bottom ordenamento d-flex flex-column align-items-center">
         <a class="fw-bold fst-italic text-dark text-decoration-none mt-4 mb-2 ordenamento__titulo">Filtrar por:</a>
         <ul class="d-flex flex-column list-unstyled ordenamento__lista align-items-center">
@@ -20,7 +21,7 @@
                         <a 
                             class="dropdown-item" 
                             id="mais-barato"
-                            href="{{ route('resultado', ['ordenamento' => 'preco', 'tipo' => 'ASC']) }}"
+                            href="{{ route('produtos.index', ['sort' => 'preco']) }}"
                             >Mais barato
                         </a>
                     </li>
@@ -28,7 +29,7 @@
                         <a 
                             class="dropdown-item"
                             id="mais-caro" 
-                            href="{{ route('resultado', ['ordenamento' => 'preco', 'tipo' => 'DESC']) }}"
+                            href="{{ route('produtos.index', ['sort' => '-preco']) }}"
                             >Mais caro
                         </a>
                     </li>
@@ -39,27 +40,22 @@
                     Categoria
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                    <li>
-                        <a 
-                            class="dropdown-item" 
-                            id="mais-barato"
-                            href="{{ route('resultado', ['ordenamento' => 'preco', 'tipo' => 'ASC']) }}"
-                            >Mais barato
-                        </a>
-                    </li>
-                    <li>
-                        <a 
-                            class="dropdown-item"
-                            id="mais-caro" 
-                            href="{{ route('resultado', ['ordenamento' => 'preco', 'tipo' => 'DESC']) }}"
-                            >Mais caro
-                        </a>
-                    </li>
+                    <form name="formFiltroCategoria" action="{{ route('produtos.index') }}">
+                        @foreach ($categorias as $categoria)
+                        <li>
+                            <span 
+                                class="dropdown-item" 
+                                >
+                                <input name="categoria" {{ empty($checked) ? '' : $checked }} type="checkbox" data-filtro="categoria" value="{{ $categoria->id }}">
+                                <label for="">{{ $categoria->nome }}</label>
+                            </span>
+                        </li>
+                        @endforeach
+                    </form>
                 </ul>
             </li>
         </ul>
     </div>
-    
     <div class="m-5 d-flex flex-wrap justify-content-center">
         @foreach ($produtos as $produto)
         <div class="card mx-5 mb-5" style="width: 18rem;">
@@ -75,23 +71,39 @@
         </div>
         @endforeach
     </div>
-    <div class="pagination">{{ $produtos->links('pagination::bootstrap-4') }}</div>
+    <div class="pagination">{{ $produtos->links() }}</div>
 @endsection
 @section('js')
-    <script>
-        var url = window.location.href;
-        if ('{{ Request::has("q") }}') {
-            $('#mais-barato').on("click", function () {  
-                const urlSearch = new URLSearchParams(window.location.search);
-                var q = urlSearch.get('q');
-                $(this).attr("href", $(this).attr("href") + "&q=" + q)
-            });
+<script>
+    $(function () {  
+        var queryString = 'filter[nome]';
+        var item1 = '#mais-barato';
+        var item2 = '#mais-caro';
+        
+        anexarQueryStringUrl(queryString, item1)
+        anexarQueryStringUrl(queryString, item2)
+        
+    });
 
-            $('#mais-caro').on("click", function () {  
-                const urlSearch = new URLSearchParams(window.location.search);
-                var q = urlSearch.get('q');
-                $(this).attr("href", $(this).attr("href") + "&q=" + q)
-            });
+    $('[data-filtro="categoria"]').on("change", function () {  
+        var form = $('form[name=formFiltroCategoria]')        
+        form.submit();
+    });
+
+    function anexarQueryStringUrl(queryString, itemClicado) {  
+        const urlSearch = new URLSearchParams(window.location.search);
+        if (!urlSearch.has(queryString)) {
+            return;
         }
-    </script>
+
+        $(itemClicado).on("click", function () {  
+            var filtro = urlSearch.get(queryString);
+            var href = $(this).attr("href") + "&" + queryString + '=' + filtro
+
+            $(this).attr("href", href);
+        });
+    }
+
+    
+</script>
 @endsection

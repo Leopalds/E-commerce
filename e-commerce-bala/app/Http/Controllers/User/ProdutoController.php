@@ -4,78 +4,48 @@ namespace App\Http\Controllers\User;
 
 use App\Models\Produto;
 use App\Models\Categoria;
+use App\Services\Buscador;
 use Illuminate\Http\Request;
 use App\Services\ProdutoService;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Session;
+use Spatie\QueryBuilder\AllowedInclude;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ProdutoController extends Controller
 {
+
     public function index(Request $request)
     {
-        $ordenamento = $this->ordenar($request);
-
-        if ($ordenamento['success']) {
-            $produtos = $ordenamento['dados'];
-            return response()->view('pages.produto.produto-lista', compact('produtos'));
+        $categorias = Categoria::all();
+        
+        
+        $produtos = QueryBuilder::for(Produto::class)
+        ->allowedFilters(['nome'])
+        ->allowedSorts(['preco'])
+        ->paginate(4)
+        ->withQueryString();
+        
+        if ($request->has('categoria')) {
+            $categoria = Categoria::find($request->get('categoria'));
+            $produtos = $categoria->produtos()->paginate(4);
         }
 
-        $produtos = Produto::paginate(4);
-        return response()->view('pages.produto.produto-lista', compact('produtos'));
+        return response()
+            ->view(
+                'pages.produto.produto-lista', 
+                compact('produtos', 'categorias')
+            );
 
     }
 
     public function show(int $id)
     {
         $produto = Produto::find($id);
-        return response()->view('pages.produto.produto-individual', compact('produto'));
-    }
-    
-    public function buscar(Request $request)
-    {
-        $parametro = $request->q;
-
-        $ordenamento = $this->ordenar($request);
-
-        if ($ordenamento['success']) {
-            $produtos = $ordenamento['dados'];
-            return response()->view('pages.produto.produto-lista', compact('produtos'));
-        }
-
-        $produtos = Produto::where('nome', 'LIKE', '%' . $parametro . '%')
-        ->paginate(4)
-        ->withQueryString();
-
-        $produtos->appends(['q' => $parametro]);
-
-        return response()->view('pages.produto.produto-lista', compact('produtos', 'parametro'));
-    }
-
-    private function ordenar(Request $request)
-    {
-        if ($request->has(['q'])) {
-            $atributo = $request->q;
-        } else {
-            $atributo = '';
-        }
-
-        if(!$request->has(['ordenamento', 'tipo'])) {
-            return [
-                'success' => false
-            ];
-        }
-
-        $ordenamento = $request->get('ordenamento');
-        $tipo = $request->get('tipo');
-
-        $produtos = Produto::where('nome', 'LIKE', '%' . $atributo . '%')
-            ->orderBy($ordenamento, $tipo)
-            ->paginate(4)
-            ->withQueryString();
-
-        return [
-            'success' => true,
-            'dados' => $produtos
-        ];
+        return response()
+            ->view(
+                'pages.produto.produto-individual', 
+                compact('produto')
+            );
     }
 }
