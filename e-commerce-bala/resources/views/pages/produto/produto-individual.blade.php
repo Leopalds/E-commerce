@@ -40,6 +40,7 @@
             <div class="quantidade mb-5">
                 <x-carrinho.form-adicionar :produto="$produto"/>
             </div>
+            <div>Estoque: {{ $produto->quantidade }}</div>
         </div>
     </div>
 @endsection

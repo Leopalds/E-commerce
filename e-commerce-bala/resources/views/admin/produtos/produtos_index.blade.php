@@ -10,6 +10,9 @@
     <div class="my-4">
         <a class="btn btn-primary" href="{{ route('admin.produtos.create') }}">Adicionar +</a>
     </div>
+    <div class="mb-3">
+        <a class="text-danger" href="{{ route('admin.produtos.index', ['sort' => 'quantidade']) }}">Exibir produtos com baixo estoque </a>
+    </div>
     
     <div class="container table-responsive">
         
@@ -19,6 +22,7 @@
                     <th scope="col">Imagem</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Preço</th>
+                    <th scope="col">Quantidade</th>
                     <th scope="col">Categorias</th>
                     <th scope="col">Adicionado em</th>
                     <th scope="col">Atualizado em</th>
@@ -34,6 +38,7 @@
                     </td>
                     <td>{{ $produto->nome }}</td>
                     <td>{{ $produto->preco }}</td>
+                    <td>{{ $produto->quantidade }}</td>
                     <td style="width: 200px">
                         @foreach ($produto->categorias as $categoria)
                         <span class="badge bg-primary">{{ $categoria->nome }}</span>
@@ -56,6 +61,7 @@
             @endforeach
             </tbody>
         </table>
+        <div class="pagination">{{ $produtos->links() }}</div>
     </div>
 @endsection
 @section('js')

@@ -14,6 +14,7 @@ class ProdutoService
             'nome' => 'required|string',
             'descricao' => 'required',
             'preco' => 'required|min:0',
+            'quantidade' => 'required|min:0'
         ], [
             'required' => 'Esse campo é obrigatório.',
         ]);

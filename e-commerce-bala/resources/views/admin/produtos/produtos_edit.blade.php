@@ -42,6 +42,13 @@
                                 entidade="produto" 
                                 :valor="$produto->preco"/>
 
+                            <x-form.input 
+                                atributo="quantidade" 
+                                label="Quantidade" 
+                                tipo="number" 
+                                entidade="produto"
+                                :valor="$produto->quantidade"/>
+
                             <div class="input-group mb-4">
                                 <label for="categoria-produto" class="input-group-text">Categorias</label>
                                 <select name="categoria[]" id="categoria-produto" class="form-control form-select" multiple>

@@ -24,6 +24,7 @@
                             <x-form.input atributo="nome" label="Nome" tipo="text" entidade="produto"/>
                             <x-form.textarea atributo="descricao" label="Descricao" entidade="produto"/>
                             <x-form.input atributo="preco" label="Preco" tipo="number" entidade="produto"/>
+                            <x-form.input atributo="quantidade" label="Quantidade" tipo="number" entidade="produto"/>
                             <div class="input-group mb-4">
                                 <label for="categoria-produto" class="input-group-text">Categorias</label>
                                 <select name="categoria[]" id="categoria-produto" class="form-control form-select" multiple>

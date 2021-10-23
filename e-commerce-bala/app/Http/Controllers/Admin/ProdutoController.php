@@ -7,13 +7,15 @@ use App\Models\Produto;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Services\ImagemService;
 use App\Services\ProdutoService;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProdutoRequest;
-use App\Services\ImagemService;
+use Spatie\QueryBuilder\QueryBuilder;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Validator;
+use Spatie\QueryBuilder\AllowedFilter;
 
 class ProdutoController extends Controller
 {
@@ -30,7 +32,10 @@ class ProdutoController extends Controller
 
     public function index()
     {
-        $produtos = Produto::all();
+        $produtos = QueryBuilder::for(Produto::class)
+            ->allowedSorts(['quantidade'])
+            ->paginate(5)
+            ->withQueryString();
         return response()->view('admin.produtos.produtos_index', compact('produtos'));
     }
 
@@ -106,7 +111,6 @@ class ProdutoController extends Controller
 
         $produto = Produto::find($id);
 
-
         if ($request->hasFile('imagem')) {
             $images = $this->imagemService->salvar($request->file('imagem'), $produto);
 
@@ -122,6 +126,7 @@ class ProdutoController extends Controller
         $produto->nome = $dadosValidados['nome'];
         $produto->descricao = $dadosValidados['descricao'];
         $produto->preco = $dadosValidados['preco'];
+        $produto->quantidade = $dadosValidados['quantidade'];
 
         $produto->save();
 
