@@ -11,7 +11,7 @@
         <a class="btn btn-primary" href="{{ route('admin.produtos.create') }}">Adicionar +</a>
     </div>
     <div class="mb-3">
-        <a class="text-danger" href="{{ route('admin.produtos.index', ['sort' => 'quantidade']) }}">Exibir produtos com baixo estoque </a>
+        <a class="text-danger" href="{{ route('admin.produtos.index', ['filter[baixo_estoque]' => 5]) }}">Exibir produtos com baixo estoque </a>
     </div>
     
     <div class="container table-responsive">

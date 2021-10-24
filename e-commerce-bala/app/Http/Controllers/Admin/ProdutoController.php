@@ -33,9 +33,13 @@ class ProdutoController extends Controller
     public function index()
     {
         $produtos = QueryBuilder::for(Produto::class)
-            ->allowedSorts(['quantidade'])
+            ->allowedFilters([
+                AllowedFilter::scope('baixo_estoque')
+            ])
             ->paginate(5)
             ->withQueryString();
+
+        //dd($produtos);
         return response()->view('admin.produtos.produtos_index', compact('produtos'));
     }
 

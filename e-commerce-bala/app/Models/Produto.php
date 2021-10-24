@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +18,11 @@ class Produto extends Model
         'preco',
         'quantidade'
     ];
+
+    public function scopeBaixoEstoque(Builder $query, $qtd)
+    {
+        return $query->where('quantidade', '<', $qtd);
+    }
 
     public function categorias()
     {
