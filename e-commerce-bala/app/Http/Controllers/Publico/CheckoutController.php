@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publico;
 
-use Illuminate\Http\Request;
+use MercadoPago\SDK;
 use MercadoPago\Payer;
 use MercadoPago\Payment;
-use MercadoPago\SDK;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CheckoutController extends Controller
 {

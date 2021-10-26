@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publico;
 
 use App\Mail\Contato;
-use App\Services\ContatoService;
 use Illuminate\Http\Request;
+use App\Services\ContatoService;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller

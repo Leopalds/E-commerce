@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Publico;
 
 use Illuminate\Http\Request;
 use FlyingLuscas\Correios\Client;
 use FlyingLuscas\Correios\Service;
+use App\Http\Controllers\Controller;
 
 class FreteController extends Controller
 {

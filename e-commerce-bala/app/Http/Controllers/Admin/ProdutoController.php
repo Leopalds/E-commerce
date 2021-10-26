@@ -39,7 +39,7 @@ class ProdutoController extends Controller
             ->paginate(5)
             ->withQueryString();
 
-        //dd($produtos);
+       
         return response()->view('admin.produtos.produtos_index', compact('produtos'));
     }
 

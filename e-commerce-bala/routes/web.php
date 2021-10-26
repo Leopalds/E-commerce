@@ -1,14 +1,12 @@
 
 <?php
 
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MailController;
-use App\Http\Controllers\FreteController;
-use App\Http\Controllers\FiltroController;
-use App\Http\Controllers\CarrinhoController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\User\ProdutoController;
+use App\Http\Controllers\Publico\MailController;
+use App\Http\Controllers\Publico\FreteController;
+use App\Http\Controllers\Publico\CarrinhoController;
+use App\Http\Controllers\Publico\CheckoutController;
+use App\Http\Controllers\Publico\ProdutoController;
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('carrinho', CarrinhoController::class)
@@ -19,23 +17,21 @@ Route::middleware(['auth'])->group(function () {
         ])->parameters([
             'carrinho' => 'rowId'
         ]);
+
+    Route::prefix('/checkout')->group(function () {
+        Route::post('', [CheckoutController::class, 'store'])->name('checkout.store');
+        Route::get('', [CheckoutController::class, 'index'])->name('checkout.index');
+    });
 });
 
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
-Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
-
-Route::post('/frete', [FreteController::class, 'store'])->name('frete.store');
-
-Route::post('/mail/enviar', [MailController::class, 'enviar'])->name('mail.enviar');
 
 Route::view('/', 'pages.home')->name('home');
-
+Route::post('/frete', [FreteController::class, 'store'])->name('frete.store');
 Route::view('/contato', 'pages.contato')->name('contato');
+Route::post('/mail/enviar', [MailController::class, 'enviar'])->name('mail.enviar');
 Route::view('/quemsomos', 'pages.quemsomos')->name('quemsomos');
-
 Route::get('/produtos', [ProdutoController::class, 'index'])->name('produtos.index');
 Route::get('/produtos/{id}', [ProdutoController::class, 'show'])->name('produtos.show');
-
 
 require __DIR__ . '/admin.php';
 require __DIR__ . '/auth.php';
