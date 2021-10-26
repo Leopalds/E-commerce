@@ -8,6 +8,7 @@
         "php": "^7.3|^8.0",
         "bumbummen99/shoppingcart": "^4.0",
         "fideloper/proxy": "^4.4",
+        "flyingluscas/correios-php": "^2.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "jeroennoten/laravel-adminlte": "^3.7",

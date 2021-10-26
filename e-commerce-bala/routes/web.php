@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\FiltroController;
 use App\Http\Controllers\CarrinhoController;
+use App\Http\Controllers\FreteController;
 use App\Http\Controllers\User\ProdutoController;
 
 Route::middleware(['auth'])->group(function () {
@@ -18,6 +19,8 @@ Route::middleware(['auth'])->group(function () {
             'carrinho' => 'rowId'
         ]);
 });
+
+Route::post('/frete', [FreteController::class, 'store'])->name('frete.store');
 
 Route::post('/mail/enviar', [MailController::class, 'enviar'])->name('mail.enviar');
 

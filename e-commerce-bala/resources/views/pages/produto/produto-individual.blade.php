@@ -35,8 +35,27 @@
         </div>
         <div class="col-6 produto__descricao">
             <h5 class="fs-4 mt-3">{{ $produto->nome }}</h5>
-            <p class="mb-4 fw-bold fs-3">{{ $produto->preco }}</p> 
             <p class="mb-4">{{ $produto->descricao }}</p>
+            <p class="mb-4 fw-bold fs-3">R$ {{ number_format($produto->preco, 2, ',', '.') }}</p> 
+            <hr>
+            <form action="{{ route('frete.store') }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <label class="form-label me-2">Calcular o frete:</label>
+                        <input name="cep" type="text" class="form-control w-25" placeholder="99.999-999">
+                        <input name="quantidade_frete" id="quantidade-frete" type="number" hidden>
+                    </div>
+                    @if (Session::has('frete'))
+                        <div>
+                            <small class="text-success">
+                                Valor do frete: R$ {{ number_format(Session::get('frete'), 2, ',', '.') }}
+                            </small>
+                        </div>
+                    @endif
+                    <button class="btn btn-danger">Calcular</button>
+                </div>
+            </form>
             <div class="quantidade mb-5">
                 <x-carrinho.form-adicionar :produto="$produto"/>
             </div>
@@ -45,10 +64,18 @@
     </div>
 @endsection
 @section('js')
+<script src="{{ asset('libs/click-tap-image/dist/js/image-zoom.min.js') }}"></script>
+<script src="{{ asset('js/carrossel/carossel-de-imagens.js') }}"></script>
+<script>
+    $(function () {  
+        var quantidadeProduto = document.querySelector('#qtd').value;
+        var freteQuantidade = document.querySelector('#quantidade-frete').value = quantidadeProduto;
 
-    <script src="{{ asset('libs/click-tap-image/dist/js/image-zoom.min.js') }}"></script>
-    <script src="{{ asset('js/carrossel/carossel-de-imagens.js') }}"></script>
-    <script>
-        
-    </script>
+        $('#qtd').on("change", function () {  
+            quantidadeProduto = document.querySelector('#qtd').value;
+            freteQuantidade = document.querySelector('#quantidade-frete').value = quantidadeProduto;
+        });
+    });
+
+</script>
 @endsection
