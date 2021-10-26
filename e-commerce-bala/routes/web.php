@@ -4,9 +4,10 @@
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\FreteController;
 use App\Http\Controllers\FiltroController;
 use App\Http\Controllers\CarrinhoController;
-use App\Http\Controllers\FreteController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\User\ProdutoController;
 
 Route::middleware(['auth'])->group(function () {
@@ -19,6 +20,9 @@ Route::middleware(['auth'])->group(function () {
             'carrinho' => 'rowId'
         ]);
 });
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
 Route::post('/frete', [FreteController::class, 'store'])->name('frete.store');
 
