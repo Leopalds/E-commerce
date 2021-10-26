@@ -6,7 +6,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center cabecalho__itens">
-                <x-nav.link-navegacao nome-pagina="Home" rota="{{ route('home') }}"/>
+                @livewire('nav.link-navegacao', ['nomePagina' => 'Home', 'rota' => route('home')])
                 <x-nav.link-navegacao nome-pagina="Produtos" rota="{{ route('produtos.index') }}"/>
                 <x-nav.link-navegacao nome-pagina="Contato" rota="{{ route('contato') }}"/>
                 <x-nav.link-navegacao nome-pagina="Quem somos" rota="{{ route('quemsomos') }}"/>
@@ -55,4 +55,4 @@
             </div>
         </div>
     </div>
-  </nav>
+</nav>

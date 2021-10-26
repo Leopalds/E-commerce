@@ -22,6 +22,7 @@
 
      {{-- Nosso CSS --}}
     @yield('css')
+    @livewireStyles
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/busca/busca__botao.css') }}">
@@ -34,7 +35,7 @@
 
 </head>
 <body>
-  <x-nav.navbar/>
+  @livewire('nav.navbar')
 
   <div class="container-fluid d-flex flex-column align-items-center">
       @yield('conteudo')
@@ -43,7 +44,7 @@
   <x-footer.footer/>
  
   @yield('js')
-
+  @livewireScripts
   <script type="text/javascript" src="{{ asset('js/slick/slick.min.js') }}"></script>
 </body>
    
