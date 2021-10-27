@@ -7,9 +7,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center cabecalho__itens">
                 @livewire('nav.link-navegacao', ['nomePagina' => 'Home', 'rota' => route('home')])
-                <x-nav.link-navegacao nome-pagina="Produtos" rota="{{ route('produtos.index') }}"/>
-                <x-nav.link-navegacao nome-pagina="Contato" rota="{{ route('contato') }}"/>
-                <x-nav.link-navegacao nome-pagina="Quem somos" rota="{{ route('quemsomos') }}"/>
+                @livewire('nav.link-navegacao', ['nomePagina' => 'Produtos', 'rota' => route('produtos.index')])
+                @livewire('nav.link-navegacao', ['nomePagina' => 'Contato', 'rota' => route('contato')])
+                @livewire('nav.link-navegacao', ['nomePagina' => 'Quem somos', 'rota' => route('quemsomos')])
             </ul>
             <hr class="text-light">
             <form class="d-flex mb-3 busca w-100 cabecalho__busca me-5" method="GET" action="{{ route('produtos.index') }}">
