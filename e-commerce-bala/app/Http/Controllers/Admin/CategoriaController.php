@@ -20,12 +20,12 @@ class CategoriaController extends Controller
     {
         $categorias = Categoria::all();
 
-        return response()->view('admin.categorias.categorias_index', compact('categorias'));
+        return response()->view('paginas.admin.categorias.categorias_index', compact('categorias'));
     }
 
     public function create()
     {
-        return response()->view('admin.categorias.categorias_create');
+        return response()->view('paginas.admin.categorias.categorias_create');
 
     }
 
@@ -52,7 +52,7 @@ class CategoriaController extends Controller
     public function edit(int $id)
     {
         $categoria = Categoria::find($id);
-        return response()->view('admin.categorias.categorias_edit', compact('categoria'));
+        return response()->view('paginas.admin.categorias.categorias_edit', compact('categoria'));
     }
 
     public function update(Request $request, int $id)

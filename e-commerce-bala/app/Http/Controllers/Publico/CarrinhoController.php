@@ -16,7 +16,11 @@ class CarrinhoController extends Controller
         $carrinho = Cart::content();
         $valorTotal = Cart::priceTotal(2, '.', '');
         
-        return response()->view('pages.carrinho', compact('carrinho', 'produtos', 'valorTotal'));
+        return response()
+            ->view(
+                'paginas.publico.carrinho', 
+                compact('carrinho', 'produtos', 'valorTotal')
+            );
     }
 
     public function store(Request $request)

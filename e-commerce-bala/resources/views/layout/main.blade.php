@@ -41,7 +41,7 @@
       @yield('conteudo')
   </div>
 
-  <x-footer.footer/>
+  @livewire('footer.footer', ['url' => ''])
  
   @yield('js')
   @livewireScripts

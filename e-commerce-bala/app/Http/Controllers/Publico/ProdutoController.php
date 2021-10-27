@@ -19,12 +19,11 @@ class ProdutoController extends Controller
     {
         $categorias = Categoria::all();
         
-        
         $produtos = QueryBuilder::for(Produto::class)
-        ->allowedFilters(['nome'])
-        ->allowedSorts(['preco'])
-        ->paginate(4)
-        ->withQueryString();
+            ->allowedFilters(['nome'])
+            ->allowedSorts(['preco'])
+            ->paginate(4)
+            ->withQueryString();
         
         if ($request->has('categoria')) {
             $categoria = Categoria::find($request->get('categoria'));
@@ -33,7 +32,7 @@ class ProdutoController extends Controller
 
         return response()
             ->view(
-                'pages.produto.produto-lista', 
+                'paginas.publico.produto.produto_index', 
                 compact('produtos', 'categorias')
             );
 
@@ -44,7 +43,7 @@ class ProdutoController extends Controller
         $produto = Produto::find($id);
         return response()
             ->view(
-                'pages.produto.produto-individual', 
+                'paginas.publico.produto.produto_show', 
                 compact('produto')
             );
     }

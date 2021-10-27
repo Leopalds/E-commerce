@@ -21,7 +21,10 @@ class CheckoutController extends Controller
 
     public function index()
     {
-        return response()->view('pages.checkout');
+        return response()
+            ->view(
+                'paginas.publico.checkout'
+            );
     }
 
     public function store(Request $request)

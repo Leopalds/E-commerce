@@ -31,7 +31,7 @@ class UserController extends Controller
             $user->isAdmin() ? array_push($admins, $user)  : '';
         }
 
-        return response()->view('admin.users.users_index', compact('users', 'admins'));
+        return response()->view('paginas.admin.users.users_index', compact('users', 'admins'));
     }
 
     public function create()
@@ -39,7 +39,7 @@ class UserController extends Controller
         $cargos = Role::all();
         unset($cargos[1]);
         
-        return response()->view('admin.users.users_create', compact('cargos'));
+        return response()->view('paginas.admin.users.users_create', compact('cargos'));
     }
 
     public function store(Request $request)
@@ -94,7 +94,7 @@ class UserController extends Controller
         $user = User::find($id);
         $cargos = Role::all();
 
-        return response()->view('admin.users.users_edit', compact('user', 'cargos'));
+        return response()->view('paginas.admin.users.users_edit', compact('user', 'cargos'));
     }
 
     public function update(Request $request, int $id)

@@ -40,14 +40,14 @@ class ProdutoController extends Controller
             ->withQueryString();
 
        
-        return response()->view('admin.produtos.produtos_index', compact('produtos'));
+        return response()->view('paginas.admin.produtos.produtos_index', compact('produtos'));
     }
 
     public function create()
     {
         $categorias = Categoria::all();
 
-        return response()->view('admin.produtos.produtos_create', compact('categorias'));
+        return response()->view('paginas.admin.produtos.produtos_create', compact('categorias'));
     }
 
     public function store(Request $request)
@@ -89,7 +89,7 @@ class ProdutoController extends Controller
     public function show(int $id)
     {
         $produto = Produto::find($id);
-        return response()->view('admin.produtos.produtos_show', compact('produto'));
+        return response()->view('paginas.admin.produtos.produtos_show', compact('produto'));
     }
 
     public function edit(int $id)
@@ -97,7 +97,7 @@ class ProdutoController extends Controller
         $produto = Produto::find($id);
         $categorias = Categoria::all();
 
-        return response()->view('admin.produtos.produtos_edit', compact('produto', 'categorias'));
+        return response()->view('paginas.admin.produtos.produtos_edit', compact('produto', 'categorias'));
 
     }
 
