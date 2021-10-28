@@ -5,10 +5,22 @@
     &__busca {
         @include mixins.for-desktop {
             width: 50% !important;
+            margin-bottom: 0 !important;
+            margin-right: 1rem;
         }
 
         @include mixins.for-tablet {
             margin-bottom: 1rem !important;
+        }
+    }
+
+    &__cart {
+        color: rgb(163, 50, 50);
+        transition: 1s ease-in-out;
+
+        &:hover {
+            color: rgb(206, 21, 21);
+            transform: scale(1.05);
         }
     }
 

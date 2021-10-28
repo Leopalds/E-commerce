@@ -1,9 +1,0 @@
-.carrinho {
-    color: rgb(163, 50, 50);
-    transition: 1s ease-in-out;
-}
-
-.carrinho:hover {
-    color: rgb(206, 21, 21);
-    transform: scale(1.05);
-}

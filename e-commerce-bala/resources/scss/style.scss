@@ -5,6 +5,7 @@
 @use 'components/botao';
 @use 'components/filepond';
 @use 'components/cart';
+@use 'components/banner';
 
 //pages
 @use 'pages/produto';
@@ -15,4 +16,4 @@
 @use 'layouts/cabecalho';
 
 //base
-@use 'base/body.scss';
+@use 'base/elementos-html.scss';

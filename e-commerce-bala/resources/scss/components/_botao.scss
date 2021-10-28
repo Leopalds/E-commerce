@@ -2,6 +2,16 @@
 
 .botao {
 
+    &--busca {
+        border: 1px solid rgb(167, 21, 21);
+        color: rgb(185, 31, 31);
+
+        &:hover {
+            color: white;
+            background-color: rgb(167, 29, 29);
+        }
+    }
+    
     &--checkout {
         background-color: rgb(204, 27, 27);
 

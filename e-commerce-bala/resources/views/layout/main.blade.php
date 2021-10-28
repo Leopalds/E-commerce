@@ -20,19 +20,10 @@
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-     {{-- Nosso CSS --}}
-    @yield('css')
     @livewireStyles
-
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/busca/busca__botao.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/busca/busca.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/cabecalho/cabecalho__brand.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/cabecalho/cabecalho__brand--h.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/rodape/rodape__redes-link.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/carrinho/carrinho.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/cabecalho/cabecalho__lado-direito.css') }}">
-
+     {{-- Nosso CSS --}}
+     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+     @yield('css')
 </head>
 <body>
   @livewire('nav.navbar')
@@ -41,10 +32,9 @@
       @yield('conteudo')
   </div>
 
-  @livewire('footer.footer', ['url' => ''])
+  @livewire('footer.footer')
  
   @yield('js')
   @livewireScripts
-  <script type="text/javascript" src="{{ asset('js/slick/slick.min.js') }}"></script>
 </body>
    

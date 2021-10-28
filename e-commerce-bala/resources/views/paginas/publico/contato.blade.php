@@ -1,5 +1,4 @@
 @extends('layout.main')
-
 @section('conteudo')
 <div class="container ">
     @livewire('ajax.loading')

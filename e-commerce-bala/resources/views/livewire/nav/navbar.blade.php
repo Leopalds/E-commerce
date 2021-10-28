@@ -45,7 +45,7 @@
                     </ul>
                 </div>
                 @endauth
-                <a href="{{ route('carrinho.index') }}" class="fs-4 carrinho text-decoration-none">
+                <a href="{{ route('carrinho.index') }}" class="fs-4 cabecalho__cart text-decoration-none">
                     <i class="fas fa-shopping-cart"></i>
                     <small>({{ Cart::content()->count() }})</small>
                 </a>

@@ -19,6 +19,14 @@
   width: 50px;
 }
 
+.botao--busca {
+  border: 1px solid #a71515;
+  color: #b91f1f;
+}
+.botao--busca:hover {
+  color: white;
+  background-color: #a71d1d;
+}
 .botao--checkout {
   background-color: #cc1b1b;
 }
@@ -57,6 +65,18 @@
   width: 5rem;
 }
 
+.banner {
+  display: inline-block;
+  height: 400px;
+  position: relative;
+  width: 100%;
+}
+.banner__img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
 .produto {
   width: 80%;
 }
@@ -82,16 +102,34 @@
   width: 100%;
   margin-top: auto;
 }
+.footer__icon {
+  color: #c73737;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+.footer__icon:hover {
+  transform: scale(1.1);
+}
 
 @media screen and (min-width: 1221px) {
   .cabecalho__busca {
     width: 50% !important;
+    margin-bottom: 0 !important;
+    margin-right: 1rem;
   }
 }
 @media screen and (min-width: 768px) and (max-width: 1220px) {
   .cabecalho__busca {
     margin-bottom: 1rem !important;
   }
+}
+.cabecalho__cart {
+  color: #a33232;
+  transition: 1s ease-in-out;
+}
+.cabecalho__cart:hover {
+  color: #ce1515;
+  transform: scale(1.05);
 }
 @media screen and (max-width: 767px) {
   .cabecalho__itens {
@@ -119,6 +157,26 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+figcaption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  color: white;
+  text-shadow: -2px 0px 0px gray;
+  text-align: center;
+}
+
+figcaption span {
+  color: black;
+  text-shadow: none;
+  text-transform: uppercase;
+  background-color: red;
+  padding: 2px;
+  border-radius: 5px;
 }
 
 /*# sourceMappingURL=style.css.map */

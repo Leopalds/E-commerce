@@ -1,3 +1,10 @@
+body {
+    display: flex;
+    flex-direction: column;
+    
+    min-height: 100vh;
+}
+
 figcaption{
     position: absolute;
     top: 50%;
@@ -8,19 +15,12 @@ figcaption{
     text-shadow: -2px 0px 0px gray;
     text-align: center;
 }
+
 figcaption span{
     color: black;
     text-shadow: none;
     text-transform: uppercase;
     background-color: red;
-    padding: 2px;
-    border-radius: 5px;
-}
-#variedade-qual{
-    color: black;
-    text-transform: none;
-    text-shadow: 0px 0px 10px gray;
-    background-color: white;
     padding: 2px;
     border-radius: 5px;
 }
