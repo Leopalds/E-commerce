@@ -50,28 +50,7 @@
 <script src="https://sdk.mercadopago.com/js/v2"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
 <script>
-    var numeroCartao = new Cleave('#form-checkout__cardNumber', {
-        creditCard: true,
-        delimiter: " - "
-    });
-
-    var cvv = new Cleave('#form-checkout__securityCode', {
-        numeral: true,
-        numeralIntegerScale: 3,
-        numeralDecimalScale: 0
-    });
-
-    var anoExpCartao = new Cleave('#form-checkout__cardExpirationYear', {
-        date: true,
-        datePattern: ['Y']
-    })
-
-    var mesExpCartao = new Cleave('#form-checkout__cardExpirationMonth', {
-        date: true,
-        datePattern: ['m']
-    });
-
-    //mercado pago
+    
     var valorTotal = "{{ $valorTotal }}";
     var chavePub = '{{ env("MERCADO_PAGO_PB") }}';
 

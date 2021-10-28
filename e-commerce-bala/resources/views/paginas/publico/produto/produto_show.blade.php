@@ -1,12 +1,4 @@
 @extends('layout.main')
-@section('css')
-    
-    <link rel="stylesheet" href="{{ asset('css/quantidade/quantidade__campo.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/botao-carrinho/botao-carrinho.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/produto/produto.css') }}">
-    <link rel="stylesheet" href="{{ asset('libs/click-tap-image/css/image-zoom.css') }}">
-    
-@endsection
 @section('conteudo')
     <div class="d-flex produto flex-column mt-5">
         <div class="col-6 me-5 produto__img">
@@ -75,10 +67,9 @@
     </div>
 @endsection
 @section('js')
-<script src="{{ asset('libs/click-tap-image/dist/js/image-zoom.min.js') }}"></script>
-<script src="{{ asset('js/carrossel/carossel-de-imagens.js') }}"></script>
 <script>
     $(function () {  
+
         var quantidadeProduto = document.querySelector('#qtd').value;
         var freteQuantidade = document.querySelector('#quantidade-frete').value = quantidadeProduto;
 
