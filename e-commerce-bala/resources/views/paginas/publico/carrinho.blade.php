@@ -6,10 +6,13 @@
         'valorTotal' => $valorTotal
     ])
 
-    @livewire('botao.botao', [
-        'conteudo' => 'Checkout',
-        'extraCss' => 'text-light botao botao--checkout'
-    ])
+    <a href="{{ route('checkout.index') }}">
+        @livewire('botao.botao', [
+            'conteudo' => 'Checkout',
+            'extraCss' => 'text-light botao botao--checkout'
+        ])
+    </a>
+    
 </div>
 @endsection
 @section('js')

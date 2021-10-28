@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Publico;
 
 use MercadoPago\SDK;
 use MercadoPago\Payer;
+use App\Models\Produto;
 use MercadoPago\Payment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CheckoutController extends Controller
 {
@@ -14,16 +16,21 @@ class CheckoutController extends Controller
 
     public function __construct()
     {
-        SDK::setAccessToken('APP_USR-8202366884661980-102613-916923f58dc2c1d9b5ef93cdd9adcebe-1007167226');
+        SDK::setAccessToken(env('MERCADO_PAGO_SC'));
         $this->pagamento = new Payment();
         $this->comprador = new Payer();
     }
 
     public function index()
     {
+        $itens = Cart::content();
+        $valorTotal = Cart::priceTotal(2, '.', '');
+        $produtos = Produto::all();
+
         return response()
             ->view(
-                'paginas.publico.checkout'
+                'paginas.publico.checkout',
+                compact('itens', 'valorTotal', 'produtos')
             );
     }
 
