@@ -7,8 +7,7 @@ function excluirRecurso(rota, dados, titulo, msg, linha, valorTotal = "")
         denyButtonText: `Nao`,
         showLoaderOnConfirm: true,
         preConfirm: function () {
-            ajaxDelete(rota, dados, msg, linha, valorTotal); 
-            
+            ajaxDelete(rota, dados, msg, linha, valorTotal);  
         }
     });
 
