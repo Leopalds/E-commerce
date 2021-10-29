@@ -8,16 +8,20 @@
         </picture>
     </div>
     <div class="container mb-5 mt-5">
-        <h2 class="text-center mt-3 mb-4">Produtos que Hulmer's recomenda para você</h2>
+        <h2 class="text-center mt-3 mb-5">Produtos que Hulmer's recomenda para você</h2>
         <div class="d-flex flex-wrap justify-content-center mb-3">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
+            @foreach ($produtos as $produto)
+            <div class="card me-5" style="width: 18rem;">
+                @if (count($produto->imagens) != 0)    
+                <img style="object-fit: cover" src="{{ asset('storage/img/produto/' . $produto->imagens->take(1)->first()->nome) }}" class="card-img-top" alt="imagens de destaque" width="70px" height="200px">
+                @endif
                 <div class="card-body">
-                  <h5 class="card-title produtos__nome">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn botao-carrinho">Adicionar ao carrinho</a>
+                  <h5 class="card-title produtos__nome">{{ $produto->nome }}</h5>
+                  <p class="card-text">{{ $produto->descricao }}</p>
+                  <a href="{{ route('produtos.show', ['id' => $produto->id]) }}" class="btn botao--carrinho">Visualizar produto</a>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
     <div class="banner">
