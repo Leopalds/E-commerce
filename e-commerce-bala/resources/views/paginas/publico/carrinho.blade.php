@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layouts.main')
 @section('conteudo')
 <div class="d-flex flex-column align-items-center mt-5 w-50 cart">
     @livewire('carrinho.lista', [

@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layouts.main')
 @section('conteudo')
     <!--<div class="img-fluid quem-somos_banner--um"></div>-->
     <div class="banner">

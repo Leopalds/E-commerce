@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layouts.main')
 @section('conteudo')
     <div class="banner">
         <picture>
@@ -9,7 +9,7 @@
     </div>
     <div class="container mb-5 mt-5">
         <h2 class="text-center mt-3 mb-5">Produtos que Hulmer's recomenda para você</h2>
-        <div class="d-flex flex-wrap justify-content-center mb-3">
+        <div class="d-flex flex-wrap justify-content-around mb-3">
             @foreach ($produtos as $produto)
             <div class="card me-5" style="width: 18rem;">
                 @if (count($produto->imagens) != 0)    
@@ -18,6 +18,7 @@
                 <div class="card-body">
                   <h5 class="card-title produtos__nome">{{ $produto->nome }}</h5>
                   <p class="card-text">{{ $produto->descricao }}</p>
+                  <p class="fw-bold fs-5">R$ {{ number_format($produto->preco, 2, ',', '.') }}</p>
                   <a href="{{ route('produtos.show', ['id' => $produto->id]) }}" class="btn botao--carrinho">Visualizar produto</a>
                 </div>
             </div>
