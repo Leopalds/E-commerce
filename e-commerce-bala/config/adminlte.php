@@ -492,7 +492,10 @@ return [
     |
     | For detailed instructions you can look the livewire here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Other-Configuration
+<<<<<<< HEAD
     |
+=======
+>>>>>>> main
     */
 
     'livewire' => false,
