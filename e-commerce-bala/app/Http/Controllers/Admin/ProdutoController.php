@@ -58,7 +58,7 @@ class ProdutoController extends Controller
             $erros = $validador;
             return response()->json($erros);
         }
-
+        dd($request->file('imagem'));
         $dadosValidados = $validador['dados'];
         DB::beginTransaction();
         $produto = Produto::create($dadosValidados);
@@ -72,7 +72,9 @@ class ProdutoController extends Controller
                 ];
                 return response()->json($response);
             }
-        } 
+        } else {
+            $this->imagemService->salvar([], $produto);
+        }
 
         if (!is_null($request->categoria)) {
             $produto->categorias()->sync($request->categoria);

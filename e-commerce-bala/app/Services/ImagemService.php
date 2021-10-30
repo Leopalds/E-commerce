@@ -16,6 +16,7 @@ class ImagemService
         }
         
         foreach($imagens as $imagem) {
+            
             $nome = $imagem->getClientOriginalName();
             
             if (Imagem::where('nome', $nome)->exists()) {

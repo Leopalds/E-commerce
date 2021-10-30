@@ -11,6 +11,7 @@
                 <div class="carousel-inner carrossel__lista my-2">
                     @foreach ($produto->imagens as $index => $imagem)
                     <div class="carousel-item {{ $index == 0 ? 'active' : '' }} carrossel__item">
+                        
                         <img class="d-block w-100 carrossel__img" src="{{ asset('storage/img/produto/' . $imagem->nome) }}" alt="primeira imagem">
                     </div>
                     @endforeach  
