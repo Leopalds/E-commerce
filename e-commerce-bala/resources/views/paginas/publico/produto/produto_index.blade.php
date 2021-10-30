@@ -60,13 +60,7 @@
         @foreach ($produtos as $produto)
         <div class="card mx-5 mb-5" style="width: 18rem;">
             <a href="{{ route('produtos.show' , ['id' => $produto->id]) }}" class="text-decoration-none text-dark ">
-                
-                @if (count($produto->imagens) != 0)
-                <img style="widows: 200px; height: 200px; object-fit: cover" src="{{ asset('storage/img/produto/' . $produto->unicaImagem->first()->nome) }}" class="card-img-top" alt="descricao">
-                @else
-                <img style="widows: 200px; height: 200px; object-fit: cover" src="https://t3.ftcdn.net/jpg/03/49/45/70/360_F_349457036_XWvovNpNk79ftVg4cIpBhJurdihVoJ2B.jpg" class="card-img-top" alt="descricao">
-                @endif
-
+                @livewire('imagem.destaque', ['produto' => $produto])
                 <div class="card-body">
                     <h5 class="card-title mb-3 produtos__nome">{{ $produto->nome }}</h5>
                     <p class="card-text mb-3">R$ {{ number_format($produto->preco, 2, ',', '.') }}</p>

@@ -53,15 +53,15 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         $validador = $this->service->validar($request);
-
+        dd($request->file('imagem'));
         if (!$validador['success']) {
             $erros = $validador;
             return response()->json($erros);
         }
-        dd($request->file('imagem'));
         $dadosValidados = $validador['dados'];
         DB::beginTransaction();
         $produto = Produto::create($dadosValidados);
+        
         if ($request->hasFile('imagem')) {
             $images = $this->imagemService->salvar($request->file('imagem'), $produto);
 
@@ -73,7 +73,6 @@ class ProdutoController extends Controller
                 return response()->json($response);
             }
         } else {
-            $this->imagemService->salvar([], $produto);
         }
 
         if (!is_null($request->categoria)) {
@@ -127,7 +126,7 @@ class ProdutoController extends Controller
                 ];
                 return response()->json($response);
             }
-        }
+        } 
 
         $produto->nome = $dadosValidados['nome'];
         $produto->descricao = $dadosValidados['descricao'];

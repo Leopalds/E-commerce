@@ -28,6 +28,7 @@
     <div class="col-md-6">
         <h3>Dados do pagamento</h3>
         <form id="form-checkout" class="d-flex flex-column">
+            @csrf
             <input type="text" name="cardNumber" id="form-checkout__cardNumber" class="form-control mb-3"/>
             <div class="d-flex mb-2">
                 <input type="text" name="cardExpirationMonth" id="form-checkout__cardExpirationMonth" class="form-control me-2"/>
@@ -50,6 +51,32 @@
 <script src="https://sdk.mercadopago.com/js/v2"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
 <script>
+    var numeroCartao = new Cleave('#form-checkout__cardNumber', {
+        creditCard: true,
+        delimiter: " "
+    });
+
+    var cvv = new Cleave('#form-checkout__securityCode', {
+        numeral: true,
+        numeralIntegerScale: 3,
+        numeralDecimalScale: 0,
+        numeralPositiveOnly: true
+    });
+
+    var mesExp = new Cleave('#form-checkout__cardExpirationMonth', {
+        date: true,
+        datePattern: ['m']
+    });
+
+    var anoExp = new Cleave('#form-checkout__cardExpirationYear', {
+        date: true,
+        datePattern: ['Y']
+    });
+
+    var cpf = new Cleave('#form-checkout__identificationNumber', {
+        numericOnly: true,
+        blocks: [11],
+    });
     
     var valorTotal = "{{ $valorTotal }}";
     var chavePub = '{{ env("MERCADO_PAGO_PB") }}';
@@ -124,6 +151,7 @@
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 body: JSON.stringify({
                     token,

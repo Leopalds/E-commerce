@@ -9,8 +9,8 @@
 @section('css')
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
     <link
-    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
-    rel="stylesheet"/>
+        href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet"/>
 @endsection
 
 @section('content')
@@ -68,9 +68,9 @@
     <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/ajax/enviarDados.js') }}"></script>
-    <script src="{{ asset('js/filepond/plugin/imagePreview.js') }}"></script>
+    <script src="{{ asset('js/filepond/filePondInit.js') }}"></script>
     <script>
-        imagePreview('#imagem-produto');
+        filePondInit('#imagem-produto');
 
         $('form[name="formCriarProduto"]').on("submit", function(event) {
             var rota = '{{ route("admin.produtos.store") }}'

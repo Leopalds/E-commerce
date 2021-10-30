@@ -5,9 +5,9 @@ use App\Http\Controllers\Admin\ProdutoController;
 use App\Http\Controllers\Admin\CategoriaController;
 use App\Http\Controllers\Admin\UserController;
 
-Route::prefix('/admin')->middleware(['auth'])->group(function () {
+Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function () {
     
-    Route::view('', 'admin.dashboard')->name('dashboard');
+    Route::view('', 'paginas.admin.dashboard')->name('dashboard');
 
     Route::get('/usuarios', [UserController::class, 'index'])->name('admin.users.index');
     Route::get('/usuarios/create', [UserController::class, 'create'])->name('admin.users.create');

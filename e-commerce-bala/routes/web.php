@@ -10,7 +10,7 @@ use App\Http\Controllers\Publico\CheckoutController;
 use App\Http\Controllers\Publico\HomeController;
 use App\Http\Controllers\Publico\ProdutoController;
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::resource('carrinho', CarrinhoController::class)
         ->except([
             'edit',

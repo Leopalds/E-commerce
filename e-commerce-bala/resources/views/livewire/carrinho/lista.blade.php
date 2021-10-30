@@ -15,6 +15,8 @@
                 <th scope="row">
                     @if (count(App\Models\Produto::find($carrinho->id)->imagens) != 0 )
                     <img width="70px" height="70px" src=" {{ asset('/storage/img/produto/' . App\Models\Produto::find($carrinho->id)->imagens->take(1)->first()->nome) }}" alt="imagem do produto...">
+                    @else
+                    <img width="70px" height="70px" src="https://t3.ftcdn.net/jpg/03/49/45/70/360_F_349457036_XWvovNpNk79ftVg4cIpBhJurdihVoJ2B.jpg" alt="imagem do produto...">
                     @endif
                 </th>
                 <td><a href="{{ route('produtos.show', ['id' => $carrinho->id]) }}">{{ $carrinho->name }}</a></td>
