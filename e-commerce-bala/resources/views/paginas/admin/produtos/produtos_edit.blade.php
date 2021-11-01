@@ -71,7 +71,7 @@
                             <div class="d-flex">
                                 @foreach ($produto->imagens as $imagem)
                                     <div class="mt-4 mx-3">
-                                        <img  width="100px" height="100px" style="object-fit: cover" src="{{ asset('storage/img/produto/' . $imagem->nome) }}">
+                                        <img  width="100px" height="100px" style="object-fit: cover" src="{{ asset('storage/img/' . $imagem->nome) }}">
                                     </div>
                                 @endforeach
                             </div>
@@ -92,9 +92,9 @@
     <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/ajax/enviarDados.js') }}"></script>
-    <script src="{{ asset('js/filepond/plugin/imagePreview.js') }}"></script>
+    <script src="{{ asset('js/filepond/filePondInit.js') }}"></script>
     <script>
-        imagePreview('#imagem-produto');
+        filePondInit('#imagem-produto');
 
         $('form[name="formAtualizarProduto"]').on("submit", function(event) {
             var rota = '{{ route("admin.produtos.update", ["id" => $produto->id] )}}'

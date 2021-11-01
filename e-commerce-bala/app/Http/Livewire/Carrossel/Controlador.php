@@ -4,13 +4,13 @@ namespace App\Http\Livewire\Carrossel;
 
 use Livewire\Component;
 
-class Botao extends Component
+class Controlador extends Component
 {
     public $tipo;
     public $texto;
 
     public function render()
     {
-        return view('livewire.carrossel.botao');
+        return view('livewire.carrossel.controlador');
     }
 }

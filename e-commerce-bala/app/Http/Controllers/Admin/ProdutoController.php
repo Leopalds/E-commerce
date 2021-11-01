@@ -53,7 +53,7 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         $validador = $this->service->validar($request);
-        dd($request->file('imagem'));
+        
         if (!$validador['success']) {
             $erros = $validador;
             return response()->json($erros);
@@ -72,8 +72,7 @@ class ProdutoController extends Controller
                 ];
                 return response()->json($response);
             }
-        } else {
-        }
+        } 
 
         if (!is_null($request->categoria)) {
             $produto->categorias()->sync($request->categoria);

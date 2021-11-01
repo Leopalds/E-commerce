@@ -63,9 +63,9 @@
     <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/ajax/enviarDados.js') }}"></script>
-    <script src="{{ asset('js/filepond/plugin/imagePreview.js') }}"></script>
+    <script src="{{ asset('js/filepond/filePondInit.js') }}"></script>
     <script>
-        imagePreview('#imagem-usuario');
+        filePondInit('#imagem-usuario');
 
         $('form[name="formCriarusuario"]').on("submit", function(event) {
             event.preventDefault();

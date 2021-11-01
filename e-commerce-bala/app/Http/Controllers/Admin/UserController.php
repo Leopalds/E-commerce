@@ -44,7 +44,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $validador = $this->service->validar($request->all());
+        $validador = $this->service->validar($request);
 
         if (!$validador['success']) {
             $erros = $validador;
@@ -99,7 +99,7 @@ class UserController extends Controller
 
     public function update(Request $request, int $id)
     {
-        $validador = $this->service->validar($request->except('email'));
+        $validador = $this->service->validar($request);
 
         if (!$validador['success']) {
             $erros = $validador;
@@ -113,6 +113,19 @@ class UserController extends Controller
         $user = User::find($id);
 
         $user->name = $dadosValidados['name'];
+        $user->email = $dadosValidados['email'];
+
+        if ($request->hasFile('imagem')) {
+            $images = $this->imagemService->salvar($request->file('imagem'), $user);
+
+            if ($images['success'] === false) {
+                $response = [
+                    'success' => false,
+                    'erro_img' => $images['erro']
+                ];
+                return response()->json($response);
+            }
+        } 
 
         if (!is_null($request->cargo)) {
             $user->roles()->sync($request->cargo);

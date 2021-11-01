@@ -11,7 +11,7 @@ class ImagemService
         if (count($imagens) > 3 || count($entidade->imagens) >= 3) {
             return [
                 'success' => false,
-                'erro' => 'Um produto pode ter no máximo 3 imagens!'
+                'erro' => 'Upload máximo 3 imagens!'
             ];
         }
         
@@ -33,7 +33,7 @@ class ImagemService
                 'tamanho' => $tamanho,
                 'extensao' => $extensao,
             ]);
-            $imagem->storeAs('img/produto', $nome, 'public');
+            $imagem->storeAs('img', $nome, 'public');
         }
 
         return [

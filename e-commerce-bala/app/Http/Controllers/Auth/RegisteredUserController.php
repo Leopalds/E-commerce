@@ -35,19 +35,28 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::make($request->all(), [
+        $validador = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|string|unique:users,email',
-            'password' => 'required|confirmed|password|string'
+            'password' => 'required|confirmed|string'
+        ], [
+            'required' => ':attribute é obrigatório.',
+            'email' => 'E-mail inválido.',
+            'confimed' => 'As senhas nao conferem.',
+            'unique' => 'E-mail já cadastrado.',
         ]);
+
+        if ($validador->fails()) {
+            return redirect()->back()->withErrors($validador->errors());
+        }
+
+        $dadosValidados = $validador->validated();
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'name' => $dadosValidados['name'],
+            'email' => $dadosValidados['email'],
+            'password' => Hash::make($dadosValidados['password']),
         ]);
-
-       
 
         $user->roles()->attach([2,3]);
 

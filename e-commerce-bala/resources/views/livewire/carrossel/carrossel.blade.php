@@ -8,11 +8,11 @@
         <div class="carousel-inner carrossel__lista my-2">
             @livewire('carrossel.imagem', ['imagens' => $produto->imagens])
         </div>
-        @livewire('carrossel.botao', [
+        @livewire('carrossel.controlador', [
           'tipo' => 'prev',
           'texto' => 'Anterior'
         ])
-         @livewire('carrossel.botao', [
+         @livewire('carrossel.controlador', [
           'tipo' => 'next',
           'texto' => 'Próximo'
         ])

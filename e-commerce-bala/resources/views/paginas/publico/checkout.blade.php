@@ -8,7 +8,7 @@
         <div class="d-flex align-items-center justify-content-between border-bottom border-top py-3">
             <div>
                 @if (count(App\Models\Produto::find($item->id)->imagens) != 0 )
-                <img width="70px" height="70px" src=" {{ asset('/storage/img/produto/' . App\Models\Produto::find($item->id)->imagens->take(1)->first()->nome) }}" alt="imagem do produto...">
+                <img width="70px" height="70px" src=" {{ asset('/storage/img/' . App\Models\Produto::find($item->id)->imagens->take(1)->first()->nome) }}" alt="imagem do produto...">
                 @endif
             </div>
             <div>

@@ -16,8 +16,10 @@
             <tr data-linha="{{ $user->id }}">
                 <th scope="row">{{ $user->id }}</th>
                 <td>
-                    @if (count($user->imagens) > 0)
-                        <img src="{{ asset('storage/img/') }}" alt="">
+                    @if (count($user->imagens) != 0)
+                        @foreach ($user->imagens as $imagem)    
+                        <img width="70px" height="70px" style="object-fit: cover"  src="{{ asset('storage/img/' . $imagem->nome) }}" alt="">
+                        @endforeach
                     @endif
                 </td>
                 <td>{{ $user->name }}</td>

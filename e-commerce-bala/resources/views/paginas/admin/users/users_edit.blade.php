@@ -56,15 +56,22 @@
                                 </select>
                             </div>
                         </div>
-                        <!--
-                        <div class="col-md-6">
-                            <div class="d-flex flex-column">
-                                <small class="erro erro__imagem text-danger"></small>
-                                <label for="img-usuario">Foto do usuario</label>
-                                <input id="img-usuario" data-max-files="3" multiple name="imagem[]" class="filepond--item">
+                        <div class="col-md-6 d-flex flex-column">
+                            <x-form.file 
+                                atributo="imagem" 
+                                label="Foto do Usuario" 
+                                entidade="user"/>
+                                
+                            <small class="text-warning">Um Usuário pode ter no máximo 3 imagens!</small>
+                            <div class="d-flex">
+                                @foreach ($user->imagens as $imagem)
+                                    <div class="mt-4 mx-3">
+                                        <img  width="100px" height="100px" style="object-fit: cover" src="{{ asset('storage/img/' . $imagem->nome) }}">
+                                    </div>
+                                @endforeach
                             </div>
-                        </div>      
-                    -->
+                        </div>    
+                
                     </div>
                     @livewire('botao.salvar')
                 </div>
@@ -79,9 +86,9 @@
     <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/ajax/enviarDados.js') }}"></script>
-    <script src="{{ asset('js/filepond/plugin/imagePreview.js') }}"></script>
+    <script src="{{ asset('js/filepond/filePondInit.js') }}"></script>
     <script>
-        imagePreview('#imagem-usuario');
+        filePondInit('#imagem-user');
 
         $('form[name="formAtualizarUsuario"]').on("submit", function(event) {
             event.preventDefault();

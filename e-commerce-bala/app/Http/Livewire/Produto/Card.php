@@ -17,7 +17,7 @@ class Card extends Component
             return 'https://t3.ftcdn.net/jpg/03/49/45/70/360_F_349457036_XWvovNpNk79ftVg4cIpBhJurdihVoJ2B.jpg';
         }
 
-        return '/storage/img/produto/' . $imagem->nome;
+        return '/storage/img/' . $imagem->nome;
     }
 
     public function render()
