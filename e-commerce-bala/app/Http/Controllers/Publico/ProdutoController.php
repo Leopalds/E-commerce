@@ -4,12 +4,8 @@ namespace App\Http\Controllers\Publico;
 
 use App\Models\Produto;
 use App\Models\Categoria;
-use App\Services\Buscador;
 use Illuminate\Http\Request;
-use App\Services\ProdutoService;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Session;
-use Spatie\QueryBuilder\AllowedInclude;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class ProdutoController extends Controller

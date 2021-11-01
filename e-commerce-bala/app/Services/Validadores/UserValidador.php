@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Validadores;
 
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 
-class UserService 
+class UserValidador
 {
     public function validar($request)
     {

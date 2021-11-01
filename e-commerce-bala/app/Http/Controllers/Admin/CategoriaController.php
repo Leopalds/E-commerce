@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Categoria;
 use Illuminate\Http\Request;
-use App\Services\CategoriaService;
 use App\Http\Controllers\Controller;
+use App\Services\Validadores\CategoriaValidador;
 
 class CategoriaController extends Controller
 {
     private $service;
 
-    public function __construct(CategoriaService $categoriaService)
+    public function __construct(CategoriaValidador $categoriaValidador)
     {
-        $this->service = $categoriaService;
+        $this->service = $categoriaValidador;
     }
 
     public function index()

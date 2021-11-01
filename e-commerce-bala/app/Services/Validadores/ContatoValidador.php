@@ -5,7 +5,7 @@ namespace App\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ContatoService 
+class ContatoValidador 
 {
 
     public function validar(Request $request)

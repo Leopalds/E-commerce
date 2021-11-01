@@ -4,8 +4,9 @@ namespace App\Services;
 
 use App\Models\Imagem;
 
-class ImagemService
+class ImagemGerenciador
 {
+    
     public function salvar($imagens, $entidade)
     {
         if (count($imagens) > 3 || count($entidade->imagens) >= 3) {

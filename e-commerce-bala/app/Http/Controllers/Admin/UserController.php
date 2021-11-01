@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Services\UserService;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Services\ImagemService;
+use App\Services\Validadores\UserValidador;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -16,9 +16,9 @@ class UserController extends Controller
     private $service;
     private $imagemService;
 
-    public function __construct(UserService $userService, ImagemService $imagemService)
+    public function __construct(UserValidador $userValidador, ImagemService $imagemService)
     {
-        $this->service = $userService;
+        $this->service = $userValidador;
         $this->imagemService = $imagemService;
     }
 

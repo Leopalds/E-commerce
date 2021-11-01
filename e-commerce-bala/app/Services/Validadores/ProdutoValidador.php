@@ -1,19 +1,22 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Validadores;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class CategoriaService 
+class ProdutoValidador 
 {
 
     public function validar(Request $request)
     {
         $validador =  Validator::make($request->all(), [
-            'nome' => 'required',
+            'nome' => 'required|string',
+            'descricao' => 'required',
+            'preco' => 'required|min:0',
+            'quantidade' => 'required|min:0'
         ], [
-            'required' => 'Esse campo é obrigatório.'
+            'required' => 'Esse campo é obrigatório.',
         ]);
 
         if ($validador->fails()) {

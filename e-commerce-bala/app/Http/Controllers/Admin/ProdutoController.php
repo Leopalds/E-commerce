@@ -2,31 +2,27 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Models\Imagem;
 use App\Models\Produto;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use App\Services\ImagemService;
-use App\Services\ProdutoService;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProdutoRequest;
+use App\Services\ImagemGerenciador;
+use App\Services\Validadores\ProdutoValidador;
 use Spatie\QueryBuilder\QueryBuilder;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Support\Facades\Validator;
 use Spatie\QueryBuilder\AllowedFilter;
 
 class ProdutoController extends Controller
 {
-    private $service;
-    private $imagemService;
+    private $produtoValidador;
+    private $imagemGerenciador;
     private $carrinho;
 
-    public function __construct(ProdutoService $produtoService, ImagemService $imageService, Cart $carrinho)
+    public function __construct(ProdutoValidador $produtoValidador, ImagemGerenciador $imagemGerenciador, Cart $carrinho)
     {
-        $this->service = $produtoService;
-        $this->imagemService = $imageService;
+        $this->produtoValidador = $produtoValidador;
+        $this->imagemGerenciador = $imagemGerenciador;
         $this->carrinho = $carrinho;
     }
 
@@ -52,7 +48,7 @@ class ProdutoController extends Controller
 
     public function store(Request $request)
     {
-        $validador = $this->service->validar($request);
+        $validador = $this->produtoValidador->validar($request);
         
         if (!$validador['success']) {
             $erros = $validador;
@@ -63,7 +59,7 @@ class ProdutoController extends Controller
         $produto = Produto::create($dadosValidados);
         
         if ($request->hasFile('imagem')) {
-            $images = $this->imagemService->salvar($request->file('imagem'), $produto);
+            $images = $this->imagemGerenciador->salvar($request->file('imagem'), $produto);
 
             if ($images['success'] === false) {
                 $response = [
@@ -104,7 +100,7 @@ class ProdutoController extends Controller
     public function update(Request $request, int $id)
     {
         
-        $validador = $this->service->validar($request);
+        $validador = $this->produtoValidador->validar($request);
 
         if (!$validador['success']) {
             $erros = $validador;
@@ -116,7 +112,7 @@ class ProdutoController extends Controller
         $produto = Produto::find($id);
 
         if ($request->hasFile('imagem')) {
-            $images = $this->imagemService->salvar($request->file('imagem'), $produto);
+            $images = $this->imagemGerenciador->salvar($request->file('imagem'), $produto);
 
             if ($images['success'] === false) {
                 $response = [
