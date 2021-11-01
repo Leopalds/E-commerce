@@ -19,33 +19,21 @@
   width: 50px;
 }
 
-.botao--busca {
+.botao--sem-fundo {
   border: 1px solid #a71515;
-  color: #b91f1f;
+  color: #DC3545;
 }
-.botao--busca:hover {
+.botao--sem-fundo:hover {
   color: white;
-  background-color: #a71d1d;
+  background-color: #c22c3b;
 }
-.botao--checkout {
-  background-color: #cc1b1b;
-}
-.botao--checkout:hover {
-  background-color: #e41010;
-}
-.botao--carrinho {
-  border: 1px solid #cc1b1b;
-  border-radius: 10px;
-  color: #cc1b1b;
-}
-@media screen and (max-width: 767px) {
-  .botao--carrinho {
-    margin: 1rem 0 !important;
-  }
-}
-.botao--carrinho:hover {
-  background-color: #cc1b1b;
+.botao--com-fundo {
   color: white;
+  background-color: #DC3545;
+}
+.botao--com-fundo:hover {
+  color: white;
+  background-color: #c22c3b;
 }
 
 .filepond--root {

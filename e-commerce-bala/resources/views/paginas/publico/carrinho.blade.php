@@ -7,9 +7,8 @@
     ])
 
     <a href="{{ route('checkout.index') }}">
-        @livewire('botao.botao', [
+        @livewire('botao.com-fundo', [
             'conteudo' => 'Checkout',
-            'extraCss' => 'text-light botao botao--checkout'
         ])
     </a>
     

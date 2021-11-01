@@ -39,7 +39,10 @@
             'placeholder' => 'Escreva aqui sua mesagem...'
         ])
         <div class="align-self-center">
-            <input type="submit" class="btn btn-danger mt-3" ></input>
+            @livewire('botao.com-fundo', [
+                'conteudo' => 'Enviar',
+                'extraCss' => 'align-self-center'
+            ])
         </div>
     
     </form>

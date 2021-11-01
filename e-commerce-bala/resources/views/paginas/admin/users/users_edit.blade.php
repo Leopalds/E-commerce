@@ -66,10 +66,7 @@
                         </div>      
                     -->
                     </div>
-                    @livewire('botao.botao', [
-                        'conteudo' => 'salvar',
-                        'extraCss' => 'btn-primary'
-                    ])
+                    @livewire('botao.salvar')
                 </div>
             </fieldset>
         </form>

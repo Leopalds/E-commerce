@@ -7,7 +7,8 @@ use Livewire\Component;
 class Botao extends Component
 {
     public $conteudo = "";
-    public $extraCss;
+    public $extraCss = "";
+    public $identificador = "";
 
     public function render()
     {

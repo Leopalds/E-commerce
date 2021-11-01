@@ -1,37 +1,25 @@
 @use '../abstracts/mixins';
+@use '../abstracts/variaveis';
 
 .botao {
 
-    &--busca {
+    &--sem-fundo {
         border: 1px solid rgb(167, 21, 21);
-        color: rgb(185, 31, 31);
+        color: variaveis.$vermelhoClaro;
 
         &:hover {
             color: white;
-            background-color: rgb(167, 29, 29);
+            background-color: variaveis.$vermelhoEscuro;
         }
     }
     
-    &--checkout {
-        background-color: rgb(204, 27, 27);
+    &--com-fundo {
+        color: white;
+        background-color: variaveis.$vermelhoClaro;
 
         &:hover {
-            background-color: rgb(228, 16, 16);
-        }
-    }
-
-    &--carrinho {
-        border: 1px solid rgb(204, 27, 27);
-        border-radius: 10px;
-        color: rgb(204, 27, 27);
-
-        @include mixins.for-phone {
-            margin: 1rem 0 !important;
-        }
-
-        &:hover {
-            background-color: rgb(204, 27, 27);
             color: white;
+            background-color: variaveis.$vermelhoEscuro;
         }
     }
 }

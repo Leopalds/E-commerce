@@ -19,7 +19,7 @@
                         'extraCss' => 'w-50'
                     ])
                     
-                    @livewire('botao.botao', ['extraCss' => 'btn-primary', 'conteudo' => 'salvar'])
+                    @livewire('botao.salvar')
                 </div>
             </fieldset>
         </form>

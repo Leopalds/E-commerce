@@ -41,7 +41,11 @@
             <select name="identificationType" id="form-checkout__identificationType" class="form-control mb-3"></select>
             <input type="text" name="identificationNumber" id="form-checkout__identificationNumber" class="form-control mb-3"/>
             <select name="installments" id="form-checkout__installments" class="form-control mb-3"></select>
-            <button type="submit" id="form-checkout__submit" class="btn btn-danger mb-3">Realizar pagamento</button>
+            @livewire('botao.com-fundo', [
+                'conteudo' => 'Finalizar compra',
+                'extraCss' => 'mb-3 w-100',
+                'identificador' => 'form-checkout__submit'
+            ])
         </form>
     </div>
     

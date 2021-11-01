@@ -58,16 +58,9 @@
     </div>
     <div class="m-5 d-flex flex-wrap justify-content-center">
         @foreach ($produtos as $produto)
-        <div class="card mx-5 mb-5" style="width: 18rem;">
-            <a href="{{ route('produtos.show' , ['id' => $produto->id]) }}" class="text-decoration-none text-dark ">
-                @livewire('imagem.destaque', ['produto' => $produto])
-                <div class="card-body">
-                    <h5 class="card-title mb-3 produtos__nome">{{ $produto->nome }}</h5>
-                    <p class="card-text mb-3">R$ {{ number_format($produto->preco, 2, ',', '.') }}</p>
-                    <p class="card-text mb-3">Estoque: {{ $produto->quantidade }}</p>
-                </div>
-            </a>
-        </div>
+        @livewire('produto.card', [
+            'produto' => $produto
+        ])
         @endforeach
     </div>
     <div class="pagination">{{ $produtos->links() }}</div>

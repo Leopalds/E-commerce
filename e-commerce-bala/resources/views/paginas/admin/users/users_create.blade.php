@@ -49,10 +49,8 @@
                             <x-form.file atributo="imagem" label="Foto do usuário" entidade="usuario"/>
                         </div>
                     </div>
-                    @livewire('botao.botao', [
-                        'extraCss' => 'btn-primary',
-                        'conteudo' => 'salvar'
-                    ])
+                    @livewire('botao.salvar')
+
                 </div>
             </fieldset>
         </form>

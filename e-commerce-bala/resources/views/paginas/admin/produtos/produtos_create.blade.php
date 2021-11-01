@@ -54,7 +54,7 @@
                             <small class="text-warning">Um produto pode ter no máximo 3 imagens!</small>
                         </div>
                     </div>
-                    @livewire('botao.botao', ['extraCss' => 'btn-primary', 'conteudo' => 'salvar'])
+                    @livewire('botao.salvar')
 
                 </div>
             </fieldset>

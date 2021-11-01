@@ -34,9 +34,9 @@
                             <label for="qtd" class="form-label me-3 quantidade__rotulo">Quantidade</label>
                             <input type="number" value="1" min="0" id="qtd" name="quantidade" class="form-control px-2 quantidade__campo w-50">
                         </div>
-                        @livewire('botao.botao', [
+                        @livewire('botao.com-fundo', [
                             'conteudo' => 'Adicionar ao carrinho',
-                            'extraCss' => 'botao botao--carrinho mt-3'
+                            'extraCss' => 'my-4'
                         ])
                     </form>
                 </div>
