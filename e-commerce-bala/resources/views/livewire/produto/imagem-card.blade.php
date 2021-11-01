@@ -1,6 +1,6 @@
-<div>
+<div class="d-flex justify-content-center pb-5 pt-3">
     <img 
-        style="widows: 200px; height: 200px; object-fit: cover" 
+        style="width: 50%; height: auto; object-fit: cover;" 
         src="{{ asset($imagem) }}" 
         class="card-img-top" 
         alt="descricao">

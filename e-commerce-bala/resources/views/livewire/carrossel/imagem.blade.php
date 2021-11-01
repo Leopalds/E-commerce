@@ -1,7 +1,7 @@
 @if (count($imagens) != 0)
     @foreach ($imagens as $index => $imagem)
-    <div class="carousel-item {{ $index == 0 ? 'active' : '' }} carrossel__item">
-        <img class="d-block w-100 carrossel__img" src="{{ asset('storage/img/' . $imagem->nome) }}" alt="primeira imagem">
+    <div class="carousel-item {{ $index == 0 ? 'active' : '' }} carrossel__item d-flex justify-content-center">
+        <img class="d-block w-50 carrossel__img" src="{{ asset('storage/img/' . $imagem->nome) }}" alt="primeira imagem">
     </div>
     @endforeach
     @else

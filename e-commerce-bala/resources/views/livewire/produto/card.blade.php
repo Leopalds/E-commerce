@@ -1,4 +1,4 @@
-<div class="card mx-5 mb-5" style="width: 18rem;">
+<div class="card mx-5 mb-5" style="width: 350px">
     <a href="{{ route('produtos.show' , ['id' => $produto->id]) }}" class="text-decoration-none text-dark ">
         @livewire('produto.imagem-card', ['imagem' => $imagem])
         <div class="card-body">

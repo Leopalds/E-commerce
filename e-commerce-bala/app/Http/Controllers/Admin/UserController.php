@@ -7,19 +7,19 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Services\ImagemService;
+use App\Services\ImagemGerenciador;
 use App\Services\Validadores\UserValidador;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     private $service;
-    private $imagemService;
+    private $imagemGerenciador;
 
-    public function __construct(UserValidador $userValidador, ImagemService $imagemService)
+    public function __construct(UserValidador $userValidador, ImagemGerenciador $imagemGerenciador)
     {
         $this->service = $userValidador;
-        $this->imagemService = $imagemService;
+        $this->imagemGerenciador = $imagemGerenciador;
     }
 
     public function index()
@@ -69,7 +69,7 @@ class UserController extends Controller
         }
         
         if ($request->hasFile('imagem')) {
-            $images = $this->imagemService->salvar($request->file('imagem'), $user);
+            $images = $this->imagemGerenciador->salvar($request->file('imagem'), $user);
 
             if ($images['success'] === false) {
                 $response = [
@@ -116,7 +116,7 @@ class UserController extends Controller
         $user->email = $dadosValidados['email'];
 
         if ($request->hasFile('imagem')) {
-            $images = $this->imagemService->salvar($request->file('imagem'), $user);
+            $images = $this->imagemGerenciador->salvar($request->file('imagem'), $user);
 
             if ($images['success'] === false) {
                 $response = [

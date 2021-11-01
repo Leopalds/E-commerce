@@ -2,6 +2,7 @@
     <label class="form-label mt-2">{{ $label }}</label>
     <input 
         type="{{ $type }}" 
+        step="0.01"
         class="form-control" 
         name="{{ $name }}" 
         placeholder="{{ $placeholder }}" 

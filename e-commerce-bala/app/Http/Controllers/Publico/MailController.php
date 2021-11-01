@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Publico;
 
 use App\Mail\Contato;
 use Illuminate\Http\Request;
-use App\Services\ContatoValidador;
 use App\Http\Controllers\Controller;
+use App\Services\Validadores\ContatoValidador;
 use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
