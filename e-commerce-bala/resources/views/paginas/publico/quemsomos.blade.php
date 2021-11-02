@@ -1,6 +1,5 @@
 @extends('layouts.main')
 @section('conteudo')
-    <!--<div class="img-fluid quem-somos_banner--um"></div>-->
     <div class="banner">
         <img class="img-fluid banner__img" src="{{ asset('img/cervejaria.jpg') }}" alt="Cervejaria">
     </div>

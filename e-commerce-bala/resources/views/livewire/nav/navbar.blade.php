@@ -32,6 +32,13 @@
                                 {{ Auth::user()->name }}
                             </a>
                         </li>
+                        @if (Auth::user()->isAdmin())
+                        <li>
+                            <a class="dropdown-item text-decoration-none" href="{{ route('dashboard') }}">
+                                Dashboard
+                            </a>
+                        </li>
+                        @endif
                         <li><a class="dropdown-item" href="#">Minhas compras</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
