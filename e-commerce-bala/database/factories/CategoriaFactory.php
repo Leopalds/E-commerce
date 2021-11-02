@@ -22,7 +22,7 @@ class CategoriaFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nome' => 'categoria' . rand()
         ];
     }
 }
