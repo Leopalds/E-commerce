@@ -13,8 +13,8 @@ class ProdutoValidador
         $validador =  Validator::make($request->all(), [
             'nome' => 'required|string',
             'descricao' => 'required',
-            'preco' => 'required|min:0',
-            'quantidade' => 'required|min:0'
+            'preco' => 'required|integer|min:0',
+            'quantidade' => 'required|integer|min:0'
         ], [
             'required' => 'Esse campo é obrigatório.',
         ]);
