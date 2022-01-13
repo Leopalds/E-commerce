@@ -8,22 +8,22 @@
 ## Features
 
 - Calculo de frete com a API dos correios
-![frete](https://i.gyazo.com/36eda334f4e8aab13ed8372b1ff1cac8.mp4)
+![frete](https://i.gyazo.com/36eda334f4e8aab13ed8372b1ff1cac8.gif)
 
 - Carrinho
-![carrinho](https://i.gyazo.com/eb12883ad21c49a086b84375a075a193.mp4)
+![carrinho](https://i.gyazo.com/eb12883ad21c49a086b84375a075a193.gif)
 
 - Checkout com a API do Mercado Pago
 ![checkout](https://i.gyazo.com/58217088e84d4dbbd76629b9a6b5f2f0.png)
 
 - Filtro de produtos
-![filtro](https://i.gyazo.com/4fd68b31d37ca2d34a8a56f24cc8da3b.mp4)
+![filtro](https://i.gyazo.com/4fd68b31d37ca2d34a8a56f24cc8da3b.gif)
 
 - Dashboard para administraçao
-![dashboard](https://i.gyazo.com/24bb1eb8aa6d86b6484e2e3db0744d43.mp4)
+![dashboard](https://i.gyazo.com/24bb1eb8aa6d86b6484e2e3db0744d43.gif)
 
 - Envio de e-mails para contato
-![email](https://i.gyazo.com/a5ef262b754a3ea4ef7b131c84dccdfb.mp4)
+![email](https://i.gyazo.com/a5ef262b754a3ea4ef7b131c84dccdfb.gif)
 
 ## Rodando no localhost
 
