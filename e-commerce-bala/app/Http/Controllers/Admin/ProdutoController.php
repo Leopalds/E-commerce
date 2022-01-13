@@ -54,6 +54,7 @@ class ProdutoController extends Controller
             $erros = $validador;
             return response()->json($erros);
         }
+        
         $dadosValidados = $validador['dados'];
         DB::beginTransaction();
         $produto = Produto::create($dadosValidados);

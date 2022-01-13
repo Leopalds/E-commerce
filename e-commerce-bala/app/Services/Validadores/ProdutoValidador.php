@@ -13,10 +13,12 @@ class ProdutoValidador
         $validador =  Validator::make($request->all(), [
             'nome' => 'required|string',
             'descricao' => 'required',
-            'preco' => 'required|integer|min:0',
-            'quantidade' => 'required|integer|min:0'
+            'preco' => 'required|numeric|gt:0',
+            'quantidade' => 'required|numeric|gte:0'
         ], [
             'required' => 'Esse campo é obrigatório.',
+            'gt' => ':attribute precisa ser maior do que zero.',
+            'gte' => ':attribute nao pode ser negativo.'
         ]);
 
         if ($validador->fails()) {

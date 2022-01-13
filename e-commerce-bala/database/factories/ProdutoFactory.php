@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use App\Models\Produto;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -22,6 +23,7 @@ class ProdutoFactory extends Factory
      */
     public function definition()
     {
+        
         return [
             'nome' => Str::random(10),
             'descricao' => Str::random(20),

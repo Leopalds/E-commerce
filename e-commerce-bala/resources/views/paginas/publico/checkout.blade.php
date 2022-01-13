@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('conteudo')
-<h2>Checkout</h1>
+<h2 class="mb-5">Checkout</h1>
 <div class="row">
     <div class="col-md-6">  
         <h3>Seu pedido</h3>
