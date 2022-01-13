@@ -1,0 +1,14 @@
+Implementaçoes:
+
+	*Colocar produtos na home
+	*Pagina individual do produto
+	*Carrinho
+	*background na home
+	*Colocar search na direita
+
+Pretensoes:
+	
+	
+	
+	
+	
